@@ -32,8 +32,14 @@
 		E472A0F82ADEDC8B00B837CB /* DSWaveformImageViews in Frameworks */ = {isa = PBXBuildFile; productRef = E472A0F72ADEDC8B00B837CB /* DSWaveformImageViews */; };
 		E472A0FB2ADEECD800B837CB /* HomeRoutingDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0FA2ADEECD800B837CB /* HomeRoutingDestinations.swift */; };
 		E472A1002ADEF15C00B837CB /* NewNoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0FF2ADEF15C00B837CB /* NewNoteScreen.swift */; };
-		E472A1032ADEF27D00B837CB /* NoteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A1022ADEF27D00B837CB /* NoteTextField.swift */; };
+		E472A1032ADEF27D00B837CB /* NoteFormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A1022ADEF27D00B837CB /* NoteFormTextField.swift */; };
 		E472A1052ADEF54400B837CB /* NoteAddSectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A1042ADEF54400B837CB /* NoteAddSectionButton.swift */; };
+		E49AA19F2AE04C2B0093AF99 /* NoteColorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49AA19E2AE04C2B0093AF99 /* NoteColorSelector.swift */; };
+		E49AA1A12AE052FE0093AF99 /* NoteTagSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49AA1A02AE052FE0093AF99 /* NoteTagSelector.swift */; };
+		E49AA1A82AE085130093AF99 /* GalleryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49AA1A72AE085130093AF99 /* GalleryPicker.swift */; };
+		E4B402292AE0975F00746769 /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B402282AE0975F00746769 /* CameraScreen.swift */; };
+		E4C3B7702AE0250300923492 /* AddNewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */; };
+		E4C3B7722AE0316000923492 /* SubtaskNoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,8 +67,14 @@
 		E472A0F22ADECE2700B837CB /* VoiceNoteSectionAudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceNoteSectionAudioManager.swift; sourceTree = "<group>"; };
 		E472A0FA2ADEECD800B837CB /* HomeRoutingDestinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoutingDestinations.swift; sourceTree = "<group>"; };
 		E472A0FF2ADEF15C00B837CB /* NewNoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteScreen.swift; sourceTree = "<group>"; };
-		E472A1022ADEF27D00B837CB /* NoteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTextField.swift; sourceTree = "<group>"; };
+		E472A1022ADEF27D00B837CB /* NoteFormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFormTextField.swift; sourceTree = "<group>"; };
 		E472A1042ADEF54400B837CB /* NoteAddSectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAddSectionButton.swift; sourceTree = "<group>"; };
+		E49AA19E2AE04C2B0093AF99 /* NoteColorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteColorSelector.swift; sourceTree = "<group>"; };
+		E49AA1A02AE052FE0093AF99 /* NoteTagSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTagSelector.swift; sourceTree = "<group>"; };
+		E49AA1A72AE085130093AF99 /* GalleryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPicker.swift; sourceTree = "<group>"; };
+		E4B402282AE0975F00746769 /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
+		E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNoteViewModel.swift; sourceTree = "<group>"; };
+		E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtaskNoteEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +110,7 @@
 		E472A0AB2ADD889700B837CB /* Your Notes */ = {
 			isa = PBXGroup;
 			children = (
+				E472A0F92ADEECB000B837CB /* Routing */,
 				E472A0E32ADDE69E00B837CB /* Extensions */,
 				E472A0C42ADD97A800B837CB /* Managers */,
 				E472A0D92ADDD76A00B837CB /* Components */,
@@ -121,9 +134,8 @@
 		E472A0BA2ADD899F00B837CB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				E472A0FC2ADEF12800B837CB /* AddNote */,
-				E472A0C92ADD9EA400B837CB /* Home */,
 				E472A0BB2ADD89AA00B837CB /* MainScreen */,
+				E49AA1A22AE07F750093AF99 /* HomeScreens */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -181,7 +193,6 @@
 		E472A0C92ADD9EA400B837CB /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				E472A0F92ADEECB000B837CB /* Routing */,
 				E472A0CC2ADD9EDD00B837CB /* ViewModel */,
 				E472A0CB2ADD9ED900B837CB /* View */,
 				E472A0CA2ADD9ED400B837CB /* Model */,
@@ -202,8 +213,8 @@
 		E472A0CB2ADD9ED900B837CB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E472A0D02ADDACF700B837CB /* Components */,
 				E472A0CD2ADD9EE600B837CB /* MainView */,
+				E472A0D02ADDACF700B837CB /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -234,6 +245,7 @@
 		E472A0D92ADDD76A00B837CB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E4B4022B2AE09AFD00746769 /* NoteMedia */,
 				E472A1012ADEF26300B837CB /* NoteForms */,
 				E472A0E92ADEC9DA00B837CB /* NoteView */,
 				E472A0D12ADDAD0800B837CB /* SearchBar.swift */,
@@ -280,6 +292,7 @@
 		E472A0FC2ADEF12800B837CB /* AddNote */ = {
 			isa = PBXGroup;
 			children = (
+				E4C3B76E2AE024EF00923492 /* ViewModel */,
 				E472A0FD2ADEF13300B837CB /* View */,
 			);
 			path = AddNote;
@@ -289,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				E472A0FE2ADEF13F00B837CB /* MainView */,
+				E4B4022C2AE09C3E00746769 /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -304,10 +318,70 @@
 		E472A1012ADEF26300B837CB /* NoteForms */ = {
 			isa = PBXGroup;
 			children = (
-				E472A1022ADEF27D00B837CB /* NoteTextField.swift */,
+				E472A1022ADEF27D00B837CB /* NoteFormTextField.swift */,
 				E472A1042ADEF54400B837CB /* NoteAddSectionButton.swift */,
+				E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */,
+				E49AA19E2AE04C2B0093AF99 /* NoteColorSelector.swift */,
+				E49AA1A02AE052FE0093AF99 /* NoteTagSelector.swift */,
 			);
 			path = NoteForms;
+			sourceTree = "<group>";
+		};
+		E49AA1A22AE07F750093AF99 /* HomeScreens */ = {
+			isa = PBXGroup;
+			children = (
+				E472A0FC2ADEF12800B837CB /* AddNote */,
+				E472A0C92ADD9EA400B837CB /* Home */,
+			);
+			path = HomeScreens;
+			sourceTree = "<group>";
+		};
+		E49AA1A42AE080000093AF99 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				E49AA1A72AE085130093AF99 /* GalleryPicker.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		E4B402272AE096F100746769 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				E4B402282AE0975F00746769 /* CameraScreen.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		E4B4022A2AE09AC000746769 /* VoiceRecording */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VoiceRecording;
+			sourceTree = "<group>";
+		};
+		E4B4022B2AE09AFD00746769 /* NoteMedia */ = {
+			isa = PBXGroup;
+			children = (
+				E4B4022A2AE09AC000746769 /* VoiceRecording */,
+				E4B402272AE096F100746769 /* Camera */,
+				E49AA1A42AE080000093AF99 /* Gallery */,
+			);
+			path = NoteMedia;
+			sourceTree = "<group>";
+		};
+		E4B4022C2AE09C3E00746769 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E4C3B76E2AE024EF00923492 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,8 +464,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E472A0C62ADD97B400B837CB /* ColorManager.swift in Sources */,
-				E472A1032ADEF27D00B837CB /* NoteTextField.swift in Sources */,
+				E472A1032ADEF27D00B837CB /* NoteFormTextField.swift in Sources */,
+				E49AA1A82AE085130093AF99 /* GalleryPicker.swift in Sources */,
+				E4C3B7702AE0250300923492 /* AddNewNoteViewModel.swift in Sources */,
 				E472A0F02ADECAF600B837CB /* VoiceNoteSectionShortNote.swift in Sources */,
+				E4C3B7722AE0316000923492 /* SubtaskNoteEditor.swift in Sources */,
 				E472A0AF2ADD889700B837CB /* MainScreen.swift in Sources */,
 				E472A0D42ADDD2A500B837CB /* NotesSorting.swift in Sources */,
 				E472A0D82ADDD66800B837CB /* NoteContentType.swift in Sources */,
@@ -404,11 +481,14 @@
 				E472A0DE2ADDD97500B837CB /* HomeScreenBody.swift in Sources */,
 				E472A1052ADEF54400B837CB /* NoteAddSectionButton.swift in Sources */,
 				E472A0E52ADDE6AA00B837CB /* View.swift in Sources */,
+				E49AA1A12AE052FE0093AF99 /* NoteTagSelector.swift in Sources */,
 				E472A0C82ADD98BC00B837CB /* MainScreenViews.swift in Sources */,
 				E472A0CF2ADD9EF400B837CB /* HomeScreen.swift in Sources */,
 				E472A0D22ADDAD0800B837CB /* SearchBar.swift in Sources */,
 				E472A0EC2ADECA0900B837CB /* TextSectionShortNote.swift in Sources */,
+				E49AA19F2AE04C2B0093AF99 /* NoteColorSelector.swift in Sources */,
 				E472A1002ADEF15C00B837CB /* NewNoteScreen.swift in Sources */,
+				E4B402292AE0975F00746769 /* CameraScreen.swift in Sources */,
 				E472A0EE2ADECA7700B837CB /* ToDoSectionShortNote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,6 +626,7 @@
 				DEVELOPMENT_TEAM = 84X4SX763A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = Temporal;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -576,6 +657,7 @@
 				DEVELOPMENT_TEAM = 84X4SX763A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = Temporal;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -7,30 +7,35 @@
 
 import SwiftUI
 
-struct NoteTextField: View {
+struct NoteFormTextField: View {
     
     @Binding var noteText: String
+    var showBackground: Bool = true
+    var placeholderText: String = "Note text"
     
     var body: some View {
         
         VStack {
-            TextField("Note text", text: $noteText)
+            TextField(placeholderText, text: $noteText)
             Line()
                 .stroke(ColorManager.primaryColor, lineWidth: 2)
                 .frame(height: 1)
         }
-        .padding()
-        .padding(.top)
-        .padding(.bottom,25)
+        .padding(showBackground ? 15 : 0)
+        .padding(.top, showBackground ? 15 : 0)
+        .padding(.bottom,showBackground ? 25 : 0)
         .background{
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundStyle(Color.gray.opacity(0.2))
+            
+            if showBackground {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundStyle(Color.gray.opacity(0.2))
+            }
         }
             
     }
 }
 
-fileprivate struct Line: Shape{
+struct Line: Shape{
     
     func path(in rect: CGRect) -> Path {
         
@@ -48,6 +53,11 @@ fileprivate struct Line: Shape{
 }
 
 #Preview {
-    NoteTextField(noteText: .constant(""))
+    NoteFormTextField(noteText: .constant(""))
+        .preferredColorScheme(.dark)
+}
+
+#Preview {
+    NoteFormTextField(noteText: .constant(""), showBackground: false)
         .preferredColorScheme(.dark)
 }

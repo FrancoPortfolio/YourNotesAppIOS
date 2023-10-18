@@ -10,16 +10,17 @@ import SwiftUI
 struct NoteAddSectionButton: View {
     
     var iconName: String = "camera.fill"
-    var doOnButtonPressed: () -> ()
+    var doOnButtonPressed : () -> ()
     
     var body: some View {
-        Button {
+        
+        Button(action: {
             doOnButtonPressed()
-        } label: {
+        }, label: {
             Image(systemName: iconName)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 20, height: 20)
+                .frame(width: 30, height: 30)
                 .padding(23)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
@@ -31,11 +32,10 @@ struct NoteAddSectionButton: View {
                             .padding(5)
                     })
                 }
-        }
-
+        })
     }
 }
 
 #Preview {
-    NoteAddSectionButton(){}
+    NoteAddSectionButton() {}
 }

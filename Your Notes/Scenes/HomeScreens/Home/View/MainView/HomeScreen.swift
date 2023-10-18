@@ -13,7 +13,7 @@ struct HomeScreen: View {
     @State private var showSearchBar: Bool = false
     @State private var showOnlyFavorites: Bool = false
     @State private var selectedSorting: NotesSorting = .dateAddedNewer
-    @State private var navigationPath: [HomeRoutingDestinations] = []
+    @State private var navigationPath: NavigationPath = NavigationPath()
     
     private var starIconName: String {
         if showOnlyFavorites {
@@ -82,7 +82,6 @@ struct HomeScreen: View {
                     HomeScreenBody()
                 }
                 
-                Spacer()
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity)
             .background {
@@ -91,6 +90,7 @@ struct HomeScreen: View {
             }
             .navigationTitle("My Notes")
             .toolbar(.hidden, for: .navigationBar)
+//            Navigation Views Destinations
             .navigationDestination(for: HomeRoutingDestinations.self) { destination in
                 
                 switch destination {
@@ -99,6 +99,7 @@ struct HomeScreen: View {
                 }
                 
             }
+            
         }
         
         

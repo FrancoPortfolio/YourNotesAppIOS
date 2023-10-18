@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ToDoSectionShortNote: View {
-    @Binding var todoList: [ToDo]?
+    @Binding var todoList: [Subtask]?
     
     var body: some View {
         

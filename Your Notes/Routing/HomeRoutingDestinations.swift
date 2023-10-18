@@ -13,3 +13,10 @@ enum HomeRoutingDestinations: Hashable{
     case editNote
     
 }
+
+enum AddNoteDestinations: Hashable {
+    case image
+    case camera
+    case voiceNote
+    case drawing
+}
