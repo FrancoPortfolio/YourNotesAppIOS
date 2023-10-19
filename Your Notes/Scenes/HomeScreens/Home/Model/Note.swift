@@ -62,7 +62,7 @@ struct Note: Codable, Hashable{
                                  contentTypes: [.PlainText,.Voice],
                                 noteData: NoteData(
                                     textData: "Lista de compras me gusta el pollo frito de KFC ojala comer mas gaaaaaaaaaaaaa",
-                                    voiceData: "Prueba1.m4a"
+                                    voiceData: ["Prueba1.m4a"]
                                 ))
 //    
 //    static var NoteMockup6 = Note(title: "MyNote6",
@@ -85,8 +85,8 @@ struct Note: Codable, Hashable{
 struct NoteData: Codable, Hashable{
     var textData: String?
     var toDoData: [Subtask]?
-    var imageData: String?
-    var voiceData: String?
+    var imageData: [String]?
+    var voiceData: [String]?
     var drawingData: String?
 }
 

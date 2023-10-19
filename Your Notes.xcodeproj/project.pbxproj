@@ -27,7 +27,7 @@
 		E472A0EC2ADECA0900B837CB /* TextSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0EB2ADECA0900B837CB /* TextSectionShortNote.swift */; };
 		E472A0EE2ADECA7700B837CB /* ToDoSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0ED2ADECA7700B837CB /* ToDoSectionShortNote.swift */; };
 		E472A0F02ADECAF600B837CB /* VoiceNoteSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0EF2ADECAF600B837CB /* VoiceNoteSectionShortNote.swift */; };
-		E472A0F32ADECE2700B837CB /* VoiceNoteSectionAudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0F22ADECE2700B837CB /* VoiceNoteSectionAudioManager.swift */; };
+		E472A0F32ADECE2700B837CB /* AudioRecordingPlayingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0F22ADECE2700B837CB /* AudioRecordingPlayingManager.swift */; };
 		E472A0F62ADEDC8B00B837CB /* DSWaveformImage in Frameworks */ = {isa = PBXBuildFile; productRef = E472A0F52ADEDC8B00B837CB /* DSWaveformImage */; };
 		E472A0F82ADEDC8B00B837CB /* DSWaveformImageViews in Frameworks */ = {isa = PBXBuildFile; productRef = E472A0F72ADEDC8B00B837CB /* DSWaveformImageViews */; };
 		E472A0FB2ADEECD800B837CB /* HomeRoutingDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0FA2ADEECD800B837CB /* HomeRoutingDestinations.swift */; };
@@ -38,6 +38,7 @@
 		E49AA1A12AE052FE0093AF99 /* NoteTagSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49AA1A02AE052FE0093AF99 /* NoteTagSelector.swift */; };
 		E49AA1A82AE085130093AF99 /* GalleryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49AA1A72AE085130093AF99 /* GalleryPicker.swift */; };
 		E4B402292AE0975F00746769 /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B402282AE0975F00746769 /* CameraScreen.swift */; };
+		E4B402302AE18DDB00746769 /* VoiceRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B4022F2AE18DDB00746769 /* VoiceRecordingView.swift */; };
 		E4C3B7702AE0250300923492 /* AddNewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */; };
 		E4C3B7722AE0316000923492 /* SubtaskNoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */; };
 /* End PBXBuildFile section */
@@ -64,7 +65,7 @@
 		E472A0EB2ADECA0900B837CB /* TextSectionShortNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSectionShortNote.swift; sourceTree = "<group>"; };
 		E472A0ED2ADECA7700B837CB /* ToDoSectionShortNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoSectionShortNote.swift; sourceTree = "<group>"; };
 		E472A0EF2ADECAF600B837CB /* VoiceNoteSectionShortNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceNoteSectionShortNote.swift; sourceTree = "<group>"; };
-		E472A0F22ADECE2700B837CB /* VoiceNoteSectionAudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceNoteSectionAudioManager.swift; sourceTree = "<group>"; };
+		E472A0F22ADECE2700B837CB /* AudioRecordingPlayingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingPlayingManager.swift; sourceTree = "<group>"; };
 		E472A0FA2ADEECD800B837CB /* HomeRoutingDestinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoutingDestinations.swift; sourceTree = "<group>"; };
 		E472A0FF2ADEF15C00B837CB /* NewNoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteScreen.swift; sourceTree = "<group>"; };
 		E472A1022ADEF27D00B837CB /* NoteFormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFormTextField.swift; sourceTree = "<group>"; };
@@ -73,6 +74,7 @@
 		E49AA1A02AE052FE0093AF99 /* NoteTagSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTagSelector.swift; sourceTree = "<group>"; };
 		E49AA1A72AE085130093AF99 /* GalleryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPicker.swift; sourceTree = "<group>"; };
 		E4B402282AE0975F00746769 /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
+		E4B4022F2AE18DDB00746769 /* VoiceRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingView.swift; sourceTree = "<group>"; };
 		E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNoteViewModel.swift; sourceTree = "<group>"; };
 		E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtaskNoteEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				E472A0C52ADD97B400B837CB /* ColorManager.swift */,
-				E472A0F22ADECE2700B837CB /* VoiceNoteSectionAudioManager.swift */,
+				E472A0F22ADECE2700B837CB /* AudioRecordingPlayingManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -355,6 +357,7 @@
 		E4B4022A2AE09AC000746769 /* VoiceRecording */ = {
 			isa = PBXGroup;
 			children = (
+				E4B4022F2AE18DDB00746769 /* VoiceRecordingView.swift */,
 			);
 			path = VoiceRecording;
 			sourceTree = "<group>";
@@ -473,9 +476,10 @@
 				E472A0D42ADDD2A500B837CB /* NotesSorting.swift in Sources */,
 				E472A0D82ADDD66800B837CB /* NoteContentType.swift in Sources */,
 				E472A0E72ADDE7B600B837CB /* Color.swift in Sources */,
-				E472A0F32ADECE2700B837CB /* VoiceNoteSectionAudioManager.swift in Sources */,
+				E472A0F32ADECE2700B837CB /* AudioRecordingPlayingManager.swift in Sources */,
 				E472A0E22ADDDEB700B837CB /* NoteShortView.swift in Sources */,
 				E472A0FB2ADEECD800B837CB /* HomeRoutingDestinations.swift in Sources */,
+				E4B402302AE18DDB00746769 /* VoiceRecordingView.swift in Sources */,
 				E472A0AD2ADD889700B837CB /* Your_NotesApp.swift in Sources */,
 				E472A0E02ADDDA8700B837CB /* Note.swift in Sources */,
 				E472A0DE2ADDD97500B837CB /* HomeScreenBody.swift in Sources */,

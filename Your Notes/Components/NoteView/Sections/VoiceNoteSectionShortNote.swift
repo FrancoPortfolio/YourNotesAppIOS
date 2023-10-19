@@ -11,7 +11,7 @@ import DSWaveformImageViews
 
 struct VoiceNoteSectionShortNote: View {
     
-    @StateObject private var audioManager = VoiceNoteSectionAudioManager()
+    @StateObject private var audioManager = AudioRecordingPlayingManager()
     
     var voiceNoteUrl: String?
     var noteId: String

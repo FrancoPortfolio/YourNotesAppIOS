@@ -58,7 +58,7 @@ struct GalleryPicker: UIViewControllerRepresentable {
                                 self.parent.images.append(image)
                             }
                         } else {
-                            print("Could not load image", error?.localizedDescription ?? "")
+                            Log.error("Could not load image \(String(describing: error?.localizedDescription))")
                         }
                     }
                 }

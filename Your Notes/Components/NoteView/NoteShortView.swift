@@ -64,9 +64,11 @@ struct NoteShortView: View {
                             .frame(maxWidth: .infinity)
                         
                     case .Voice:
-                        VoiceNoteSectionShortNote(voiceNoteUrl: note.noteData.voiceData,
-                                                  noteId: note.id)
-                            .frame(maxWidth: .infinity)
+                        if let data = note.noteData.voiceData {
+                            VoiceNoteSectionShortNote(voiceNoteUrl: data[0],
+                                                      noteId: note.id)
+                                .frame(maxWidth: .infinity)
+                        }
                     case .Drawing:
                         if contentOrder != 1 {
                             Text("Drawing")//DrawingSection()

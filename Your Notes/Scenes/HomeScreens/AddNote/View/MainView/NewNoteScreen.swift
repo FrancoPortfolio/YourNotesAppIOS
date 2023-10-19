@@ -13,6 +13,7 @@ struct NewNoteScreen: View {
     private var defaultColors = ["#FFFFFF","#FF0000","#00FF00","#008000","#0000FF","#800080"]
     
     @StateObject private var viewModel: AddNewNoteViewModel = AddNewNoteViewModel()
+    @StateObject private var audioManager = AudioRecordingPlayingManager()
     @State private var showCheckOfSubTaskEditor = false
     @State private var presentAddMediaGallery : Bool = false
     @State private var presentAddMediaCamera : Bool = false
@@ -20,6 +21,7 @@ struct NewNoteScreen: View {
     @State private var presentAddMediaDrawing : Bool = false
     @State private var mediaTypeToAdd : AddNoteDestinations = .image
     @State private var tempImageCamera : UIImage = UIImage()
+    
     
     var body: some View {
         
@@ -55,9 +57,7 @@ struct NewNoteScreen: View {
         //Sheets
         .sheet(isPresented: $presentAddMediaGallery){ galleryScreen }
         .sheet(isPresented: $presentAddMediaCamera){ cameraScreen }
-        .sheet(isPresented: $presentAddMediaVoice, content: {
-            Text("Voice")
-        })
+        .sheet(isPresented: $presentAddMediaVoice){ voiceRecordingScreen }
         .sheet(isPresented: $presentAddMediaDrawing, content: {
             Text("Drawing")
         })
@@ -65,7 +65,7 @@ struct NewNoteScreen: View {
         //Toolbar items
         .toolbar(content: {
             ToolbarItem {
-               addNoteButton
+                addNoteButton
             }
         })
     }
@@ -110,6 +110,44 @@ extension NewNoteScreen{
                                         
                                     }
                             }
+                        }
+                    }
+                }
+                
+                if !viewModel.audioFilesUrlStrings.isEmpty{
+                    VStack{
+                        ForEach(viewModel.audioFilesUrlStrings, id: \.self){ audioPathString in
+                            
+                            let isThisAudioPlaying = audioManager.isPlaying && (audioPathString == audioManager.actualFilePlayingURLString)
+                            
+                            HStack(alignment: .center) {
+                                Button {
+                                    if isThisAudioPlaying {
+                                        audioManager.stopPlaying()
+                                        return
+                                    }
+                                    
+                                    if audioManager.isPlaying {
+                                        audioManager.stopPlaying()
+                                        audioManager.startPlaying(filePath: audioPathString)
+                                        return
+                                    }
+                                    audioManager.startPlaying(filePath: audioPathString)
+                                    
+                                } label: {
+                                    Image(systemName: isThisAudioPlaying ? "pause.circle.fill" : "play.circle.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 25)
+                                }
+                                
+                                Line()
+                                    .stroke(Color.gray, lineWidth: 2)
+                                
+                            }
+                            
+                            
+                            
                         }
                     }
                 }
@@ -224,7 +262,7 @@ extension NewNoteScreen{
     private var addNoteButton: some View{
         Button("Add Note") {
             //Add note
-            print("Add note to db")
+            Log.info("Add note to db")
         }
     }
 }
@@ -244,6 +282,18 @@ extension NewNoteScreen{
                 viewModel.imagesToShow.append(self.tempImageCamera)
                 tempImageCamera = UIImage()
             }
+    }
+    
+    private var voiceRecordingScreen: some View{
+        VoiceRecordingView(noteId: viewModel.noteId,
+                           recordingsNames: $viewModel.audioFilesUrlStrings) { urlString in
+            
+            self.viewModel.audioFilesUrlStrings.append(urlString)
+            self.presentAddMediaVoice = false
+            Log.info("Actual audio paths: \(self.viewModel.audioFilesUrlStrings)")
+            
+        }
+        .ignoresSafeArea()
     }
     
 }

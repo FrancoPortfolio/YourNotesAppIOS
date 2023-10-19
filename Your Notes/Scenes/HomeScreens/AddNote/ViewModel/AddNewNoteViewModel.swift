@@ -11,6 +11,7 @@ import UIKit
 @MainActor
 class AddNewNoteViewModel: ObservableObject{
     
+    @Published var noteId: String = UUID().uuidString
     @Published var noteText: String = ""
     @Published var imagesToShow: [UIImage] = []
     @Published var subtasks: [Subtask] = []
@@ -18,6 +19,7 @@ class AddNewNoteViewModel: ObservableObject{
     @Published var selectedColorHex: String = "#FFFFFF"
     @Published var tempSubtaskText: String = ""
     @Published var tagClasses: [ClassTag] = []
+    @Published var audioFilesUrlStrings: [String] = []
     
     func getColorsFromDatabase(){
         
