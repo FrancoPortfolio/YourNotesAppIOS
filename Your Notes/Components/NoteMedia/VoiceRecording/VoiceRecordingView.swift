@@ -95,7 +95,7 @@ struct VoiceRecordingView: View {
                             
                             Button(action: {
                                 
-                                var lastFilePath = self.audioPlayerManager.tempURLOfLastFileRecording
+                                let lastFilePath = self.audioPlayerManager.tempURLOfLastFileRecording
                                 
                                 self.audioPlayerManager.tempURLOfLastFileRecording = ""
                                 

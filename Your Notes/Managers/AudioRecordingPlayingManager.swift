@@ -16,6 +16,7 @@ class AudioRecordingPlayingManager: NSObject, ObservableObject, AVAudioPlayerDel
     @Published var isPlaying : Bool = false
     @Published var isRecording : Bool = false
     @Published var tempURLOfLastFileRecording : String = ""
+    @Published var assets = [Recording]()
     var actualFilePlayingURLString : String = ""
     let fileManager = FileManager.default
    
@@ -56,7 +57,7 @@ extension AudioRecordingPlayingManager {
     }
     
     func createBaseFolderForRecording(noteId: String){
-        var basePath = getBaseFolderURL(noteId: noteId)
+        let basePath = getBaseFolderURL(noteId: noteId)
         
         if !checkBaseFolderExists(basePath: basePath){
             createBaseFolder(basePath: basePath)
@@ -117,7 +118,7 @@ extension AudioRecordingPlayingManager {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-YY 'at' HH-mm-ss"
         
-        var basePath = getBaseFolderURL(noteId: id)
+        let basePath = getBaseFolderURL(noteId: id)
         
         let path = basePath.appendingPathComponent("YN-\(dateFormatter.string(from: Date())).m4a")
         
@@ -217,4 +218,10 @@ extension AudioRecordingPlayingManager{
         audioPlayer.stop()
         isPlaying = false
     }
+}
+
+struct Recording{
+    let id = UUID().uuidString
+    let dataUrl : String
+    let asset : AVAsset
 }

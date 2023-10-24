@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AVFoundation
+import PencilKit
 
 struct NewNoteScreen: View {
     
@@ -58,9 +60,7 @@ struct NewNoteScreen: View {
         .sheet(isPresented: $presentAddMediaGallery){ galleryScreen }
         .sheet(isPresented: $presentAddMediaCamera){ cameraScreen }
         .sheet(isPresented: $presentAddMediaVoice){ voiceRecordingScreen }
-        .sheet(isPresented: $presentAddMediaDrawing, content: {
-            Text("Drawing")
-        })
+        .sheet(isPresented: $presentAddMediaDrawing, content: { drawingScreen })
         
         //Toolbar items
         .toolbar(content: {
@@ -73,6 +73,7 @@ struct NewNoteScreen: View {
 
 //Top Part
 extension NewNoteScreen{
+    
     private var TopPart: some View{
         Group{
             VStack (spacing: 20){
@@ -117,38 +118,18 @@ extension NewNoteScreen{
                 if !viewModel.audioFilesUrlStrings.isEmpty{
                     VStack{
                         ForEach(viewModel.audioFilesUrlStrings, id: \.self){ audioPathString in
-                            
-                            let isThisAudioPlaying = audioManager.isPlaying && (audioPathString == audioManager.actualFilePlayingURLString)
-                            
-                            HStack(alignment: .center) {
-                                Button {
-                                    if isThisAudioPlaying {
-                                        audioManager.stopPlaying()
-                                        return
-                                    }
-                                    
-                                    if audioManager.isPlaying {
-                                        audioManager.stopPlaying()
-                                        audioManager.startPlaying(filePath: audioPathString)
-                                        return
-                                    }
-                                    audioManager.startPlaying(filePath: audioPathString)
-                                    
-                                } label: {
-                                    Image(systemName: isThisAudioPlaying ? "pause.circle.fill" : "play.circle.fill")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: 25)
-                                }
-                                
-                                Line()
-                                    .stroke(Color.gray, lineWidth: 2)
-                                
-                            }
-                            
-                            
-                            
+                            VoiceRecordingPreview(audioManager: audioManager,
+                                                  audioPathString: audioPathString)
                         }
+                    }
+                }
+                
+                if let data = viewModel.drawingData {
+                    VStack{
+                        Image(uiImage: self.getUIImageFromCanvasData(data: data, size: CGSize(width: 300, height: 450)))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200)
                     }
                 }
                 
@@ -289,6 +270,9 @@ extension NewNoteScreen{
                            recordingsNames: $viewModel.audioFilesUrlStrings) { urlString in
             
             self.viewModel.audioFilesUrlStrings.append(urlString)
+            self.audioManager.assets.append(
+                Recording(dataUrl: urlString,
+                          asset: AVAsset(url: URL(string: urlString)!)))
             self.presentAddMediaVoice = false
             Log.info("Actual audio paths: \(self.viewModel.audioFilesUrlStrings)")
             
@@ -296,8 +280,33 @@ extension NewNoteScreen{
         .ignoresSafeArea()
     }
     
+    private var drawingScreen: some View{
+        DrawingViewForm(){ drawingData in
+            self.viewModel.drawingData = drawingData
+        }
+            .ignoresSafeArea()
+        
+    }
+    
 }
 
+//Functions
+extension NewNoteScreen{
+    
+    private func getUIImageFromCanvasData(data: Data, size: CGSize) -> UIImage{
+        let canvas = PKCanvasView()
+        var image = UIImage()
+        let cgRect = CGRect(origin: CGPoint.zero,size: size)
+        do{
+            try canvas.drawing = PKDrawing(data: data)
+            image = canvas.drawing.image(from: cgRect, scale: 10.0)
+        } catch {
+            Log.error("Error making image from canvas: \(error)")
+        }
+        return image
+    }
+    
+}
 
 fileprivate extension Text{
     func newNoteSubtitle() -> some View{

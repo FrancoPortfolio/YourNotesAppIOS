@@ -39,6 +39,12 @@
 		E49AA1A82AE085130093AF99 /* GalleryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49AA1A72AE085130093AF99 /* GalleryPicker.swift */; };
 		E4B402292AE0975F00746769 /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B402282AE0975F00746769 /* CameraScreen.swift */; };
 		E4B402302AE18DDB00746769 /* VoiceRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B4022F2AE18DDB00746769 /* VoiceRecordingView.swift */; };
+		E4B402362AE2E26B00746769 /* VoiceRecordingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B402352AE2E26B00746769 /* VoiceRecordingPreview.swift */; };
+		E4BBEF972AE7182A00C46A94 /* AppData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEF952AE7182A00C46A94 /* AppData.xcdatamodeld */; };
+		E4BBEF9A2AE7189800C46A94 /* DrawingCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEF992AE7189800C46A94 /* DrawingCanvasViewController.swift */; };
+		E4BBEF9C2AE71C1E00C46A94 /* DrawingCanvasViewForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEF9B2AE71C1E00C46A94 /* DrawingCanvasViewForm.swift */; };
+		E4BBEF9E2AE721C800C46A94 /* DrawingViewForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEF9D2AE721C800C46A94 /* DrawingViewForm.swift */; };
+		E4BBEFA22AE80AEF00C46A94 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEFA12AE80AEF00C46A94 /* DataManager.swift */; };
 		E4C3B7702AE0250300923492 /* AddNewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */; };
 		E4C3B7722AE0316000923492 /* SubtaskNoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +81,12 @@
 		E49AA1A72AE085130093AF99 /* GalleryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPicker.swift; sourceTree = "<group>"; };
 		E4B402282AE0975F00746769 /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
 		E4B4022F2AE18DDB00746769 /* VoiceRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingView.swift; sourceTree = "<group>"; };
+		E4B402352AE2E26B00746769 /* VoiceRecordingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingPreview.swift; sourceTree = "<group>"; };
+		E4BBEF962AE7182A00C46A94 /* Drawing.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Drawing.xcdatamodel; sourceTree = "<group>"; };
+		E4BBEF992AE7189800C46A94 /* DrawingCanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasViewController.swift; sourceTree = "<group>"; };
+		E4BBEF9B2AE71C1E00C46A94 /* DrawingCanvasViewForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasViewForm.swift; sourceTree = "<group>"; };
+		E4BBEF9D2AE721C800C46A94 /* DrawingViewForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewForm.swift; sourceTree = "<group>"; };
+		E4BBEFA12AE80AEF00C46A94 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNoteViewModel.swift; sourceTree = "<group>"; };
 		E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtaskNoteEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +124,7 @@
 		E472A0AB2ADD889700B837CB /* Your Notes */ = {
 			isa = PBXGroup;
 			children = (
+				E4BBEF942AE7180600C46A94 /* CoreData */,
 				E472A0F92ADEECB000B837CB /* Routing */,
 				E472A0E32ADDE69E00B837CB /* Extensions */,
 				E472A0C42ADD97A800B837CB /* Managers */,
@@ -358,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B4022F2AE18DDB00746769 /* VoiceRecordingView.swift */,
+				E4B402352AE2E26B00746769 /* VoiceRecordingPreview.swift */,
 			);
 			path = VoiceRecording;
 			sourceTree = "<group>";
@@ -365,6 +379,7 @@
 		E4B4022B2AE09AFD00746769 /* NoteMedia */ = {
 			isa = PBXGroup;
 			children = (
+				E4BBEF982AE7186A00C46A94 /* Drawing */,
 				E4B4022A2AE09AC000746769 /* VoiceRecording */,
 				E4B402272AE096F100746769 /* Camera */,
 				E49AA1A42AE080000093AF99 /* Gallery */,
@@ -377,6 +392,25 @@
 			children = (
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		E4BBEF942AE7180600C46A94 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E4BBEF952AE7182A00C46A94 /* AppData.xcdatamodeld */,
+				E4BBEFA12AE80AEF00C46A94 /* DataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E4BBEF982AE7186A00C46A94 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				E4BBEF992AE7189800C46A94 /* DrawingCanvasViewController.swift */,
+				E4BBEF9B2AE71C1E00C46A94 /* DrawingCanvasViewForm.swift */,
+				E4BBEF9D2AE721C800C46A94 /* DrawingViewForm.swift */,
+			);
+			path = Drawing;
 			sourceTree = "<group>";
 		};
 		E4C3B76E2AE024EF00923492 /* ViewModel */ = {
@@ -475,17 +509,23 @@
 				E472A0AF2ADD889700B837CB /* MainScreen.swift in Sources */,
 				E472A0D42ADDD2A500B837CB /* NotesSorting.swift in Sources */,
 				E472A0D82ADDD66800B837CB /* NoteContentType.swift in Sources */,
+				E4BBEFA22AE80AEF00C46A94 /* DataManager.swift in Sources */,
+				E4BBEF9E2AE721C800C46A94 /* DrawingViewForm.swift in Sources */,
+				E4B402362AE2E26B00746769 /* VoiceRecordingPreview.swift in Sources */,
 				E472A0E72ADDE7B600B837CB /* Color.swift in Sources */,
 				E472A0F32ADECE2700B837CB /* AudioRecordingPlayingManager.swift in Sources */,
 				E472A0E22ADDDEB700B837CB /* NoteShortView.swift in Sources */,
 				E472A0FB2ADEECD800B837CB /* HomeRoutingDestinations.swift in Sources */,
+				E4BBEF972AE7182A00C46A94 /* AppData.xcdatamodeld in Sources */,
 				E4B402302AE18DDB00746769 /* VoiceRecordingView.swift in Sources */,
 				E472A0AD2ADD889700B837CB /* Your_NotesApp.swift in Sources */,
 				E472A0E02ADDDA8700B837CB /* Note.swift in Sources */,
 				E472A0DE2ADDD97500B837CB /* HomeScreenBody.swift in Sources */,
 				E472A1052ADEF54400B837CB /* NoteAddSectionButton.swift in Sources */,
 				E472A0E52ADDE6AA00B837CB /* View.swift in Sources */,
+				E4BBEF9C2AE71C1E00C46A94 /* DrawingCanvasViewForm.swift in Sources */,
 				E49AA1A12AE052FE0093AF99 /* NoteTagSelector.swift in Sources */,
+				E4BBEF9A2AE7189800C46A94 /* DrawingCanvasViewController.swift in Sources */,
 				E472A0C82ADD98BC00B837CB /* MainScreenViews.swift in Sources */,
 				E472A0CF2ADD9EF400B837CB /* HomeScreen.swift in Sources */,
 				E472A0D22ADDAD0800B837CB /* SearchBar.swift in Sources */,
@@ -727,6 +767,19 @@
 			productName = DSWaveformImageViews;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		E4BBEF952AE7182A00C46A94 /* AppData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E4BBEF962AE7182A00C46A94 /* Drawing.xcdatamodel */,
+			);
+			currentVersion = E4BBEF962AE7182A00C46A94 /* Drawing.xcdatamodel */;
+			path = AppData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E472A0A12ADD889700B837CB /* Project object */;
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 import UIKit
 
 @MainActor
@@ -20,6 +21,7 @@ class AddNewNoteViewModel: ObservableObject{
     @Published var tempSubtaskText: String = ""
     @Published var tagClasses: [ClassTag] = []
     @Published var audioFilesUrlStrings: [String] = []
+    @Published var drawingData: Data?
     
     func getColorsFromDatabase(){
         
