@@ -12,7 +12,7 @@ class DataManager{
     
     static let standard = DataManager()
     
-    let container = NSPersistentContainer(name: "AppData")
+    let container = NSPersistentContainer(name: "NoteData")
     
     init() {
         container.loadPersistentStores { description, error in

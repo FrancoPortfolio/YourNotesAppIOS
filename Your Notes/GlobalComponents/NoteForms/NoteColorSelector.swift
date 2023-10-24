@@ -30,8 +30,8 @@ struct NoteColorSelector: View {
                 HStack (spacing: 15){
                     ForEach(colorList,id: \.self){ colorHex in
                         
-                        ColorSphere(colorHex: colorHex, selectedColor: $selectedColor)
-                            .frame(width: 30, height: 30)
+//                        ColorSphere(colorHex: colorHex, selectedColor: $selectedColor)
+//                            .frame(width: 30, height: 30)
                     }
                 }
                 

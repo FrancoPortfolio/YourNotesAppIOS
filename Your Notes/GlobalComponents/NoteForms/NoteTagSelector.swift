@@ -81,6 +81,7 @@ struct NoteTagSelector: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
         }
         
     }
