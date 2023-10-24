@@ -216,11 +216,7 @@ extension NewNoteScreen{
 extension NewNoteScreen{
     private var ClassSelectionPart: some View{
         Group{
-            Text("Select tag")
-                .newNoteSubtitle()
-            
-            NoteTagSelector(actualTag: $viewModel.noteClass,
-                            tagList: $viewModel.tagClasses)
+            NewNoteTagSectionView()
         }
     }
 }
@@ -306,17 +302,6 @@ extension NewNoteScreen{
         return image
     }
     
-}
-
-fileprivate extension Text{
-    func newNoteSubtitle() -> some View{
-        self
-            .font(.headline)
-            .fontWeight(.bold)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top)
-        
-    }
 }
 
 #Preview {

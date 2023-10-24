@@ -45,6 +45,10 @@
 		E4BBEF9C2AE71C1E00C46A94 /* DrawingCanvasViewForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEF9B2AE71C1E00C46A94 /* DrawingCanvasViewForm.swift */; };
 		E4BBEF9E2AE721C800C46A94 /* DrawingViewForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEF9D2AE721C800C46A94 /* DrawingViewForm.swift */; };
 		E4BBEFA22AE80AEF00C46A94 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEFA12AE80AEF00C46A94 /* DataManager.swift */; };
+		E4BBEFB02AE82C6200C46A94 /* NewNoteTagSectionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEFAF2AE82C6200C46A94 /* NewNoteTagSectionViewViewModel.swift */; };
+		E4BBEFB22AE82E8D00C46A94 /* NewNoteTagSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEFB12AE82E8D00C46A94 /* NewNoteTagSectionView.swift */; };
+		E4BBEFB42AE82F7F00C46A94 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEFB32AE82F7F00C46A94 /* Text.swift */; };
+		E4BBEFB92AE8378000C46A94 /* NewNoteColorSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEFB82AE8378000C46A94 /* NewNoteColorSectionViewModel.swift */; };
 		E4C3B7702AE0250300923492 /* AddNewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */; };
 		E4C3B7722AE0316000923492 /* SubtaskNoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +91,10 @@
 		E4BBEF9B2AE71C1E00C46A94 /* DrawingCanvasViewForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasViewForm.swift; sourceTree = "<group>"; };
 		E4BBEF9D2AE721C800C46A94 /* DrawingViewForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewForm.swift; sourceTree = "<group>"; };
 		E4BBEFA12AE80AEF00C46A94 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		E4BBEFAF2AE82C6200C46A94 /* NewNoteTagSectionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteTagSectionViewViewModel.swift; sourceTree = "<group>"; };
+		E4BBEFB12AE82E8D00C46A94 /* NewNoteTagSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteTagSectionView.swift; sourceTree = "<group>"; };
+		E4BBEFB32AE82F7F00C46A94 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		E4BBEFB82AE8378000C46A94 /* NewNoteColorSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteColorSectionViewModel.swift; sourceTree = "<group>"; };
 		E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNoteViewModel.swift; sourceTree = "<group>"; };
 		E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtaskNoteEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,7 +136,7 @@
 				E472A0F92ADEECB000B837CB /* Routing */,
 				E472A0E32ADDE69E00B837CB /* Extensions */,
 				E472A0C42ADD97A800B837CB /* Managers */,
-				E472A0D92ADDD76A00B837CB /* Components */,
+				E472A0D92ADDD76A00B837CB /* GlobalComponents */,
 				E472A0BA2ADD899F00B837CB /* Scenes */,
 				E472A0AC2ADD889700B837CB /* Your_NotesApp.swift */,
 				E472A0B02ADD889900B837CB /* Assets.xcassets */,
@@ -257,7 +265,7 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		E472A0D92ADDD76A00B837CB /* Components */ = {
+		E472A0D92ADDD76A00B837CB /* GlobalComponents */ = {
 			isa = PBXGroup;
 			children = (
 				E4B4022B2AE09AFD00746769 /* NoteMedia */,
@@ -265,7 +273,7 @@
 				E472A0E92ADEC9DA00B837CB /* NoteView */,
 				E472A0D12ADDAD0800B837CB /* SearchBar.swift */,
 			);
-			path = Components;
+			path = GlobalComponents;
 			sourceTree = "<group>";
 		};
 		E472A0E32ADDE69E00B837CB /* Extensions */ = {
@@ -273,6 +281,7 @@
 			children = (
 				E472A0E42ADDE6AA00B837CB /* View.swift */,
 				E472A0E62ADDE7B600B837CB /* Color.swift */,
+				E4BBEFB32AE82F7F00C46A94 /* Text.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -390,6 +399,8 @@
 		E4B4022C2AE09C3E00746769 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E4BBEFB52AE8376000C46A94 /* ColorSection */,
+				E4BBEFAC2AE82C0600C46A94 /* TagSection */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -411,6 +422,55 @@
 				E4BBEF9D2AE721C800C46A94 /* DrawingViewForm.swift */,
 			);
 			path = Drawing;
+			sourceTree = "<group>";
+		};
+		E4BBEFAC2AE82C0600C46A94 /* TagSection */ = {
+			isa = PBXGroup;
+			children = (
+				E4BBEFAE2AE82C3E00C46A94 /* ViewModel */,
+				E4BBEFAD2AE82C3300C46A94 /* View */,
+			);
+			path = TagSection;
+			sourceTree = "<group>";
+		};
+		E4BBEFAD2AE82C3300C46A94 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4BBEFB12AE82E8D00C46A94 /* NewNoteTagSectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E4BBEFAE2AE82C3E00C46A94 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E4BBEFAF2AE82C6200C46A94 /* NewNoteTagSectionViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E4BBEFB52AE8376000C46A94 /* ColorSection */ = {
+			isa = PBXGroup;
+			children = (
+				E4BBEFB62AE8376900C46A94 /* ViewModel */,
+				E4BBEFB72AE8376D00C46A94 /* View */,
+			);
+			path = ColorSection;
+			sourceTree = "<group>";
+		};
+		E4BBEFB62AE8376900C46A94 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E4BBEFB82AE8378000C46A94 /* NewNoteColorSectionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E4BBEFB72AE8376D00C46A94 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E4C3B76E2AE024EF00923492 /* ViewModel */ = {
@@ -511,8 +571,10 @@
 				E472A0D82ADDD66800B837CB /* NoteContentType.swift in Sources */,
 				E4BBEFA22AE80AEF00C46A94 /* DataManager.swift in Sources */,
 				E4BBEF9E2AE721C800C46A94 /* DrawingViewForm.swift in Sources */,
+				E4BBEFB02AE82C6200C46A94 /* NewNoteTagSectionViewViewModel.swift in Sources */,
 				E4B402362AE2E26B00746769 /* VoiceRecordingPreview.swift in Sources */,
 				E472A0E72ADDE7B600B837CB /* Color.swift in Sources */,
+				E4BBEFB42AE82F7F00C46A94 /* Text.swift in Sources */,
 				E472A0F32ADECE2700B837CB /* AudioRecordingPlayingManager.swift in Sources */,
 				E472A0E22ADDDEB700B837CB /* NoteShortView.swift in Sources */,
 				E472A0FB2ADEECD800B837CB /* HomeRoutingDestinations.swift in Sources */,
@@ -527,7 +589,9 @@
 				E49AA1A12AE052FE0093AF99 /* NoteTagSelector.swift in Sources */,
 				E4BBEF9A2AE7189800C46A94 /* DrawingCanvasViewController.swift in Sources */,
 				E472A0C82ADD98BC00B837CB /* MainScreenViews.swift in Sources */,
+				E4BBEFB22AE82E8D00C46A94 /* NewNoteTagSectionView.swift in Sources */,
 				E472A0CF2ADD9EF400B837CB /* HomeScreen.swift in Sources */,
+				E4BBEFB92AE8378000C46A94 /* NewNoteColorSectionViewModel.swift in Sources */,
 				E472A0D22ADDAD0800B837CB /* SearchBar.swift in Sources */,
 				E472A0EC2ADECA0900B837CB /* TextSectionShortNote.swift in Sources */,
 				E49AA19F2AE04C2B0093AF99 /* NoteColorSelector.swift in Sources */,

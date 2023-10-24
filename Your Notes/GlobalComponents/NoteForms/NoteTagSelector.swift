@@ -12,13 +12,9 @@ struct NoteTagSelector: View {
     @State private var showAddTagForm: Bool = false
     @State private var showAddTagButton: Bool = false
     @State private var newTagText = ""
-    @Binding var actualTag: ClassTag?
-    @Binding var tagList: [ClassTag]
-    
-    init(actualTag: Binding<ClassTag?>, tagList: Binding<[ClassTag]>) {
-        self._actualTag = actualTag
-        self._tagList = tagList
-    }
+    @State private var actualTag : UUID? = nil
+    @Binding var tags : [NoteTag]
+    var doWhenSaveNewTag: (String) -> ()
     
     var body: some View {
         
@@ -32,7 +28,7 @@ struct NoteTagSelector: View {
                     
                     if showAddTagButton{
                         Button(action: {
-                            tagList.append(ClassTag(tag: "#" + newTagText))
+                            doWhenSaveNewTag(newTagText)
                             newTagText = ""
                             withAnimation (.linear){
                                 showAddTagForm = false
@@ -79,8 +75,8 @@ struct NoteTagSelector: View {
                     
                     
                     HStack {
-                        ForEach(tagList){ tagClass in
-                            TagFrame(tagClass: tagClass, actualTag: $actualTag)
+                        ForEach(tags){ tag in
+                            TagFrame(noteTag: tag, actualTag: $actualTag)
                         }
                     }
                 }
@@ -92,13 +88,13 @@ struct NoteTagSelector: View {
 
 fileprivate struct TagFrame: View {
     
-    var tagClass: ClassTag = ClassTag(tag: "")
-    @Binding var actualTag: ClassTag?
+    var noteTag: NoteTag
+    @Binding var actualTag: UUID?
     
     var isSelected: Bool {
-        guard let tagSelected = actualTag else { return false }
+        guard let tag = actualTag else { return false }
         
-        if tagSelected.tag == tagClass.tag { return true }
+        if tag == noteTag.id { return true }
         
         return false
         
@@ -108,10 +104,15 @@ fileprivate struct TagFrame: View {
         
         Button(action: {
             
-            actualTag = tagClass
+            if actualTag == noteTag.id{
+                actualTag = nil
+                return
+            }
+            
+            actualTag = noteTag.id
             
         }, label: {
-            Text(tagClass.tag)
+            Text(noteTag.tag ?? "")
                 .foregroundStyle(ColorManager.textColor)
                 .padding(.horizontal)
                 .padding(.vertical,5)
@@ -126,7 +127,7 @@ fileprivate struct TagFrame: View {
     }
 }
 
-
-#Preview {
-    NoteTagSelector(actualTag: .constant(ClassTag(tag: "home")), tagList: .constant([ClassTag(tag: "home"),ClassTag(tag: "class")]))
-}
+//
+//#Preview {
+//    NoteTagSelector(actualTag: .constant(ClassTag(tag: "home")), tagList: .constant([ClassTag(tag: "home"),ClassTag(tag: "class")]))
+//}

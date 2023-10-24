@@ -8,7 +8,9 @@
 import Foundation
 import CoreData
 
-class DataManager: ObservableObject{
+class DataManager{
+    
+    static let standard = DataManager()
     
     let container = NSPersistentContainer(name: "AppData")
     

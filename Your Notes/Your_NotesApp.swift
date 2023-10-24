@@ -10,13 +10,9 @@ import SwiftUI
 @main
 struct Your_NotesApp: App {
     
-    @State private var dataManager = DataManager()
-    
-    
     var body: some Scene {
         WindowGroup {
             MainScreen()
-                .environment(\.managedObjectContext, dataManager.container.viewContext)
         }
     }
 }
