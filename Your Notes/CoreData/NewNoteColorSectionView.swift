@@ -17,11 +17,16 @@ struct NewNoteColorSectionView: View {
             Text("Select color")
                 .newNoteSubtitle()
             
-            NoteColorSelector(colorList: viewModel.highlightColors, selectedColorId: $selectedColorId)
+            NoteColorSelector(colorList: viewModel.highlightColors, selectedColorId: $selectedColorId){
+                viewModel.getColors()
+            }
+                .padding(.vertical)
         }
     }
 }
 
-#Preview {
-    NewNoteColorSectionView(selectedColorId: .constant("d6eeb4b3-d8ac-4fc2-a58d-85a5475d6cd6"))
+struct NewNoteColorSectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewNoteColorSectionView(selectedColorId: .constant("d6eeb4b3-d8ac-4fc2-a58d-85a5475d6cd6"))
+    }
 }

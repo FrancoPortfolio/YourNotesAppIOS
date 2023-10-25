@@ -52,12 +52,14 @@ struct Line: Shape{
     
 }
 
-#Preview {
-    NoteFormTextField(noteText: .constant(""))
-        .preferredColorScheme(.dark)
-}
-
-#Preview {
-    NoteFormTextField(noteText: .constant(""), showBackground: false)
-        .preferredColorScheme(.dark)
+struct NoteFormTextField_Previews: PreviewProvider {
+    static var previews: some View {
+        Group{
+            NoteFormTextField(noteText: .constant(""))
+                .preferredColorScheme(.dark)
+            
+            NoteFormTextField(noteText: .constant(""), showBackground: false)
+                .preferredColorScheme(.dark)
+        }
+    }
 }

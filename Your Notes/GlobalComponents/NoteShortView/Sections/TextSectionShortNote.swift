@@ -31,6 +31,8 @@ struct TextSectionShortNote: View {
     }
 }
 
-#Preview {
-    TextSectionShortNote()
+struct TextSectionShortNote_Previews: PreviewProvider {
+    static var previews: some View {
+        TextSectionShortNote()
+    }
 }

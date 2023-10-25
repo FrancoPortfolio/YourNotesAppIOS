@@ -45,6 +45,14 @@ struct HomeScreenBody: View {
     }
 }
 
-#Preview {
-    HomeScreenBody()
+struct HomeScreenBody_Previews: PreviewProvider{
+    
+    static var previews: some View{
+        HomeScreenBody()
+    }
+    
 }
+
+//#Preview {
+//    HomeScreenBody()
+//}

@@ -12,6 +12,7 @@ struct NoteColorSelector: View {
     var colorList: [NoteHighlightColor]
     @State private var presentColorEditor: Bool = false
     @Binding var selectedColorId: String
+    var doOnRefreshColors : () -> ()
     
     var body: some View {
         ScrollView(.horizontal){
@@ -36,10 +37,14 @@ struct NoteColorSelector: View {
                 }
                 
                 
-            }.frame(maxWidth: .infinity, alignment: .leading)
-                .sheet(isPresented: $presentColorEditor, content: {
-                    Text("Color editor")
-                })
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .sheet(isPresented: $presentColorEditor, onDismiss: {
+                doOnRefreshColors()
+            }, content: {
+                NewColorEditor()
+            .presentationDetents([.fraction(0.5)])
+            })
         }
     }
 }
@@ -66,6 +71,12 @@ fileprivate struct ColorSphere: View {
         })
         
         
+    }
+}
+
+struct NoteColorSelectorView_Previews: PreviewProvider {
+    static var previews: some View {
+        NoteColorSelector(colorList: [], selectedColorId: .constant("d6eeb4b3-d8ac-4fc2-a58d-85a5475d6cd6")) {}
     }
 }
 

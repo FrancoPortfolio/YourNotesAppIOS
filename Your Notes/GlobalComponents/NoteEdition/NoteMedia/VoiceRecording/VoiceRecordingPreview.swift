@@ -30,7 +30,7 @@ struct VoiceRecordingPreview: View {
     @State private var totalAudioTimeInSeconds : CGFloat = 0
     @State private var timeElapsed : CGFloat = 0.0
     @State private var allowToPlay = false
-    var timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
+    var timer = Timer.publish(every: 0.001, on: .main, in: .common).autoconnect()
     
     var body: some View {
         
@@ -97,14 +97,14 @@ struct VoiceRecordingPreview: View {
         .onReceive(timer, perform: { _ in
             if isThisAudioPlaying {
                 
-                if audioPlayedProgress >= 1.0 {
+                if audioPlayedProgress > 1.0 {
                     audioManager.stopPlaying()
                     audioPlayedProgress = 0.0
                     timeElapsed = 0
                     Log.info("Playing stop")
                     return
                 }
-                timeElapsed += 0.05
+                timeElapsed += 0.001
                 audioPlayedProgress = CGFloat(timeElapsed / totalAudioTimeInSeconds)
                 Log.info("\(audioPlayedProgress)")
             }
@@ -113,7 +113,9 @@ struct VoiceRecordingPreview: View {
     }
 }
 
-#Preview {
-    VoiceRecordingPreview(audioManager: AudioRecordingPlayingManager(),
-                          audioPathString: "file:///Users/francomMarquez/Library/Developer/CoreSimulator/Devices/9FC1EDE2-387C-4664-934C-CF219D8350B0/data/Containers/Data/Application/DD9DB1E6-E26E-41AE-88DE-C9343B5D60A3/Documents/VoiceNotes/CB5853ED-F1DC-42A0-B04C-5C115898F9B0/YN-20-10-23%20at%2017-46-29.m4a")
+struct VoiceRecordingPreview_Previews: PreviewProvider {
+    static var previews: some View {
+        VoiceRecordingPreview(audioManager: AudioRecordingPlayingManager(),
+                              audioPathString: "file:///Users/francomMarquez/Library/Developer/CoreSimulator/Devices/9FC1EDE2-387C-4664-934C-CF219D8350B0/data/Containers/Data/Application/DD9DB1E6-E26E-41AE-88DE-C9343B5D60A3/Documents/VoiceNotes/CB5853ED-F1DC-42A0-B04C-5C115898F9B0/YN-20-10-23%20at%2017-46-29.m4a")
+    }
 }

@@ -81,6 +81,8 @@ struct SearchBar: View {
     }
 }
 
-#Preview {
-    SearchBar(searchText: .constant(""))
+struct SearchBar_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchBar(searchText: .constant(""))
+    }
 }

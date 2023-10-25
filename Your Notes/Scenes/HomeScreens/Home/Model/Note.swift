@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Note: Codable, Hashable{
+struct YNote: Codable, Hashable{
     
     var id: String = UUID().uuidString
     var title: String
@@ -53,7 +53,7 @@ struct Note: Codable, Hashable{
 //                                  isPinned: false,
 //                                 contentTypes: [.Drawing,.Image])
 //    
-    static var NoteMockup5 = Note(title: "MyNote5",
+    static var NoteMockup5 = YNote(title: "MyNote5",
                                  isFavorite: true,
                                  highlightColor: "#FFFAAA",
                                  isClassified: false,

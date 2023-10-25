@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E42B327C2AE980690016F69D /* NewColorEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B327B2AE980690016F69D /* NewColorEditor.swift */; };
+		E42B32802AE990960016F69D /* NewColorEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B327F2AE990960016F69D /* NewColorEditorViewModel.swift */; };
 		E472A0AD2ADD889700B837CB /* Your_NotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0AC2ADD889700B837CB /* Your_NotesApp.swift */; };
 		E472A0AF2ADD889700B837CB /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0AE2ADD889700B837CB /* MainScreen.swift */; };
 		E472A0B12ADD889900B837CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E472A0B02ADD889900B837CB /* Assets.xcassets */; };
@@ -28,8 +30,6 @@
 		E472A0EE2ADECA7700B837CB /* ToDoSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0ED2ADECA7700B837CB /* ToDoSectionShortNote.swift */; };
 		E472A0F02ADECAF600B837CB /* VoiceNoteSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0EF2ADECAF600B837CB /* VoiceNoteSectionShortNote.swift */; };
 		E472A0F32ADECE2700B837CB /* AudioRecordingPlayingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0F22ADECE2700B837CB /* AudioRecordingPlayingManager.swift */; };
-		E472A0F62ADEDC8B00B837CB /* DSWaveformImage in Frameworks */ = {isa = PBXBuildFile; productRef = E472A0F52ADEDC8B00B837CB /* DSWaveformImage */; };
-		E472A0F82ADEDC8B00B837CB /* DSWaveformImageViews in Frameworks */ = {isa = PBXBuildFile; productRef = E472A0F72ADEDC8B00B837CB /* DSWaveformImageViews */; };
 		E472A0FB2ADEECD800B837CB /* HomeRoutingDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0FA2ADEECD800B837CB /* HomeRoutingDestinations.swift */; };
 		E472A1002ADEF15C00B837CB /* NewNoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0FF2ADEF15C00B837CB /* NewNoteScreen.swift */; };
 		E472A1032ADEF27D00B837CB /* NoteFormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A1022ADEF27D00B837CB /* NoteFormTextField.swift */; };
@@ -58,6 +58,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E42B327B2AE980690016F69D /* NewColorEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewColorEditor.swift; sourceTree = "<group>"; };
+		E42B327F2AE990960016F69D /* NewColorEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewColorEditorViewModel.swift; sourceTree = "<group>"; };
+		E42B32812AE9AAD60016F69D /* Your-Notes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Your-Notes-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E472A0A92ADD889700B837CB /* Your Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Your Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E472A0AC2ADD889700B837CB /* Your_NotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Your_NotesApp.swift; sourceTree = "<group>"; };
 		E472A0AE2ADD889700B837CB /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -112,14 +115,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E472A0F62ADEDC8B00B837CB /* DSWaveformImage in Frameworks */,
-				E472A0F82ADEDC8B00B837CB /* DSWaveformImageViews in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E42B327D2AE9907E0016F69D /* NewColorEditor */ = {
+			isa = PBXGroup;
+			children = (
+				E42B327E2AE9908A0016F69D /* ViewModel */,
+				E42B327B2AE980690016F69D /* NewColorEditor.swift */,
+			);
+			path = NewColorEditor;
+			sourceTree = "<group>";
+		};
+		E42B327E2AE9908A0016F69D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E42B327F2AE990960016F69D /* NewColorEditorViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E472A0A02ADD889700B837CB = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +159,7 @@
 		E472A0AB2ADD889700B837CB /* Your Notes */ = {
 			isa = PBXGroup;
 			children = (
+				E42B32812AE9AAD60016F69D /* Your-Notes-Info.plist */,
 				E4BBEF942AE7180600C46A94 /* CoreData */,
 				E472A0F92ADEECB000B837CB /* Routing */,
 				E472A0E32ADDE69E00B837CB /* Extensions */,
@@ -279,9 +298,8 @@
 		E472A0D92ADDD76A00B837CB /* GlobalComponents */ = {
 			isa = PBXGroup;
 			children = (
-				E4B4022B2AE09AFD00746769 /* NoteMedia */,
-				E472A1012ADEF26300B837CB /* NoteForms */,
-				E472A0E92ADEC9DA00B837CB /* NoteView */,
+				E472A1012ADEF26300B837CB /* NoteEdition */,
+				E472A0E92ADEC9DA00B837CB /* NoteShortView */,
 				E472A0D12ADDAD0800B837CB /* SearchBar.swift */,
 			);
 			path = GlobalComponents;
@@ -298,13 +316,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E472A0E92ADEC9DA00B837CB /* NoteView */ = {
+		E472A0E92ADEC9DA00B837CB /* NoteShortView */ = {
 			isa = PBXGroup;
 			children = (
 				E472A0EA2ADEC9EE00B837CB /* Sections */,
 				E472A0E12ADDDEB700B837CB /* NoteShortView.swift */,
 			);
-			path = NoteView;
+			path = NoteShortView;
 			sourceTree = "<group>";
 		};
 		E472A0EA2ADEC9EE00B837CB /* Sections */ = {
@@ -351,16 +369,17 @@
 			path = MainView;
 			sourceTree = "<group>";
 		};
-		E472A1012ADEF26300B837CB /* NoteForms */ = {
+		E472A1012ADEF26300B837CB /* NoteEdition */ = {
 			isa = PBXGroup;
 			children = (
+				E4FE202E2AE962FF002E1EEF /* NoteTagSelelction */,
+				E4FE202D2AE962F1002E1EEF /* NoteColorSelection */,
+				E4B4022B2AE09AFD00746769 /* NoteMedia */,
 				E472A1022ADEF27D00B837CB /* NoteFormTextField.swift */,
 				E472A1042ADEF54400B837CB /* NoteAddSectionButton.swift */,
 				E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */,
-				E49AA19E2AE04C2B0093AF99 /* NoteColorSelector.swift */,
-				E49AA1A02AE052FE0093AF99 /* NoteTagSelector.swift */,
 			);
-			path = NoteForms;
+			path = NoteEdition;
 			sourceTree = "<group>";
 		};
 		E49AA1A22AE07F750093AF99 /* HomeScreens */ = {
@@ -493,6 +512,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		E4FE202D2AE962F1002E1EEF /* NoteColorSelection */ = {
+			isa = PBXGroup;
+			children = (
+				E42B327D2AE9907E0016F69D /* NewColorEditor */,
+				E49AA19E2AE04C2B0093AF99 /* NoteColorSelector.swift */,
+			);
+			path = NoteColorSelection;
+			sourceTree = "<group>";
+		};
+		E4FE202E2AE962FF002E1EEF /* NoteTagSelelction */ = {
+			isa = PBXGroup;
+			children = (
+				E49AA1A02AE052FE0093AF99 /* NoteTagSelector.swift */,
+			);
+			path = NoteTagSelelction;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -510,8 +546,6 @@
 			);
 			name = "Your Notes";
 			packageProductDependencies = (
-				E472A0F52ADEDC8B00B837CB /* DSWaveformImage */,
-				E472A0F72ADEDC8B00B837CB /* DSWaveformImageViews */,
 			);
 			productName = "Your Notes";
 			productReference = E472A0A92ADD889700B837CB /* Your Notes.app */;
@@ -542,7 +576,6 @@
 			);
 			mainGroup = E472A0A02ADD889700B837CB;
 			packageReferences = (
-				E472A0F42ADEDC8B00B837CB /* XCRemoteSwiftPackageReference "DSWaveformImage" */,
 			);
 			productRefGroup = E472A0AA2ADD889700B837CB /* Products */;
 			projectDirPath = "";
@@ -592,6 +625,8 @@
 				E472A0F32ADECE2700B837CB /* AudioRecordingPlayingManager.swift in Sources */,
 				E472A0E22ADDDEB700B837CB /* NoteShortView.swift in Sources */,
 				E472A0FB2ADEECD800B837CB /* HomeRoutingDestinations.swift in Sources */,
+				E42B327C2AE980690016F69D /* NewColorEditor.swift in Sources */,
+				E42B32802AE990960016F69D /* NewColorEditorViewModel.swift in Sources */,
 				E4B402302AE18DDB00746769 /* VoiceRecordingView.swift in Sources */,
 				E4BBEFCB2AE8969B00C46A94 /* InitialLoadManager.swift in Sources */,
 				E472A0AD2ADD889700B837CB /* Your_NotesApp.swift in Sources */,
@@ -750,7 +785,9 @@
 				DEVELOPMENT_TEAM = 84X4SX763A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Your-Notes-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = Temporal;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = Temporal;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -781,7 +818,9 @@
 				DEVELOPMENT_TEAM = 84X4SX763A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Your-Notes-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = Temporal;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = Temporal;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -823,30 +862,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E472A0F42ADEDC8B00B837CB /* XCRemoteSwiftPackageReference "DSWaveformImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dmrschmidt/DSWaveformImage";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 14.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E472A0F52ADEDC8B00B837CB /* DSWaveformImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E472A0F42ADEDC8B00B837CB /* XCRemoteSwiftPackageReference "DSWaveformImage" */;
-			productName = DSWaveformImage;
-		};
-		E472A0F72ADEDC8B00B837CB /* DSWaveformImageViews */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E472A0F42ADEDC8B00B837CB /* XCRemoteSwiftPackageReference "DSWaveformImage" */;
-			productName = DSWaveformImageViews;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E4BBEFBD2AE85B9200C46A94 /* NoteData.xcdatamodeld */ = {

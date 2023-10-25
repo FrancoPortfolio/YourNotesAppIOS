@@ -27,22 +27,5 @@ class NewNoteColorSectionViewModel: ObservableObject{
             Log.error("Error getting tag data: \(error.localizedDescription)")
         }
     }
-    
-    func saveNewColor(colorHex: String){
-        let newTagEntity = NoteHighlightColor(context:  DataManager.standard.container.viewContext)
-        newTagEntity.id = UUID().uuidString
-        newTagEntity.colorHex = colorHex
-        saveColorData()
-    }
-    
-    func saveColorData() {
-        do {
-            Log.info("Saving colors on core data")
-            try DataManager.standard.container.viewContext.save()
-            getColors()
-        } catch {
-            Log.error("Error saving tag: \(error)")
-        }
-    }
 
 }

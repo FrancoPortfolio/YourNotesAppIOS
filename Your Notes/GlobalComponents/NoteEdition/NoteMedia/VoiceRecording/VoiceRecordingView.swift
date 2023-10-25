@@ -151,11 +151,8 @@ fileprivate struct VoiceRecordingBase: Shape {
     
 }
 
-#Preview {
-    VoiceRecordingView(noteId: "XD", recordingsNames: .constant([])){ _ in }
-}
-
-#Preview {
-    VoiceRecordingView(noteId: "XD", recordingsNames: .constant([])){ _ in }
-        .preferredColorScheme(.dark)
+struct VoiceRecordingView_Previews: PreviewProvider {
+    static var previews: some View {
+        VoiceRecordingView(noteId: "XD", recordingsNames: .constant([])){ _ in }
+    }
 }

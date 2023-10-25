@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NoteShortView: View {
     
-    @State var note: Note = Note.NoteMockup5
+    @State var note: YNote = YNote.NoteMockup5
     
     private var numberOfSections: Int{
         if note.contentTypes.count >= 1 {
@@ -91,7 +91,9 @@ struct NoteShortView: View {
     }
 }
 
-#Preview {
-    NoteShortView(note: Note.NoteMockup5)
-        .frame(maxWidth: 200, maxHeight: 250)
+struct NoteShortView_Previews: PreviewProvider {
+    static var previews: some View {
+        NoteShortView(note: YNote.NoteMockup5)
+            .frame(maxWidth: 200, maxHeight: 250)
+    }
 }

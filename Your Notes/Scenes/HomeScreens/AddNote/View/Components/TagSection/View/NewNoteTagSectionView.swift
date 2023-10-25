@@ -27,6 +27,8 @@ struct NewNoteTagSectionView: View {
     }
 }
 
-#Preview {
-    NewNoteTagSectionView(actualTag: .constant(nil))
+struct NewNoteTagSectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewNoteTagSectionView(actualTag: .constant(nil))
+    }
 }

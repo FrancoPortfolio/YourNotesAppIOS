@@ -36,6 +36,8 @@ struct NoteAddSectionButton: View {
     }
 }
 
-#Preview {
-    NoteAddSectionButton() {}
+struct NoteAddSectionButton_Previews: PreviewProvider {
+    static var previews: some View {
+        NoteAddSectionButton() {}
+    }
 }

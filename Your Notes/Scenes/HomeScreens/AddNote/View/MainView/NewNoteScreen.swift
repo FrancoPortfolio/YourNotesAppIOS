@@ -121,6 +121,10 @@ extension NewNoteScreen{
                             .resizable()
                             .scaledToFit()
                             .frame(width: 200)
+                            .background{
+                                Color.white
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                            }
                     }
                 }
                 
@@ -273,15 +277,8 @@ extension NewNoteScreen{
     
 }
 
-#Preview {
-    NavigationStack{
+struct NewNoteScreen_Previews: PreviewProvider {
+    static var previews: some View {
         NewNoteScreen()
     }
-}
-
-#Preview {
-    NavigationStack{
-        NewNoteScreen()
-    }
-    .preferredColorScheme(.dark)
 }
