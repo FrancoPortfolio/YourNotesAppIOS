@@ -12,6 +12,10 @@ class NewNoteColorSectionViewModel: ObservableObject{
     
     @Published var highlightColors = [NoteHighlightColor]()
     
+    init(){
+        getColors()
+    }
+    
     func getColors(){
         let request = NSFetchRequest<NoteHighlightColor>(entityName: "NoteHighlightColor")
         
@@ -36,7 +40,7 @@ class NewNoteColorSectionViewModel: ObservableObject{
             Log.info("Saving colors on core data")
             try DataManager.standard.container.viewContext.save()
             getColors()
-        } catch let error {
+        } catch {
             Log.error("Error saving tag: \(error)")
         }
     }

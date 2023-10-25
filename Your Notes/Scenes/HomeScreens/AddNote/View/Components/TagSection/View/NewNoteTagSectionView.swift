@@ -10,13 +10,14 @@ import SwiftUI
 struct NewNoteTagSectionView: View {
     
     @StateObject var viewModel = NewNoteTagSectionViewViewModel()
+    @Binding var actualTag : UUID?
     
     var body: some View {
         Group {
             Text("Select tag")
                 .newNoteSubtitle()
             
-            NoteTagSelector(tags: $viewModel.tags){ newTag in
+            NoteTagSelector(actualTag: $actualTag,tags: $viewModel.tags){ newTag in
                 viewModel.saveNewTag(tagName: newTag)
             }
             
@@ -27,5 +28,5 @@ struct NewNoteTagSectionView: View {
 }
 
 #Preview {
-    NewNoteTagSectionView()
+    NewNoteTagSectionView(actualTag: .constant(nil))
 }

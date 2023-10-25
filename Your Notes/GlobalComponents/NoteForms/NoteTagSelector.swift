@@ -12,7 +12,7 @@ struct NoteTagSelector: View {
     @State private var showAddTagForm: Bool = false
     @State private var showAddTagButton: Bool = false
     @State private var newTagText = ""
-    @State private var actualTag : UUID? = nil
+    @Binding var actualTag : UUID?
     @Binding var tags : [NoteTag]
     var doWhenSaveNewTag: (String) -> ()
     

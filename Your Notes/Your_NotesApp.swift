@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct Your_NotesApp: App {
+    
+    init() {
+        InitialLoadManager.initialColorsSave()
+    }
     
     var body: some Scene {
         WindowGroup {

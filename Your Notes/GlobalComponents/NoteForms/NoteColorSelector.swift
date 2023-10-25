@@ -9,9 +9,9 @@ import SwiftUI
 
 struct NoteColorSelector: View {
     
-    var colorList: [String]
+    var colorList: [NoteHighlightColor]
     @State private var presentColorEditor: Bool = false
-    @Binding var selectedColor: String
+    @Binding var selectedColorId: String
     
     var body: some View {
         ScrollView(.horizontal){
@@ -28,10 +28,10 @@ struct NoteColorSelector: View {
                 
                 
                 HStack (spacing: 15){
-                    ForEach(colorList,id: \.self){ colorHex in
+                    ForEach(colorList,id: \.self){ noteColor in
                         
-//                        ColorSphere(colorHex: colorHex, selectedColor: $selectedColor)
-//                            .frame(width: 30, height: 30)
+                        ColorSphere(noteColor: noteColor, selectedColorId: $selectedColorId)
+                            .frame(width: 30, height: 30)
                     }
                 }
                 
@@ -46,19 +46,19 @@ struct NoteColorSelector: View {
 
 fileprivate struct ColorSphere: View {
     
-    var colorHex: String
-    @Binding var selectedColor: String
+    var noteColor: NoteHighlightColor
+    @Binding var selectedColorId: String
     
     var body: some View {
         
         Button(action: {
-            selectedColor = colorHex
+            selectedColorId = noteColor.id ?? "d6eeb4b3-d8ac-4fc2-a58d-85a5475d6cd6"
         }, label: {
-            Color(hex: colorHex)
+            Color(hex: noteColor.colorHex ?? "#FFFFFF")
                 .clipShape(Circle())
                 .shadow(radius: 3)
                 .overlay {
-                    if selectedColor == colorHex {
+                    if selectedColorId == noteColor.id {
                         Circle()
                             .stroke(ColorManager.textColor,lineWidth: 0.8)
                     }
@@ -69,11 +69,11 @@ fileprivate struct ColorSphere: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        NoteColorSelector(colorList: ["#FFFFFF","#FF0000","#00FF00","#008000","#0000FF","#800080"], selectedColor: .constant("#FFFFFF"))
-            .navigationDestination(for: AddNoteDestinations.self) { value in
-                Text("Color")
-            }
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        NoteColorSelector(colorList: ["#FFFFFF","#FF0000","#00FF00","#008000","#0000FF","#800080"], selectedColor: .constant("#FFFFFF"))
+//            .navigationDestination(for: AddNoteDestinations.self) { value in
+//                Text("Color")
+//            }
+//    }
+//}

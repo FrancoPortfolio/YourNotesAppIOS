@@ -11,9 +11,6 @@ import PencilKit
 
 struct NewNoteScreen: View {
     
-    // MARK: - ERASE THIS AND CHANGE FOR BASIC COLORS ON DB
-    private var defaultColors = ["#FFFFFF","#FF0000","#00FF00","#008000","#0000FF","#800080"]
-    
     @StateObject private var viewModel: AddNewNoteViewModel = AddNewNoteViewModel()
     @StateObject private var audioManager = AudioRecordingPlayingManager()
     @State private var showCheckOfSubTaskEditor = false
@@ -35,16 +32,10 @@ struct NewNoteScreen: View {
             SubtasksPart
             
             //Class selection part
-            ClassSelectionPart
+            NewNoteTagSectionView(actualTag: $viewModel.noteTagId)
             
             //Color selection part
-            Group{
-                Text("Select color")
-                    .newNoteSubtitle()
-                
-                NoteColorSelector(colorList: defaultColors,
-                                  selectedColor: $viewModel.selectedColorHex)
-            }
+            NewNoteColorSectionView(selectedColorId: $viewModel.selectedColorId)
         }
         .padding()
         .frame(maxWidth: .infinity,maxHeight: .infinity)
@@ -208,28 +199,6 @@ extension NewNoteScreen{
                 }
                 .padding(.top,10)
             }
-        }
-    }
-}
-
-//Class Selection Part
-extension NewNoteScreen{
-    private var ClassSelectionPart: some View{
-        Group{
-            NewNoteTagSectionView()
-        }
-    }
-}
-
-//Color Selection Part
-extension NewNoteScreen{
-    private var ColorSelectionPart: some View{
-        Group{
-            Text("Select color")
-                .newNoteSubtitle()
-            
-            NoteColorSelector(colorList: defaultColors,
-                              selectedColor: $viewModel.selectedColorHex)
         }
     }
 }

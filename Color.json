@@ -1,0 +1,25 @@
+
+{
+    "colors": [
+        {
+            "id":"d6eeb4b3-d8ac-4fc2-a58d-85a5475d6cd6",
+            "colorHex":"#FFFFFF"
+        },
+        {
+            "id":"f9fb67db-2667-446b-ad5f-410e14e5706f",
+            "colorHex":"#FF0000"
+        },
+        {
+            "id":"c1cc05c6-ae0b-4a7e-bfb4-9053fd8d8a1a",
+            "colorHex":"#00FF00"
+        },
+        {
+            "id":"a9ed7e4c-2b28-4e5a-9a7d-36673ba23f70",
+            "colorHex":"#008000"
+        },
+        {
+            "id":"9666862c-55cd-443e-9de0-5610a27138a6",
+            "colorHex":"#0000FF"
+        }
+    ]
+}
