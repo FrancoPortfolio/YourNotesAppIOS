@@ -37,6 +37,7 @@ struct NewNoteScreen: View {
             //Color selection part
             NewNoteColorSectionView(selectedColorId: $viewModel.selectedColorId)
         }
+        .scrollIndicators(.hidden)
         .padding()
         .frame(maxWidth: .infinity,maxHeight: .infinity)
         .background {

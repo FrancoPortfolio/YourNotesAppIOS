@@ -25,10 +25,11 @@ class NewColorEditorViewModel: ObservableObject{
             
             do {
                 let objects = try DataManager.standard.container.viewContext.fetch(fetchRequest)
-                Log.info("Objects: \(objects)")
                 if objects.isEmpty{
+                    Log.info("No color on Core Data")
                     return false
                 } else {
+                    Log.warning("Color found on Core Data")
                     return true
                 }
             } catch {
@@ -39,9 +40,10 @@ class NewColorEditorViewModel: ObservableObject{
         return true
     }
     
-    func saveColorOnCoreData(colorHex: String?){
+    func saveColorOnCoreData(colorHex: String?, doWhenSavingDone: ()->() = {}){
         
         guard let color = colorHex else{
+            Log.warning("Bad color hex")
             return
         }
         
@@ -50,20 +52,25 @@ class NewColorEditorViewModel: ObservableObject{
             return
         }
         
-        saveNewColor(colorHex: color)
+        saveNewColor(colorHex: color){
+            doWhenSavingDone()
+        }
     }
     
-    private func saveNewColor(colorHex: String){
+    private func saveNewColor(colorHex: String,doWhenSavingDone: ()->() = {}){
         let newTagEntity = NoteHighlightColor(context:  DataManager.standard.container.viewContext)
         newTagEntity.id = UUID().uuidString
         newTagEntity.colorHex = colorHex
-        saveColorData()
+        saveColorData(){
+            doWhenSavingDone()
+        }
     }
     
-    private func saveColorData() {
+    private func saveColorData(doWhenSavingDone: ()->() = {}) {
         do {
             Log.info("Saving colors on core data")
             try DataManager.standard.container.viewContext.save()
+            doWhenSavingDone()
         } catch {
             Log.error("Error saving tag: \(error)")
         }

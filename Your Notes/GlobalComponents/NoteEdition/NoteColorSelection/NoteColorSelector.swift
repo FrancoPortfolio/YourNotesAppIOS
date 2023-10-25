@@ -33,6 +33,7 @@ struct NoteColorSelector: View {
                         
                         ColorSphere(noteColor: noteColor, selectedColorId: $selectedColorId)
                             .frame(width: 30, height: 30)
+                            .padding(.vertical)
                     }
                 }
                 
@@ -45,6 +46,7 @@ struct NoteColorSelector: View {
                 NewColorEditor()
             .presentationDetents([.fraction(0.5)])
             })
+            .scrollIndicators(.hidden)
         }
     }
 }

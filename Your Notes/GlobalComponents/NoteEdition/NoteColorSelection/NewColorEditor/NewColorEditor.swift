@@ -53,8 +53,9 @@ struct NewColorEditor: View {
                         Spacer()
                         
                         Button(action: {
-                            viewModel.saveColorOnCoreData(colorHex: colorSelected.toHexString())
-                            presentationMode.wrappedValue.dismiss()
+                            viewModel.saveColorOnCoreData(colorHex: colorSelected.toHexString()){
+                                presentationMode.wrappedValue.dismiss()
+                            }
                         }, label: {
                             Text("Save")
                                 .font(.system(size: 25))
