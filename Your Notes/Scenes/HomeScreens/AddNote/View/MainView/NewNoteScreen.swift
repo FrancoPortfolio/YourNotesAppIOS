@@ -11,6 +11,7 @@ import PencilKit
 
 struct NewNoteScreen: View {
     
+    @Environment (\.presentationMode) var presentationMode
     @StateObject private var viewModel: AddNewNoteViewModel = AddNewNoteViewModel()
     @StateObject private var audioManager = AudioRecordingPlayingManager()
     @State private var showCheckOfSubTaskEditor = false
@@ -53,6 +54,9 @@ struct NewNoteScreen: View {
         .sheet(isPresented: $presentAddMediaCamera){ cameraScreen }
         .sheet(isPresented: $presentAddMediaVoice){ voiceRecordingScreen }
         .sheet(isPresented: $presentAddMediaDrawing, content: { drawingScreen })
+        .alert("No data to save", isPresented: $viewModel.presentNoDataAlert, actions: {
+            Button("Ok", role: .cancel, action: {})
+        }, message: {})
         
         //Toolbar items
         .toolbar(content: {
@@ -213,7 +217,10 @@ extension NewNoteScreen{
     private var addNoteButton: some View{
         Button("Add Note") {
             //Add note
-            Log.info("Add note to db")
+            Log.info("Adding note to db")
+            viewModel.saveNote(){
+                self.presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }
@@ -278,8 +285,8 @@ extension NewNoteScreen{
     
 }
 
-struct NewNoteScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        NewNoteScreen()
-    }
-}
+//struct NewNoteScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewNoteScreen()
+//    }
+//}

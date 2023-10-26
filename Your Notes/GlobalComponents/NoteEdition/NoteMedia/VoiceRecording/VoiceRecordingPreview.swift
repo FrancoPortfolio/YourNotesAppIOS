@@ -113,9 +113,9 @@ struct VoiceRecordingPreview: View {
     }
 }
 
-struct VoiceRecordingPreview_Previews: PreviewProvider {
-    static var previews: some View {
-        VoiceRecordingPreview(audioManager: AudioRecordingPlayingManager(),
-                              audioPathString: "file:///Users/francomMarquez/Library/Developer/CoreSimulator/Devices/9FC1EDE2-387C-4664-934C-CF219D8350B0/data/Containers/Data/Application/DD9DB1E6-E26E-41AE-88DE-C9343B5D60A3/Documents/VoiceNotes/CB5853ED-F1DC-42A0-B04C-5C115898F9B0/YN-20-10-23%20at%2017-46-29.m4a")
-    }
-}
+//struct VoiceRecordingPreview_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VoiceRecordingPreview(audioManager: AudioRecordingPlayingManager(),
+//                              audioPathString: "file:///Users/francomMarquez/Library/Developer/CoreSimulator/Devices/9FC1EDE2-387C-4664-934C-CF219D8350B0/data/Containers/Data/Application/DD9DB1E6-E26E-41AE-88DE-C9343B5D60A3/Documents/VoiceNotes/CB5853ED-F1DC-42A0-B04C-5C115898F9B0/YN-20-10-23%20at%2017-46-29.m4a")
+//    }
+//}

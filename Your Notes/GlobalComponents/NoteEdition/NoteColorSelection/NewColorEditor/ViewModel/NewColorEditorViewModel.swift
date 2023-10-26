@@ -61,20 +61,9 @@ class NewColorEditorViewModel: ObservableObject{
         let newTagEntity = NoteHighlightColor(context:  DataManager.standard.container.viewContext)
         newTagEntity.id = UUID().uuidString
         newTagEntity.colorHex = colorHex
-        saveColorData(){
+        DataManager.standard.saveData(){
             doWhenSavingDone()
         }
     }
-    
-    private func saveColorData(doWhenSavingDone: ()->() = {}) {
-        do {
-            Log.info("Saving colors on core data")
-            try DataManager.standard.container.viewContext.save()
-            doWhenSavingDone()
-        } catch {
-            Log.error("Error saving tag: \(error)")
-        }
-    }
-    
     
 }

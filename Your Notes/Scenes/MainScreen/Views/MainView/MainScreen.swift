@@ -14,7 +14,8 @@ struct MainScreen: View {
     var body: some View {
         TabView(selection: $selectedScreen){
             Group {
-                HomeScreen()
+                Text("XD")
+                //HomeScreen()
                     .tag(MainScreenViews.homeScreen)
                     .tabItem {
                         Label("Home", systemImage: "house.fill")
@@ -41,8 +42,6 @@ struct MainScreen: View {
             .toolbarBackground(ColorManager.backgroundColor, for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
         }
-        
-        
     }
 }
 

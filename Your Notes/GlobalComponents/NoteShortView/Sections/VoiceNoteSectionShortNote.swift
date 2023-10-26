@@ -39,10 +39,10 @@ struct VoiceNoteSectionShortNote: View {
     }
 }
 
-struct VoiceNoteSectionShortNote_Previews: PreviewProvider {
-    static var previews: some View {
-        VoiceNoteSectionShortNote(noteId: "xd")
-            .frame(width: 200, height: 80)
-            .getFrameBorderPainted()
-    }
-}
+//struct VoiceNoteSectionShortNote_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VoiceNoteSectionShortNote(noteId: "xd")
+//            .frame(width: 200, height: 80)
+//            .getFrameBorderPainted()
+//    }
+//}

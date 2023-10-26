@@ -30,15 +30,8 @@ class NewNoteTagSectionViewViewModel: ObservableObject{
         let newTagEntity = NoteTag(context:  DataManager.standard.container.viewContext)
         newTagEntity.id = UUID()
         newTagEntity.tag = tagName
-        saveTagData()
-    }
-    
-    func saveTagData() {
-        do {
-            try DataManager.standard.container.viewContext.save()
+        DataManager.standard.saveData(){
             getTagData()
-        } catch let error {
-            Log.error("Error saving tag: \(error)")
         }
     }
     

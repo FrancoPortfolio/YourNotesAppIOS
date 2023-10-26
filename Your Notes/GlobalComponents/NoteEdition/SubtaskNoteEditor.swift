@@ -31,11 +31,11 @@ struct SubtaskNoteEditor: View {
     
 }
 
-struct SubtaskNoteEditor_Previews: PreviewProvider {
-    static var previews: some View {
-        SubtaskNoteEditor(
-            subtask: Subtask(name: "Buy eggs",
-                             isChecked: false)
-        )
-    }
-}
+//struct SubtaskNoteEditor_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SubtaskNoteEditor(
+//            subtask: Subtask(name: "Buy eggs",
+//                             isChecked: false)
+//        )
+//    }
+//}

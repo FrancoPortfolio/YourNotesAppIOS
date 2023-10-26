@@ -9,20 +9,55 @@ import SwiftUI
 
 struct NoteShortView: View {
     
-    @State var note: YNote = YNote.NoteMockup5
+    var note : Note
     
-    private var numberOfSections: Int{
-        if note.contentTypes.count >= 1 {
-            return 2
-        }
-        return note.contentTypes.count
+    private var isPinned : Bool {
+        return true//note.isPinned
     }
+    
+    private var isFavorite: Bool{
+        return true//note.isFavorite
+    }
+    
+    private var contentSections: ([contentSections], Int){
+        
+        var sections : [contentSections] = []
+        
+        if note.text != nil && !(note.text?.isEmpty ?? true){
+            sections.append(.text)
+        }
+        
+        if let images = note.images{
+            if images.count != 0{
+                sections.append(.images)
+            }
+        }
+        
+        if let subtasks = note.subtasks{
+            if subtasks.count != 0{
+                sections.append(.subtasks)
+            }
+        }
+        
+        if let voicenotes = note.voicenotes{
+            if voicenotes.count != 0{
+                sections.append(.voicenotes)
+            }
+        }
+        
+        if note.drawing != nil{
+            sections.append(.drawing)
+        }
+    
+        return (sections, min(2, sections.count))
+    }
+    
     
     var body: some View {
         VStack{
             
             //Pin Icon
-            if note.isPinned{
+            if isPinned{
                 HStack{
                     Image(systemName: "pin.fill")
                         .font(.footnote)
@@ -35,12 +70,12 @@ struct NoteShortView: View {
             
             //Top Left Indicators
             HStack{
-                if note.isFavorite {
+                if isFavorite {
                     Image(systemName: "star")
                         .font(.callout)
-                        .padding(.top, note.isPinned ? 0 : 10)
+                        .padding(.top, note.isPinned ? 0 : 0)
                 }
-                
+
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal,10)
@@ -48,33 +83,26 @@ struct NoteShortView: View {
             //Sections to show on note, max of 2 following array order
             VStack(spacing: 10) {
                 
-                ForEach(0..<numberOfSections, id: \.self) { contentOrder in
-                    switch note.contentTypes[contentOrder]{
-                    case .PlainText:
-                        TextSectionShortNote(textData: note.noteData.textData)
-                            .frame(maxWidth: .infinity)
+                ForEach(0..<contentSections.1, id: \.self) { contentOrder in
+                    
+                    let section = contentSections.0[contentOrder]
+                    
+                    switch section{
                         
-                    case .ToDo:
-                        ToDoSectionShortNote(todoList: $note.noteData.toDoData)
-                            .frame(maxWidth: .infinity)
+                    case .text:
+                        TextSectionShortNote(textData: note.text)
+                    
+                    case .subtasks:
+                        Text("Subtasks")
                         
-                    case .Image:
-                        Text("Image")//ImageSection()
-                            .frame(height: 80)
-                            .frame(maxWidth: .infinity)
+                    case .images:
+                        Text("Images")
                         
-                    case .Voice:
-                        if let data = note.noteData.voiceData {
-                            VoiceNoteSectionShortNote(voiceNoteUrl: data[0],
-                                                      noteId: note.id)
-                                .frame(maxWidth: .infinity)
-                        }
-                    case .Drawing:
-                        if contentOrder != 1 {
-                            Text("Drawing")//DrawingSection()
-                                .frame(height: 80)
-                                .frame(maxWidth: .infinity)
-                        }
+                    case .voicenotes:
+                        Text("Boicenotes")
+                        
+                    case .drawing:
+                        Text("Drawing")
                     }
                 }
                 
@@ -84,16 +112,35 @@ struct NoteShortView: View {
             
         }
         .background{
-            Color.init(hex: note.highlightColor)
+            
+            if let colorHex = note.color?.colorHex{
+                Color.init(hex: colorHex).frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+           
         }
-        .cornerRadius(20, corners: note.isPinned ? [.bottomLeft,.bottomRight,.topLeft] : .allCorners)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .cornerRadius(20, corners: isPinned ? [.bottomLeft,.bottomRight,.topLeft] : .allCorners)
         
     }
 }
 
-struct NoteShortView_Previews: PreviewProvider {
-    static var previews: some View {
-        NoteShortView(note: YNote.NoteMockup5)
+fileprivate enum contentSections: CaseIterable, Hashable{
+    case text,images,voicenotes,drawing,subtasks
+}
+
+fileprivate struct NoteShortViewPreviewWrapper: View{
+    
+    @FetchRequest(sortDescriptors: []) var note: FetchedResults<Note>
+    
+    var body: some View{
+        NoteShortView(note: note.first!)
             .frame(maxWidth: 200, maxHeight: 250)
     }
+    
 }
+
+//struct NoteShortView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NoteShortViewPreviewWrapper()
+//    }
+//}

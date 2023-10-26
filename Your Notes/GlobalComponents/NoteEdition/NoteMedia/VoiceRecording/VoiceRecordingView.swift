@@ -151,8 +151,8 @@ fileprivate struct VoiceRecordingBase: Shape {
     
 }
 
-struct VoiceRecordingView_Previews: PreviewProvider {
-    static var previews: some View {
-        VoiceRecordingView(noteId: "XD", recordingsNames: .constant([])){ _ in }
-    }
-}
+//struct VoiceRecordingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VoiceRecordingView(noteId: "XD", recordingsNames: .constant([])){ _ in }
+//    }
+//}

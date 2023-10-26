@@ -21,4 +21,14 @@ class DataManager{
             }
         }
     }
+    
+    func saveData(doWhenDataSaved: () -> () = {}) {
+        do {
+            try DataManager.standard.container.viewContext.save()
+            doWhenDataSaved()
+        } catch let error {
+            Log.error("Error saving tag: \(error)")
+        }
+    }
+
 }

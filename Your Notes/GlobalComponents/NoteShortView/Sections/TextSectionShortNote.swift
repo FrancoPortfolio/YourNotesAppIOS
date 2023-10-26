@@ -23,16 +23,18 @@ struct TextSectionShortNote: View {
     var body: some View {
         HStack {
             Text(text)
-                .font(.system(size: 20))
-                .multilineTextAlignment(.leading)
+                .font(.system(size: 16))
+                .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(3)
-            Spacer()
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity)
         }
+        
     }
 }
 
-struct TextSectionShortNote_Previews: PreviewProvider {
-    static var previews: some View {
-        TextSectionShortNote()
-    }
-}
+//struct TextSectionShortNote_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TextSectionShortNote()
+//    }
+//}

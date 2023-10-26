@@ -76,11 +76,11 @@ fileprivate struct ColorSphere: View {
     }
 }
 
-struct NoteColorSelectorView_Previews: PreviewProvider {
-    static var previews: some View {
-        NoteColorSelector(colorList: [], selectedColorId: .constant("d6eeb4b3-d8ac-4fc2-a58d-85a5475d6cd6")) {}
-    }
-}
+//struct NoteColorSelectorView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NoteColorSelector(colorList: [], selectedColorId: .constant("d6eeb4b3-d8ac-4fc2-a58d-85a5475d6cd6")) {}
+//    }
+//}
 
 //#Preview {
 //    NavigationStack {

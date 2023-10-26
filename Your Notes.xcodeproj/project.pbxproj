@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E42B327C2AE980690016F69D /* NewColorEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B327B2AE980690016F69D /* NewColorEditor.swift */; };
 		E42B32802AE990960016F69D /* NewColorEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B327F2AE990960016F69D /* NewColorEditorViewModel.swift */; };
+		E42B32832AE9DE1C0016F69D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B32822AE9DE1C0016F69D /* HomeViewModel.swift */; };
 		E472A0AD2ADD889700B837CB /* Your_NotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0AC2ADD889700B837CB /* Your_NotesApp.swift */; };
 		E472A0AF2ADD889700B837CB /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0AE2ADD889700B837CB /* MainScreen.swift */; };
 		E472A0B12ADD889900B837CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E472A0B02ADD889900B837CB /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		E42B327B2AE980690016F69D /* NewColorEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewColorEditor.swift; sourceTree = "<group>"; };
 		E42B327F2AE990960016F69D /* NewColorEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewColorEditorViewModel.swift; sourceTree = "<group>"; };
 		E42B32812AE9AAD60016F69D /* Your-Notes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Your-Notes-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E42B32822AE9DE1C0016F69D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = "Your Notes/GlobalComponents/NoteEdition/NoteColorSelection/NewColorEditor/ViewModel/HomeViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		E472A0A92ADD889700B837CB /* Your Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Your Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E472A0AC2ADD889700B837CB /* Your_NotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Your_NotesApp.swift; sourceTree = "<group>"; };
 		E472A0AE2ADD889700B837CB /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		E472A0CC2ADD9EDD00B837CB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E42B32822AE9DE1C0016F69D /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				E42B32802AE990960016F69D /* NewColorEditorViewModel.swift in Sources */,
 				E4B402302AE18DDB00746769 /* VoiceRecordingView.swift in Sources */,
 				E4BBEFCB2AE8969B00C46A94 /* InitialLoadManager.swift in Sources */,
+				E42B32832AE9DE1C0016F69D /* HomeViewModel.swift in Sources */,
 				E472A0AD2ADD889700B837CB /* Your_NotesApp.swift in Sources */,
 				E472A0E02ADDDA8700B837CB /* YNote.swift in Sources */,
 				E472A0DE2ADDD97500B837CB /* HomeScreenBody.swift in Sources */,

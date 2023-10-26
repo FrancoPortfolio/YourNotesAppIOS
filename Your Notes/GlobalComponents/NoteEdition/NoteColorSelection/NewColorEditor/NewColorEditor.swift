@@ -141,9 +141,9 @@ fileprivate struct PlaceholderRectangle: View{
     }
     
 }
-
-struct NewColorSelector_Previews: PreviewProvider {
-    static var previews: some View {
-        NewColorEditor()
-    }
-}
+//
+//struct NewColorSelector_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewColorEditor()
+//    }
+//}

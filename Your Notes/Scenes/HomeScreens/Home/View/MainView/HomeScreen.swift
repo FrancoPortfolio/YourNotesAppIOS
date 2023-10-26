@@ -14,6 +14,7 @@ struct HomeScreen: View {
     @State private var showOnlyFavorites: Bool = false
     @State private var selectedSorting: NotesSorting = .dateAddedNewer
     @State private var navigationPath: NavigationPath = NavigationPath()
+    @StateObject private var viewModel: HomeViewModel = HomeViewModel()
     
     private var starIconName: String {
         if showOnlyFavorites {
@@ -34,7 +35,6 @@ struct HomeScreen: View {
                             Text("My Notes")
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
-                                .padding(.leading,20)
                             
                             Spacer()
                             
@@ -66,7 +66,6 @@ struct HomeScreen: View {
                                         .font(.title2)
                                 }
                             }
-                            .padding(.trailing, 20)
                             
                         }
                         .frame(maxWidth: .infinity, maxHeight: 60)
@@ -75,14 +74,18 @@ struct HomeScreen: View {
                     SearchBar(searchText: $searchText)
                         .padding(.top, -10)
                         .offset(y: showSearchBar ? 0 : -600)
+                        .frame(height: showSearchBar ? 50 : 0)
+                        
                 }
                 
                 //Body
-                Group {
-                    HomeScreenBody()
-                }
+                HomeScreenBody(notes: viewModel.notes)
+                    .onAppear{
+                        viewModel.getNoteData()
+                    }
                 
             }
+            .padding(.horizontal)
             .frame(maxWidth: .infinity,maxHeight: .infinity)
             .background {
                 ColorManager.backgroundColor.opacity(0.8)
@@ -90,7 +93,7 @@ struct HomeScreen: View {
             }
             .navigationTitle("My Notes")
             .toolbar(.hidden, for: .navigationBar)
-//            Navigation Views Destinations
+            //            Navigation Views Destinations
             .navigationDestination(for: HomeRoutingDestinations.self) { destination in
                 
                 switch destination {
@@ -105,8 +108,9 @@ struct HomeScreen: View {
         
     }
 }
-struct HomeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScreen()
-    }
-}
+//struct HomeScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Text("XD")
+//        //HomeScreen()
+//    }
+//}

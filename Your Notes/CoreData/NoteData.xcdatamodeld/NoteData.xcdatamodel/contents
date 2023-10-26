@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22G120" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isPinned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
         <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteHighlightColor" inverseName="note" inverseEntity="NoteHighlightColor"/>
         <relationship name="drawing" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteDrawing" inverseName="note" inverseEntity="NoteDrawing"/>
-        <relationship name="image" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NoteImage" inverseName="note" inverseEntity="NoteImage"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NoteImage" inverseName="note" inverseEntity="NoteImage"/>
+        <relationship name="subtasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NoteSubtask" inverseName="note" inverseEntity="NoteSubtask"/>
         <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteTag" inverseName="note" inverseEntity="NoteTag"/>
-        <relationship name="voicenote" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NoteVoicenote" inverseName="note" inverseEntity="NoteVoicenote"/>
+        <relationship name="voicenotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NoteVoicenote" inverseName="note" inverseEntity="NoteVoicenote"/>
     </entity>
     <entity name="NoteDrawing" representedClassName="NoteDrawing" syncable="YES" codeGenerationType="class">
         <attribute name="drawingData" optional="YES" attributeType="Binary"/>
@@ -22,7 +27,13 @@
     <entity name="NoteImage" representedClassName="NoteImage" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="imageData" optional="YES" attributeType="Binary"/>
-        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="image" inverseEntity="Note"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="images" inverseEntity="Note"/>
+    </entity>
+    <entity name="NoteSubtask" representedClassName="NoteSubtask" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="task" optional="YES" attributeType="String"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="subtasks" inverseEntity="Note"/>
     </entity>
     <entity name="NoteTag" representedClassName="NoteTag" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -31,7 +42,7 @@
     </entity>
     <entity name="NoteVoicenote" representedClassName="NoteVoicenote" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="voiceData" optional="YES" attributeType="Binary"/>
-        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="voicenote" inverseEntity="Note"/>
+        <attribute name="voiceNoteDirectory" optional="YES" attributeType="String"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="voicenotes" inverseEntity="Note"/>
     </entity>
 </model>

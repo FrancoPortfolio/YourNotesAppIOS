@@ -35,8 +35,8 @@ struct ToDoSectionShortNote: View {
     }
 }
 
-struct ToDoSectionShortNote_Previews: PreviewProvider {
-    static var previews: some View {
-        ToDoSectionShortNote(todoList: .constant(nil))
-    }
-}
+//struct ToDoSectionShortNote_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ToDoSectionShortNote(todoList: .constant(nil))
+//    }
+//}
