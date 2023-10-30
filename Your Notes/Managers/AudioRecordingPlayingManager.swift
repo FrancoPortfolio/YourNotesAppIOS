@@ -194,6 +194,13 @@ extension AudioRecordingPlayingManager{
         
         let url = getFileURL(filePath: filePath)
         
+        do {
+            Log.info("Trying to fetch url: \(url.absoluteString)")
+            let _ = try url.checkResourceIsReachable()
+        } catch {
+            Log.error("Not able to load file \(error.localizedDescription)")
+        }
+        
         let playSession = AVAudioSession.sharedInstance()
             
         do {
@@ -209,14 +216,23 @@ extension AudioRecordingPlayingManager{
             actualFilePlayingURLString = filePath
             isPlaying = true
         } catch {
-            Log.error("Playing Failed")
+            Log.error("Playing Failed, \(error)")
         }
                 
+    }
+    
+    func pausePlaying(){
+        audioPlayer.pause()
+        isPlaying = false
     }
 
     func stopPlaying(){
         audioPlayer.stop()
         isPlaying = false
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        self.stopPlaying()
     }
 }
 

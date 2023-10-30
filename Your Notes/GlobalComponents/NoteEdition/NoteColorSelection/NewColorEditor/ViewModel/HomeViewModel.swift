@@ -12,18 +12,8 @@ class HomeViewModel: ObservableObject{
     
     @Published var notes = [Note]()
     
-    init(){
-        
-    }
-    
     func getNoteData(){
-        let request = NSFetchRequest<Note>(entityName: "Note")
-        
-        do {
-            try notes = DataManager.standard.container.viewContext.fetch(request)
-        } catch  {
-            Log.error("Error getting notes: \(error.localizedDescription)")
-        }
+        notes = DataManager.getData(typeOfEntity: Note.self, entityName: "Note")
     }
     
 }

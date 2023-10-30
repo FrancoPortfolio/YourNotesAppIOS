@@ -14,8 +14,7 @@ struct MainScreen: View {
     var body: some View {
         TabView(selection: $selectedScreen){
             Group {
-                Text("XD")
-                //HomeScreen()
+                HomeScreen()
                     .tag(MainScreenViews.homeScreen)
                     .tabItem {
                         Label("Home", systemImage: "house.fill")

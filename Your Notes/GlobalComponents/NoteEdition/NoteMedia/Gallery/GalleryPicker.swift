@@ -15,7 +15,7 @@ struct GalleryPicker: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = 5
+        config.selectionLimit = 3
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
         return picker
@@ -42,7 +42,7 @@ struct GalleryPicker: UIViewControllerRepresentable {
             
             if !results.isEmpty {
                 parent.itemProviders = []
-                parent.images = []
+//                parent.images = []
             }
             
             parent.itemProviders = results.map(\.itemProvider)

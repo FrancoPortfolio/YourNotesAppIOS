@@ -9,14 +9,16 @@ import SwiftUI
 
 struct NoteShortView: View {
     
+    @State private var showItself = true
+    
     var note : Note
     
     private var isPinned : Bool {
-        return true//note.isPinned
+        return note.isPinned
     }
     
     private var isFavorite: Bool{
-        return true//note.isFavorite
+        return note.isFavorite
     }
     
     private var contentSections: ([contentSections], Int){
@@ -48,78 +50,113 @@ struct NoteShortView: View {
         if note.drawing != nil{
             sections.append(.drawing)
         }
-    
+        
         return (sections, min(2, sections.count))
     }
     
     
     var body: some View {
         VStack{
-            
-            //Pin Icon
-            if isPinned{
-                HStack{
-                    Image(systemName: "pin.fill")
-                        .font(.footnote)
-                        .rotationEffect(Angle(degrees: 45))
-                        .foregroundColor(Color.gray.opacity(0.9))
-                        .padding([.leading,.top],5)
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-            }
-            
-            //Top Left Indicators
-            HStack{
-                if isFavorite {
-                    Image(systemName: "star")
-                        .font(.callout)
-                        .padding(.top, note.isPinned ? 0 : 0)
-                }
-
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal,10)
-            
-            //Sections to show on note, max of 2 following array order
-            VStack(spacing: 10) {
-                
-                ForEach(0..<contentSections.1, id: \.self) { contentOrder in
-                    
-                    let section = contentSections.0[contentOrder]
-                    
-                    switch section{
-                        
-                    case .text:
-                        TextSectionShortNote(textData: note.text)
-                    
-                    case .subtasks:
-                        Text("Subtasks")
-                        
-                    case .images:
-                        Text("Images")
-                        
-                    case .voicenotes:
-                        Text("Boicenotes")
-                        
-                    case .drawing:
-                        Text("Drawing")
+            if showItself{
+                VStack{
+                    //Pin Icon
+                    if isPinned{
+                        HStack{
+                            Image(systemName: "pin.fill")
+                                .font(.footnote)
+                                .rotationEffect(Angle(degrees: 45))
+                                .foregroundColor(Color.gray.opacity(0.9))
+                                .padding([.leading,.top,.trailing],5)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                     }
+                    //Top Left Indicators
+                    HStack{
+                        //Favorite indicator
+                        if isFavorite {
+                            Image(systemName: "star.fill")
+                                .font(.callout)
+                        }
+                        //Other indicators
+                        if contentSections.0.count > 2{
+                            ForEach(2..<Int(contentSections.0.count)){ index in
+                                
+                                switch contentSections.0[index]{
+                                case .images:
+                                    Image(systemName: "star.fill")
+                                        .font(.callout)
+                                case .subtasks:
+                                    Image(systemName: "star.fill")
+                                        .font(.callout)
+                                case .text:
+                                    Image(systemName: "star.fill")
+                                        .font(.callout)
+                                case .voicenotes:
+                                    Image(systemName: "star.fill")
+                                        .font(.callout)
+                                case .drawing:
+                                    Image(systemName: "star.fill")
+                                        .font(.callout)
+                                }
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal,10)
+                    .padding(.top, note.isPinned ? 0 : 10)
+                    //Sections to show on note, max of 2 following array order
+                    VStack(spacing: 0) {
+                        
+                        ForEach(0..<contentSections.1, id: \.self) { contentOrder in
+                            
+                            let section = contentSections.0[contentOrder]
+                            
+                            switch section{
+                                
+                            case .text:
+                                TextSectionShortNote(textData: note.text)
+                                    .padding(.horizontal,10)
+                                    .padding(.bottom,10)
+                                
+                            case .subtasks:
+                                SubtasksSectionShortNote(noteSet: note.subtasks)
+                                    .padding(.horizontal,10)
+                                    .padding(.leading,5)
+                                    .padding(.bottom,10)
+                                
+                            case .images:
+                                ImagesSectionShortNote(imagesSet: note.images)
+                                    .padding(.top,(isPinned || isFavorite) ? 0 : 7.5)
+                                
+                            case .voicenotes:
+                                VoiceNoteSectionShortNote(voicenoteSet: note.voicenotes)
+                                    .padding(.vertical)
+                                
+                            case .drawing:
+                                Text("Drawing")
+                            }
+                        }
+                        
+                    }
+                    .padding(.top,5)
                 }
-                
-            }.padding(.horizontal,10)
-                .padding(.top,5)
-                .padding(.bottom)
-            
+            }
         }
         .background{
             
             if let colorHex = note.color?.colorHex{
                 Color.init(hex: colorHex).frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-           
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .cornerRadius(20, corners: isPinned ? [.bottomLeft,.bottomRight,.topLeft] : .allCorners)
+        .onAppear{
+            showItself = true
+        }
+        .onDisappear{
+            showItself = false
+        }
         
     }
 }

@@ -9,24 +9,25 @@ import SwiftUI
 
 struct VoiceNoteSectionShortNote: View {
     
-    @StateObject private var audioManager = AudioRecordingPlayingManager()
+    @StateObject private var viewModel : VoiceNoteSectionShortNoteViewModel
     
-    var voiceNoteUrl: String?
-    var noteId: String
+    init(voicenoteSet: NSSet?) {
+        self._viewModel = StateObject(wrappedValue: VoiceNoteSectionShortNoteViewModel(voicenoteSet: voicenoteSet))
+    }
     
     var body: some View {
         VStack{
             
             Button {
                 
-                if audioManager.isPlaying {
-                    audioManager.stopPlaying()
+                if viewModel.audioPlayer.isPlaying {
+                    viewModel.pausePlaying()
                 }else{
-                    audioManager.startPlaying(fileName: voiceNoteUrl)
+                    viewModel.startPlaying()
                 }
                 
             } label: {
-                Image(systemName: audioManager.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                Image(systemName: viewModel.audioPlayer.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 30, height: 30, alignment: .center)

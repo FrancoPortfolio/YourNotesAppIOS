@@ -17,15 +17,8 @@ class NewNoteColorSectionViewModel: ObservableObject{
     }
     
     func getColors(){
-        let request = NSFetchRequest<NoteHighlightColor>(entityName: "NoteHighlightColor")
         
-        do {
-            Log.info("Fetching Colors")
-            try highlightColors = DataManager.standard.container.viewContext.fetch(request)
-            Log.info("Colors fetched")
-        } catch  {
-            Log.error("Error getting tag data: \(error.localizedDescription)")
-        }
+        self.highlightColors = DataManager.getData(typeOfEntity: NoteHighlightColor.self, entityName: "NoteHighlightColor")
     }
 
 }

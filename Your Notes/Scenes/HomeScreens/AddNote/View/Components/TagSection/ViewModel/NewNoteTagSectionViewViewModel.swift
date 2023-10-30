@@ -17,13 +17,7 @@ class NewNoteTagSectionViewViewModel: ObservableObject{
     }
     
     func getTagData(){
-        let request = NSFetchRequest<NoteTag>(entityName: "NoteTag")
-        
-        do {
-            try tags = DataManager.standard.container.viewContext.fetch(request)
-        } catch  {
-            Log.error("Error getting tag data: \(error.localizedDescription)")
-        }
+        tags = DataManager.getData(typeOfEntity: NoteTag.self, entityName: "NoteTag")
     }
     
     func saveNewTag(tagName: String){

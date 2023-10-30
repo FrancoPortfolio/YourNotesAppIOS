@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E41D6AD12AEAD3BD00C33BA0 /* SubtasksSectionShortNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41D6AD02AEAD3BD00C33BA0 /* SubtasksSectionShortNoteViewModel.swift */; };
+		E41D6AD52AEAD68200C33BA0 /* Subtask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41D6AD42AEAD68200C33BA0 /* Subtask.swift */; };
+		E41D6AD82AEAD6F900C33BA0 /* NotesSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41D6AD72AEAD6F900C33BA0 /* NotesSorting.swift */; };
+		E41D6ADC2AEB13A400C33BA0 /* ImagesSectionShortNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41D6ADB2AEB13A400C33BA0 /* ImagesSectionShortNoteViewModel.swift */; };
 		E42B327C2AE980690016F69D /* NewColorEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B327B2AE980690016F69D /* NewColorEditor.swift */; };
 		E42B32802AE990960016F69D /* NewColorEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B327F2AE990960016F69D /* NewColorEditorViewModel.swift */; };
 		E42B32832AE9DE1C0016F69D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B32822AE9DE1C0016F69D /* HomeViewModel.swift */; };
@@ -20,15 +24,12 @@
 		E472A0C82ADD98BC00B837CB /* MainScreenViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0C72ADD98BC00B837CB /* MainScreenViews.swift */; };
 		E472A0CF2ADD9EF400B837CB /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0CE2ADD9EF400B837CB /* HomeScreen.swift */; };
 		E472A0D22ADDAD0800B837CB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0D12ADDAD0800B837CB /* SearchBar.swift */; };
-		E472A0D42ADDD2A500B837CB /* NotesSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0D32ADDD2A500B837CB /* NotesSorting.swift */; };
-		E472A0D82ADDD66800B837CB /* NoteContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0D72ADDD66800B837CB /* NoteContentType.swift */; };
 		E472A0DE2ADDD97500B837CB /* HomeScreenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0DD2ADDD97500B837CB /* HomeScreenBody.swift */; };
-		E472A0E02ADDDA8700B837CB /* YNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0DF2ADDDA8700B837CB /* YNote.swift */; };
 		E472A0E22ADDDEB700B837CB /* NoteShortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0E12ADDDEB700B837CB /* NoteShortView.swift */; };
 		E472A0E52ADDE6AA00B837CB /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0E42ADDE6AA00B837CB /* View.swift */; };
 		E472A0E72ADDE7B600B837CB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0E62ADDE7B600B837CB /* Color.swift */; };
 		E472A0EC2ADECA0900B837CB /* TextSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0EB2ADECA0900B837CB /* TextSectionShortNote.swift */; };
-		E472A0EE2ADECA7700B837CB /* ToDoSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0ED2ADECA7700B837CB /* ToDoSectionShortNote.swift */; };
+		E472A0EE2ADECA7700B837CB /* SubtasksSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0ED2ADECA7700B837CB /* SubtasksSectionShortNote.swift */; };
 		E472A0F02ADECAF600B837CB /* VoiceNoteSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0EF2ADECAF600B837CB /* VoiceNoteSectionShortNote.swift */; };
 		E472A0F32ADECE2700B837CB /* AudioRecordingPlayingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0F22ADECE2700B837CB /* AudioRecordingPlayingManager.swift */; };
 		E472A0FB2ADEECD800B837CB /* HomeRoutingDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0FA2ADEECD800B837CB /* HomeRoutingDestinations.swift */; };
@@ -56,9 +57,17 @@
 		E4BBEFCB2AE8969B00C46A94 /* InitialLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBEFCA2AE8969B00C46A94 /* InitialLoadManager.swift */; };
 		E4C3B7702AE0250300923492 /* AddNewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */; };
 		E4C3B7722AE0316000923492 /* SubtaskNoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */; };
+		E4D98CBC2AEC2A030087838E /* ImagesSectionShortNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D98CBB2AEC2A030087838E /* ImagesSectionShortNote.swift */; };
+		E4D98CBF2AEC60860087838E /* VoiceNoteSectionShortNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D98CBE2AEC60860087838E /* VoiceNoteSectionShortNoteViewModel.swift */; };
+		E4D98CC12AEC6B3C0087838E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D98CC02AEC6B3C0087838E /* Image.swift */; };
+		E4D98CC42AEFFEB40087838E /* FileAdministrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D98CC32AEFFEB40087838E /* FileAdministrator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E41D6AD02AEAD3BD00C33BA0 /* SubtasksSectionShortNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtasksSectionShortNoteViewModel.swift; sourceTree = "<group>"; };
+		E41D6AD42AEAD68200C33BA0 /* Subtask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtask.swift; sourceTree = "<group>"; };
+		E41D6AD72AEAD6F900C33BA0 /* NotesSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesSorting.swift; sourceTree = "<group>"; };
+		E41D6ADB2AEB13A400C33BA0 /* ImagesSectionShortNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesSectionShortNoteViewModel.swift; sourceTree = "<group>"; };
 		E42B327B2AE980690016F69D /* NewColorEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewColorEditor.swift; sourceTree = "<group>"; };
 		E42B327F2AE990960016F69D /* NewColorEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewColorEditorViewModel.swift; sourceTree = "<group>"; };
 		E42B32812AE9AAD60016F69D /* Your-Notes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Your-Notes-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -74,15 +83,12 @@
 		E472A0C72ADD98BC00B837CB /* MainScreenViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScreenViews.swift; path = "Your Notes/Managers/MainScreenViews.swift"; sourceTree = SOURCE_ROOT; };
 		E472A0CE2ADD9EF400B837CB /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		E472A0D12ADDAD0800B837CB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		E472A0D32ADDD2A500B837CB /* NotesSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesSorting.swift; sourceTree = "<group>"; };
-		E472A0D72ADDD66800B837CB /* NoteContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteContentType.swift; sourceTree = "<group>"; };
 		E472A0DD2ADDD97500B837CB /* HomeScreenBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenBody.swift; sourceTree = "<group>"; };
-		E472A0DF2ADDDA8700B837CB /* YNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YNote.swift; sourceTree = "<group>"; };
 		E472A0E12ADDDEB700B837CB /* NoteShortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteShortView.swift; sourceTree = "<group>"; };
 		E472A0E42ADDE6AA00B837CB /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		E472A0E62ADDE7B600B837CB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		E472A0EB2ADECA0900B837CB /* TextSectionShortNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSectionShortNote.swift; sourceTree = "<group>"; };
-		E472A0ED2ADECA7700B837CB /* ToDoSectionShortNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoSectionShortNote.swift; sourceTree = "<group>"; };
+		E472A0ED2ADECA7700B837CB /* SubtasksSectionShortNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtasksSectionShortNote.swift; sourceTree = "<group>"; };
 		E472A0EF2ADECAF600B837CB /* VoiceNoteSectionShortNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceNoteSectionShortNote.swift; sourceTree = "<group>"; };
 		E472A0F22ADECE2700B837CB /* AudioRecordingPlayingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingPlayingManager.swift; sourceTree = "<group>"; };
 		E472A0FA2ADEECD800B837CB /* HomeRoutingDestinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoutingDestinations.swift; sourceTree = "<group>"; };
@@ -110,6 +116,10 @@
 		E4BBEFCA2AE8969B00C46A94 /* InitialLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialLoadManager.swift; sourceTree = "<group>"; };
 		E4C3B76F2AE0250300923492 /* AddNewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNoteViewModel.swift; sourceTree = "<group>"; };
 		E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtaskNoteEditor.swift; sourceTree = "<group>"; };
+		E4D98CBB2AEC2A030087838E /* ImagesSectionShortNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesSectionShortNote.swift; sourceTree = "<group>"; };
+		E4D98CBE2AEC60860087838E /* VoiceNoteSectionShortNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceNoteSectionShortNoteViewModel.swift; sourceTree = "<group>"; };
+		E4D98CC02AEC6B3C0087838E /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		E4D98CC32AEFFEB40087838E /* FileAdministrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAdministrator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +133,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E41D6ACC2AEAD37300C33BA0 /* SubtaskSection */ = {
+			isa = PBXGroup;
+			children = (
+				E41D6ACF2AEAD3A300C33BA0 /* View */,
+				E41D6ACE2AEAD39D00C33BA0 /* ViewModel */,
+			);
+			path = SubtaskSection;
+			sourceTree = "<group>";
+		};
+		E41D6ACD2AEAD37E00C33BA0 /* TextSection */ = {
+			isa = PBXGroup;
+			children = (
+				E472A0EB2ADECA0900B837CB /* TextSectionShortNote.swift */,
+			);
+			path = TextSection;
+			sourceTree = "<group>";
+		};
+		E41D6ACE2AEAD39D00C33BA0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E41D6AD02AEAD3BD00C33BA0 /* SubtasksSectionShortNoteViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E41D6ACF2AEAD3A300C33BA0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E472A0ED2ADECA7700B837CB /* SubtasksSectionShortNote.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E41D6AD22AEAD3F900C33BA0 /* VoiceNoteSection */ = {
+			isa = PBXGroup;
+			children = (
+				E4D98CC22AEFF08B0087838E /* View */,
+				E4D98CBD2AEC60250087838E /* ViewModel */,
+			);
+			path = VoiceNoteSection;
+			sourceTree = "<group>";
+		};
+		E41D6AD32AEAD67100C33BA0 /* GlobalModel */ = {
+			isa = PBXGroup;
+			children = (
+				E41D6AD42AEAD68200C33BA0 /* Subtask.swift */,
+				E41D6AD72AEAD6F900C33BA0 /* NotesSorting.swift */,
+			);
+			path = GlobalModel;
+			sourceTree = "<group>";
+		};
+		E41D6AD92AEB137400C33BA0 /* ImagesSection */ = {
+			isa = PBXGroup;
+			children = (
+				E4D98CBA2AEC29EF0087838E /* View */,
+				E41D6ADA2AEB138D00C33BA0 /* ViewModel */,
+			);
+			path = ImagesSection;
+			sourceTree = "<group>";
+		};
+		E41D6ADA2AEB138D00C33BA0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E41D6ADB2AEB13A400C33BA0 /* ImagesSectionShortNoteViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E42B327D2AE9907E0016F69D /* NewColorEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +244,7 @@
 				E472A0F92ADEECB000B837CB /* Routing */,
 				E472A0E32ADDE69E00B837CB /* Extensions */,
 				E472A0C42ADD97A800B837CB /* Managers */,
+				E41D6AD32AEAD67100C33BA0 /* GlobalModel */,
 				E472A0D92ADDD76A00B837CB /* GlobalComponents */,
 				E472A0BA2ADD899F00B837CB /* Scenes */,
 				E472A0AC2ADD889700B837CB /* Your_NotesApp.swift */,
@@ -241,6 +320,7 @@
 				E472A0C52ADD97B400B837CB /* ColorManager.swift */,
 				E472A0F22ADECE2700B837CB /* AudioRecordingPlayingManager.swift */,
 				E4BBEFCA2AE8969B00C46A94 /* InitialLoadManager.swift */,
+				E4D98CC32AEFFEB40087838E /* FileAdministrator.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -258,9 +338,6 @@
 		E472A0CA2ADD9ED400B837CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E472A0D32ADDD2A500B837CB /* NotesSorting.swift */,
-				E472A0D72ADDD66800B837CB /* NoteContentType.swift */,
-				E472A0DF2ADDDA8700B837CB /* YNote.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +392,7 @@
 				E472A0E62ADDE7B600B837CB /* Color.swift */,
 				E4BBEFB32AE82F7F00C46A94 /* Text.swift */,
 				E4BBEFC82AE8844C00C46A94 /* UserDefaults.swift */,
+				E4D98CC02AEC6B3C0087838E /* Image.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -331,9 +409,10 @@
 		E472A0EA2ADEC9EE00B837CB /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				E472A0EB2ADECA0900B837CB /* TextSectionShortNote.swift */,
-				E472A0ED2ADECA7700B837CB /* ToDoSectionShortNote.swift */,
-				E472A0EF2ADECAF600B837CB /* VoiceNoteSectionShortNote.swift */,
+				E41D6ACD2AEAD37E00C33BA0 /* TextSection */,
+				E41D6ACC2AEAD37300C33BA0 /* SubtaskSection */,
+				E41D6AD92AEB137400C33BA0 /* ImagesSection */,
+				E41D6AD22AEAD3F900C33BA0 /* VoiceNoteSection */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -515,6 +594,30 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		E4D98CBA2AEC29EF0087838E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4D98CBB2AEC2A030087838E /* ImagesSectionShortNote.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E4D98CBD2AEC60250087838E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E4D98CBE2AEC60860087838E /* VoiceNoteSectionShortNoteViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E4D98CC22AEFF08B0087838E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E472A0EF2ADECAF600B837CB /* VoiceNoteSectionShortNote.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E4FE202D2AE962F1002E1EEF /* NoteColorSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,13 +714,14 @@
 			files = (
 				E472A0C62ADD97B400B837CB /* ColorManager.swift in Sources */,
 				E472A1032ADEF27D00B837CB /* NoteFormTextField.swift in Sources */,
+				E4D98CBF2AEC60860087838E /* VoiceNoteSectionShortNoteViewModel.swift in Sources */,
 				E49AA1A82AE085130093AF99 /* GalleryPicker.swift in Sources */,
 				E4C3B7702AE0250300923492 /* AddNewNoteViewModel.swift in Sources */,
+				E41D6AD82AEAD6F900C33BA0 /* NotesSorting.swift in Sources */,
 				E472A0F02ADECAF600B837CB /* VoiceNoteSectionShortNote.swift in Sources */,
 				E4C3B7722AE0316000923492 /* SubtaskNoteEditor.swift in Sources */,
 				E472A0AF2ADD889700B837CB /* MainScreen.swift in Sources */,
-				E472A0D42ADDD2A500B837CB /* NotesSorting.swift in Sources */,
-				E472A0D82ADDD66800B837CB /* NoteContentType.swift in Sources */,
+				E4D98CC42AEFFEB40087838E /* FileAdministrator.swift in Sources */,
 				E4BBEFC12AE85F4500C46A94 /* NewNoteColorSectionView.swift in Sources */,
 				E4BBEFA22AE80AEF00C46A94 /* DataManager.swift in Sources */,
 				E4BBEF9E2AE721C800C46A94 /* DrawingViewForm.swift in Sources */,
@@ -633,10 +737,13 @@
 				E4B402302AE18DDB00746769 /* VoiceRecordingView.swift in Sources */,
 				E4BBEFCB2AE8969B00C46A94 /* InitialLoadManager.swift in Sources */,
 				E42B32832AE9DE1C0016F69D /* HomeViewModel.swift in Sources */,
+				E41D6ADC2AEB13A400C33BA0 /* ImagesSectionShortNoteViewModel.swift in Sources */,
+				E4D98CC12AEC6B3C0087838E /* Image.swift in Sources */,
 				E472A0AD2ADD889700B837CB /* Your_NotesApp.swift in Sources */,
-				E472A0E02ADDDA8700B837CB /* YNote.swift in Sources */,
 				E472A0DE2ADDD97500B837CB /* HomeScreenBody.swift in Sources */,
+				E41D6AD52AEAD68200C33BA0 /* Subtask.swift in Sources */,
 				E472A1052ADEF54400B837CB /* NoteAddSectionButton.swift in Sources */,
+				E41D6AD12AEAD3BD00C33BA0 /* SubtasksSectionShortNoteViewModel.swift in Sources */,
 				E472A0E52ADDE6AA00B837CB /* View.swift in Sources */,
 				E4BBEF9C2AE71C1E00C46A94 /* DrawingCanvasViewForm.swift in Sources */,
 				E49AA1A12AE052FE0093AF99 /* NoteTagSelector.swift in Sources */,
@@ -652,7 +759,8 @@
 				E4BBEFC92AE8844C00C46A94 /* UserDefaults.swift in Sources */,
 				E472A1002ADEF15C00B837CB /* NewNoteScreen.swift in Sources */,
 				E4B402292AE0975F00746769 /* CameraScreen.swift in Sources */,
-				E472A0EE2ADECA7700B837CB /* ToDoSectionShortNote.swift in Sources */,
+				E4D98CBC2AEC2A030087838E /* ImagesSectionShortNote.swift in Sources */,
+				E472A0EE2ADECA7700B837CB /* SubtasksSectionShortNote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

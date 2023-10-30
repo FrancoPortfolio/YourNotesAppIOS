@@ -57,21 +57,7 @@ class AddNewNoteViewModel: ObservableObject{
         let predicate = NSPredicate(
             format: "id LIKE %@", selectedColorId
         )
-        
-        let fetchRequest = NoteHighlightColor.fetchRequest()
-        fetchRequest.predicate = predicate
-        
-        var noteColor : NoteHighlightColor? = nil
-        
-        do {
-            
-            noteColor = try DataManager.standard.container.viewContext.fetch(fetchRequest).first
-            
-        } catch  {
-            Log.error("Error fetching color entity")
-        }
-        
-        return noteColor
+        return DataManager.getFirstData(typeOfEntity: NoteHighlightColor.self, entityName: "NoteHighlightColor", predicate: predicate)
     }
     
     private func getTagEntity() -> NoteTag?{
@@ -82,20 +68,7 @@ class AddNewNoteViewModel: ObservableObject{
             format: "id == %@", tagId as CVarArg
         )
         
-        let fetchRequest = NoteTag.fetchRequest()
-        fetchRequest.predicate = predicate
-        
-        var noteTag : NoteTag? = nil
-        
-        do {
-            
-            noteTag = try DataManager.standard.container.viewContext.fetch(fetchRequest).first
-            
-        } catch  {
-            Log.error("Error fetching tag entity")
-        }
-        
-        return noteTag
+        return DataManager.getFirstData(typeOfEntity: NoteTag.self, entityName: "NoteTag",predicate: predicate)
     }
     
     private func getImagesEntities() -> NSSet?{
@@ -109,7 +82,7 @@ class AddNewNoteViewModel: ObservableObject{
         
         for img in imagesToShow{
             
-            if let imgData = img.pngData(){
+            if let imgData = img.jpegData(compressionQuality: 0.125){
                 
                 let noteImgEntity = NoteImage(context: DataManager.standard.container.viewContext)
                 
@@ -177,6 +150,7 @@ class AddNewNoteViewModel: ObservableObject{
             subtaskEntity.id = UUID()
             subtaskEntity.isDone = task.isChecked
             subtaskEntity.task = task.name
+            subtaskEntity.dateCreated = Date()
             
             tempSubtasksSet.insert(subtaskEntity)
         }
