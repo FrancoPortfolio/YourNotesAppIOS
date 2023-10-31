@@ -34,7 +34,7 @@ struct NoteTagSelector: View {
                                 showAddTagForm = false
                             }
                         }, label: {
-                            Image(systemName: "plus.square")
+                            Image(systemName: GlobalValues.NoFilledIcons.plusSquare)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 25, height: 25, alignment: .center)
@@ -114,7 +114,7 @@ fileprivate struct TagFrame: View {
             
         }, label: {
             Text(noteTag.tag ?? "")
-                .foregroundStyle(ColorManager.textColor)
+                .foregroundColor(isSelected ? ColorManager.primaryColor : Color.gray)
                 .padding(.horizontal)
                 .padding(.vertical,5)
                 .overlay {

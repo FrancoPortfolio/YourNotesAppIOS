@@ -18,9 +18,9 @@ struct HomeScreen: View {
     
     private var starIconName: String {
         if showOnlyFavorites {
-            return "star.fill"
+            return GlobalValues.FilledIcons.favoriteStar
         }
-        return "star"
+        return GlobalValues.NoFilledIcons.favoriteStar
     }
     
     var body: some View {
@@ -32,7 +32,7 @@ struct HomeScreen: View {
                 Group{
                     Group {
                         HStack {
-                            Text("My Notes")
+                            Text(GlobalValues.Strings.homeScreenTitle)
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
                             
@@ -44,7 +44,7 @@ struct HomeScreen: View {
                                         showSearchBar.toggle()
                                     }
                                 } label: {
-                                    Image(systemName: "magnifyingglass")
+                                    Image(systemName: GlobalValues.NoFilledIcons.glass)
                                         .font(.title2)
                                 }
                                 
@@ -62,7 +62,7 @@ struct HomeScreen: View {
                                         }
                                     }
                                 } label: {
-                                    Image(systemName: "list.bullet")
+                                    Image(systemName: GlobalValues.NoFilledIcons.listBullet)
                                         .font(.title2)
                                 }
                             }

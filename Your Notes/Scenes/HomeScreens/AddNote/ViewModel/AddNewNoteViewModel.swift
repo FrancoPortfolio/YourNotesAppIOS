@@ -34,7 +34,7 @@ class AddNewNoteViewModel: ObservableObject{
         
         let noteEntity = Note(context: DataManager.standard.container.viewContext)
         noteEntity.text = noteText
-        noteEntity.id = UUID()
+        noteEntity.id = UUID(uuidString: noteId)
         noteEntity.dateCreated = Date()
         noteEntity.dateModified = Date()
         noteEntity.isPinned = false

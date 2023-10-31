@@ -92,7 +92,7 @@ extension NewNoteScreen{
                                             VStack{
                                                 HStack{
                                                     Spacer()
-                                                    Image(systemName: "x.circle")
+                                                    Image(systemName: GlobalValues.NoFilledIcons.xButton)
                                                         .resizable()
                                                         .scaledToFit()
                                                         .foregroundStyle(Color.white)
@@ -113,16 +113,20 @@ extension NewNoteScreen{
                 
                 if !viewModel.audioFilesUrlStrings.isEmpty{
                     VStack{
-                        ForEach(viewModel.audioFilesUrlStrings, id: \.self){ audioPathString in
+                        ForEach(audioManager.assets){ recording in
                             VoiceRecordingPreview(audioManager: audioManager,
-                                                  audioPathString: audioPathString)
+                                                  recording: recording)
                         }
+//                        ForEach(viewModel.audioFilesUrlStrings, id: \.self){ audioPathString in
+//                            VoiceRecordingPreview(audioManager: audioManager,
+//                                                  audioPathString: audioPathString)
+//                        }
                     }
                 }
                 
                 if let data = viewModel.drawingData {
                     VStack{
-                        Image(uiImage: self.getUIImageFromCanvasData(data: data, size: CGSize(width: 300, height: 450)))
+                        Image(uiImage: UIImage.getUIImageFromCanvasData(data: data))
                             .resizable()
                             .scaledToFit()
                             .frame(width: 200)
@@ -134,19 +138,19 @@ extension NewNoteScreen{
                 }
                 
                 HStack{
-                    NoteAddSectionButton (iconName: "photo.fill"){
+                    NoteAddSectionButton (iconName: GlobalValues.FilledIcons.imageIcon){
                         presentAddMediaGallery.toggle()
                     }
                     Spacer()
-                    NoteAddSectionButton (iconName: "camera.fill"){
+                    NoteAddSectionButton (iconName: GlobalValues.FilledIcons.cameraIcon){
                         presentAddMediaCamera.toggle()
                     }
                     Spacer()
-                    NoteAddSectionButton (iconName: "mic.fill"){
+                    NoteAddSectionButton (iconName: GlobalValues.FilledIcons.micIcon){
                         presentAddMediaVoice.toggle()
                     }
                     Spacer()
-                    NoteAddSectionButton (iconName: "paintbrush.pointed.fill"){
+                    NoteAddSectionButton (iconName: GlobalValues.FilledIcons.brushIcon){
                         presentAddMediaDrawing.toggle()
                     }
                 }
@@ -186,7 +190,7 @@ extension NewNoteScreen{
                             viewModel.tempSubtaskText = ""
                             
                         } label: {
-                            Image(systemName: "plus.square")
+                            Image(systemName: GlobalValues.NoFilledIcons.plusSquare)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 25, height: 25, alignment: .center)
@@ -244,12 +248,20 @@ extension NewNoteScreen{
     
     private var voiceRecordingScreen: some View{
         VoiceRecordingView(noteId: viewModel.noteId,
-                           recordingsNames: $viewModel.audioFilesUrlStrings) { urlString in
+                           recordingsNames: $viewModel.audioFilesUrlStrings) { fileName in
             
-            self.viewModel.audioFilesUrlStrings.append(urlString)
-            self.audioManager.assets.append(
-                Recording(dataUrl: urlString,
-                          asset: AVAsset(url: URL(string: urlString)!)))
+            self.viewModel.audioFilesUrlStrings.append(fileName)
+            let fileHandler = FileManagerHandler()
+            let baseDocumentsURL = fileHandler.findDocumentDirectory()
+            let urlToSaveOnAssets = baseDocumentsURL.appendingPathComponent(GlobalValues.Strings.baseFolderVoicenotes)
+                .appendingPathComponent(self.viewModel.noteId)
+                .appendingPathComponent(fileName)
+            
+            let recording = TemporalRecording(fileName: fileName,
+                              completeTemporalUrl: urlToSaveOnAssets.absoluteString,
+                              asset: AVAsset(url: urlToSaveOnAssets))
+            
+            self.audioManager.assets.append(recording)
             self.presentAddMediaVoice = false
             Log.info("Actual audio paths: \(self.viewModel.audioFilesUrlStrings)")
             
@@ -269,20 +281,6 @@ extension NewNoteScreen{
 
 //Functions
 extension NewNoteScreen{
-    
-    private func getUIImageFromCanvasData(data: Data, size: CGSize) -> UIImage{
-        let canvas = PKCanvasView()
-        var image = UIImage()
-        let cgRect = CGRect(origin: CGPoint.zero,size: size)
-        do{
-            try canvas.drawing = PKDrawing(data: data)
-            image = canvas.drawing.image(from: cgRect, scale: 10.0)
-        } catch {
-            Log.error("Error making image from canvas: \(error)")
-        }
-        return image
-    }
-    
 }
 
 //struct NewNoteScreen_Previews: PreviewProvider {

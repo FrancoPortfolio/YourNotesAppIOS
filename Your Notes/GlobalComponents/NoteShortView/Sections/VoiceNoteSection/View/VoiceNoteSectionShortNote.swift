@@ -10,24 +10,38 @@ import SwiftUI
 struct VoiceNoteSectionShortNote: View {
     
     @StateObject private var viewModel : VoiceNoteSectionShortNoteViewModel
+    @StateObject var audioManager : AudioRecordingPlayingManager
     
-    init(voicenoteSet: NSSet?) {
-        self._viewModel = StateObject(wrappedValue: VoiceNoteSectionShortNoteViewModel(voicenoteSet: voicenoteSet))
+    init(voicenoteSet: NSSet?, noteId: String, audioManager: AudioRecordingPlayingManager) {
+        self._viewModel = StateObject(wrappedValue: VoiceNoteSectionShortNoteViewModel(voicenoteSet: voicenoteSet, noteId: noteId))
+        self._audioManager = StateObject(wrappedValue: audioManager)
+    }
+    
+    private var isThisPlaying: Bool{
+        if audioManager.isPlaying{
+            return audioManager.actualFilePlayingURLString == viewModel.audioUrl
+        }
+        return false
+    }
+    
+    private var iconName: String{
+        if isThisPlaying{
+            if audioManager.isPaused{
+                return GlobalValues.FilledIcons.Media.play
+            } else {
+                return GlobalValues.FilledIcons.Media.pause
+                
+            }
+        }
+        return GlobalValues.FilledIcons.Media.play
     }
     
     var body: some View {
         VStack{
-            
             Button {
-                
-                if viewModel.audioPlayer.isPlaying {
-                    viewModel.pausePlaying()
-                }else{
-                    viewModel.startPlaying()
-                }
-                
+                doWhenButtonPressed()
             } label: {
-                Image(systemName: viewModel.audioPlayer.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                Image(systemName: iconName)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 30, height: 30, alignment: .center)
@@ -37,6 +51,29 @@ struct VoiceNoteSectionShortNote: View {
                 
             }
         }
+    }
+}
+
+extension VoiceNoteSectionShortNote{
+    private func doWhenButtonPressed(){
+        
+        if !audioManager.isPlaying{
+            audioManager.startPlaying(filePath: viewModel.audioUrl)
+            return
+        }
+        
+        if audioManager.isPaused{
+            audioManager.resumePlaying()
+            return
+        }
+        
+        if !audioManager.isPaused && isThisPlaying{
+            audioManager.pausePlaying()
+            return
+        }
+        
+        audioManager.stopPlaying()
+        audioManager.startPlaying(filePath: viewModel.audioUrl)
     }
 }
 

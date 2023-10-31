@@ -21,7 +21,7 @@ struct NoteColorSelector: View {
                 Button(action: {
                     presentColorEditor = true
                 }, label: {
-                    Image(systemName: "plus.circle")
+                    Image(systemName: GlobalValues.NoFilledIcons.plusCircle)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 33, height: 33)

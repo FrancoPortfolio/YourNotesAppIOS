@@ -58,7 +58,7 @@ struct SearchBar: View {
                 .frame(maxHeight: 50)
                 .overlay(
                     HStack {
-                        Image(systemName: "magnifyingglass")
+                        Image(systemName: GlobalValues.NoFilledIcons.glass)
                             .foregroundColor(.gray)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                             .offset(x: geometry.size.width * 0.04)
@@ -67,7 +67,7 @@ struct SearchBar: View {
                             Button(action: {
                                 self.searchText = ""
                             }) {
-                                Image(systemName: "multiply.circle.fill")
+                                Image(systemName: GlobalValues.FilledIcons.Xbutton)
                                     .foregroundColor(.gray)
                             }
                             .offset(x: geometry.size.width * -0.27)

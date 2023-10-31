@@ -9,11 +9,13 @@ import SwiftUI
 
 struct HomeScreenBody: View {
     
+    @StateObject private var audioManager = AudioRecordingPlayingManager()
+    
     var notes: [Note] = []
     
     private var addNoteButton: some View{
         NavigationLink(value: HomeRoutingDestinations.newNote) {
-            Image(systemName: "plus")
+            Image(systemName: GlobalValues.NoFilledIcons.plus)
                 .resizable()
                 .scaledToFit()
                 .frame(height: 20)
@@ -38,7 +40,7 @@ struct HomeScreenBody: View {
                         //First Column
                         VStack{
                             ForEach(notes){note in
-                                NoteShortView(note: note)
+                                NoteShortView(audioManager: audioManager, note: note)
                                     .frame(minWidth: 0,maxWidth: geo.size.width * 0.5)
                                     .padding(.vertical, 5)
                             }
@@ -46,7 +48,7 @@ struct HomeScreenBody: View {
                         //Second column
                         VStack{
                             ForEach(notes){note in
-                                NoteShortView(note: note)
+                                NoteShortView(audioManager: audioManager, note: note)
                                     .frame(minWidth: 0,maxWidth: geo.size.width * 0.5)
                                     .padding(.vertical, 5)
                             }

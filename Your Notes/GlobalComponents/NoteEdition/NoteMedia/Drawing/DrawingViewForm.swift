@@ -47,6 +47,5 @@ struct DrawingViewForm: View {
         .background{
             ColorManager.backgroundColor
         }
-        .getFrameBorderPainted()
     }
 }

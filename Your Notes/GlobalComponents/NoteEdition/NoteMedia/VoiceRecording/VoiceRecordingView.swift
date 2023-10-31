@@ -12,6 +12,7 @@ struct VoiceRecordingView: View {
     var noteId: String
     @Binding var recordingsNames : [String]
     
+    @StateObject private var viewModel = VoiceRecordingViewModel()
     @StateObject private var audioPlayerManager = AudioRecordingPlayingManager()
     @State private var textTimerSeconds = 0
     @State private var textTimerMinutes = 0
@@ -41,9 +42,12 @@ struct VoiceRecordingView: View {
                             audioPlayerManager.stopRecording()
                             return
                         }
-                        audioPlayerManager.startRecording(noteId: noteId)
+                        
+                        if let url = viewModel.prepareForRecording(noteId: noteId){
+                            audioPlayerManager.startRecording(atUrl: url)
+                        }
                     }label: {
-                        Image(systemName: audioPlayerManager.isRecording ? "square.circle.fill" : "mic.circle.fill")
+                        Image(systemName: audioPlayerManager.isRecording ? GlobalValues.FilledIcons.square : GlobalValues.NoFilledIcons.micCircle)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .foregroundStyle(ColorManager.primaryColor)
@@ -82,7 +86,7 @@ struct VoiceRecordingView: View {
                             Button(action: {
                                 self.textTimerMinutes = 0
                                 self.textTimerSeconds = 0
-                                self.audioPlayerManager.eraseLastRecording()
+                                self.viewModel.eraseLastRecording(noteId: noteId)
                                 self.showExtraButtons = false
                             }, label: {
                                 Text("Erase")
@@ -94,12 +98,7 @@ struct VoiceRecordingView: View {
                             Spacer()
                             
                             Button(action: {
-                                
-                                let lastFilePath = self.audioPlayerManager.tempURLOfLastFileRecording
-                                
-                                self.audioPlayerManager.tempURLOfLastFileRecording = ""
-                                
-                                doWhenSavePressed(lastFilePath)
+                                doWhenSavePressed(viewModel.resetRecording())
                             }, label: {
                                 Text("Save")
                                     .font(.system(size: 25))
@@ -115,21 +114,26 @@ struct VoiceRecordingView: View {
             }
         }
         .onAppear(perform: {
-            self.audioPlayerManager.createBaseFolderForRecording(noteId: self.noteId)
+            doWhenAppearing()
         })
         .onDisappear(perform: {
-            if self.audioPlayerManager.isRecording {
-                self.audioPlayerManager.stopRecording()
-                self.audioPlayerManager.eraseLastRecording()
-                return
-            }
-            
-            if self.audioPlayerManager.tempURLOfLastFileRecording != "" {
-                self.audioPlayerManager.eraseLastRecording()
-            }
-            
+            doWhenDisappearing()
         })
     }
+    
+    private func doWhenAppearing(){
+        self.audioPlayerManager.setupRecording()
+        self.viewModel.createBaseFolder(noteId: self.noteId)
+    }
+    
+    private func doWhenDisappearing(){
+        if self.audioPlayerManager.isRecording {
+            self.audioPlayerManager.stopRecording()
+            self.viewModel.eraseLastRecording(noteId: noteId)
+            return
+        }
+    }
+    
 }
 
 fileprivate struct VoiceRecordingBase: Shape {

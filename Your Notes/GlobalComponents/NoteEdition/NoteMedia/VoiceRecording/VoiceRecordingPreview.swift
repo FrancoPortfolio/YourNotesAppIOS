@@ -11,17 +11,25 @@ import AVFoundation
 struct VoiceRecordingPreview: View {
     
     @StateObject var audioManager: AudioRecordingPlayingManager
-    var audioPathString : String
+    
+    var recording: TemporalRecording
     
     var isThisAudioPlaying : Bool {
+        if audioManager.assets.isEmpty { return false }
         
-        return audioManager.isPlaying && 
-        (audioPathString == audioManager.actualFilePlayingURLString)
-        
+        return recording == audioManager.actualRecordingPlaying
     }
     
-    var asset : AVAsset  {
-        return AVAsset(url: URL(string: audioPathString)!)
+    var iconName: String{
+        
+        if isThisAudioPlaying{
+            if audioManager.isPaused{
+                return GlobalValues.FilledIcons.Media.play
+            }
+            return GlobalValues.FilledIcons.Media.pause
+        }
+        return GlobalValues.FilledIcons.Media.play
+        
     }
     
     @State private var timeAudioMinutes = 0
@@ -43,20 +51,29 @@ struct VoiceRecordingPreview: View {
                     return
                 }
                 
-                if isThisAudioPlaying {
-                    audioManager.stopPlaying()
+                if isThisAudioPlaying && !audioManager.isPaused{
+                    audioManager.pausePlaying()
+                    Log.info("Pausing voicenote")
                     return
                 }
                 
-                if audioManager.isPlaying {
-                    audioManager.stopPlaying()
-                    audioManager.startPlaying(filePath: audioPathString)
+                if isThisAudioPlaying && audioManager.isPaused{
+                    audioManager.resumePlaying()
+                    Log.info("Resuming voicenote")
                     return
                 }
-                audioManager.startPlaying(filePath: audioPathString)
+                
+                if audioManager.isPlaying && !isThisAudioPlaying {
+                    audioManager.stopPlaying()
+                    audioManager.startPlaying(tempRecording: recording)
+                    return
+                }
+                
+                Log.info("Trying to play \(recording.completeTemporalUrl)")
+                audioManager.startPlaying(tempRecording: recording)
                 
             } label: {
-                Image(systemName: isThisAudioPlaying ? "pause.circle.fill" : "play.circle.fill")
+                Image(systemName: iconName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30)
@@ -84,7 +101,7 @@ struct VoiceRecordingPreview: View {
         .onAppear{
             Task{
                 do{
-                    let duration = try await asset.load(.duration)
+                    let duration = try await recording.asset.load(.duration)
                     self.totalAudioTimeInSeconds = round(CMTimeGetSeconds(duration))
                     self.timeAudioMinutes = Int(self.totalAudioTimeInSeconds / 60)
                     self.timeAudioSeconds = Int(round(self.totalAudioTimeInSeconds.truncatingRemainder(dividingBy: 60.0)))
@@ -95,7 +112,11 @@ struct VoiceRecordingPreview: View {
             }
         }
         .onReceive(timer, perform: { _ in
-            if isThisAudioPlaying {
+            if isThisAudioPlaying{
+                if !audioManager.isPaused{
+                    timeElapsed += 0.001
+                    audioPlayedProgress = CGFloat(timeElapsed / totalAudioTimeInSeconds)
+                }
                 
                 if audioPlayedProgress > 1.0 {
                     audioManager.stopPlaying()
@@ -104,11 +125,15 @@ struct VoiceRecordingPreview: View {
                     Log.info("Playing stop")
                     return
                 }
-                timeElapsed += 0.001
-                audioPlayedProgress = CGFloat(timeElapsed / totalAudioTimeInSeconds)
-                Log.info("\(audioPlayedProgress)")
+                
+                
             }
         })
+        .onChange(of: isThisAudioPlaying) { newValue in
+            if !newValue{
+                audioPlayedProgress = 0.0
+            }
+        }
         
     }
 }

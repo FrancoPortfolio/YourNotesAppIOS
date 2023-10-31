@@ -31,12 +31,6 @@ struct MainScreen: View {
                     .tabItem {
                         Label("Sorted Notes", systemImage: "list.clipboard.fill")
                     }
-                
-                Text("Settings")
-                    .tag(MainScreenViews.settings)
-                    .tabItem {
-                        Label("Settings", systemImage: "house.fill")
-                    }
             }
             .toolbarBackground(ColorManager.backgroundColor, for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)

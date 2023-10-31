@@ -28,7 +28,7 @@ struct NoteAddSectionButton: View {
                 }
                 .overlay {
                     GeometryReader(content: { geometry in
-                        Image(systemName: "plus")
+                        Image(systemName: GlobalValues.NoFilledIcons.plus)
                             .padding(5)
                     })
                 }

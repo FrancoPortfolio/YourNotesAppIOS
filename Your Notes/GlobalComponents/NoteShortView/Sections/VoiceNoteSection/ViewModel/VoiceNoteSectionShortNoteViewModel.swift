@@ -11,23 +11,17 @@ import AVFoundation
 
 class VoiceNoteSectionShortNoteViewModel: ObservableObject{
     
-    private var audioUrl: String = ""
-    @ObservedObject var audioPlayer = AudioRecordingPlayingManager()
+    @Published var audioUrl: String = ""
+    private var fileHandler = FileManagerHandler()
     
-    init(voicenoteSet: NSSet?){
+    init(voicenoteSet: NSSet?, noteId: String){
         let voiceNoteArray = turnSetToNoteVoicenoteArray(set: voicenoteSet)
         
         if let firstVoicenote = voiceNoteArray?.first, let audioUrlString = firstVoicenote.voiceNoteDirectory {
-            self.audioUrl = audioUrlString
+            let baseURL = FileManagerHandler.getVoicenoteFolder(noteId: noteId)
+            
+            self.audioUrl = baseURL.appendingPathComponent(audioUrlString).absoluteString
         }
-    }
-    
-    func startPlaying(){
-        audioPlayer.startPlaying(filePath: audioUrl)
-    }
-    
-    func pausePlaying(){
-        audioPlayer.pausePlaying()
     }
     
     private func turnSetToNoteVoicenoteArray(set: NSSet?) -> [NoteVoicenote]?{

@@ -23,7 +23,7 @@ struct SubtasksSectionShortNote: View {
                     viewModel.changeStateOfSubtask(subtask: subtask)
                 } label: {
                     HStack{
-                        Image(systemName: subtask.isDone ? "checkmark.square" : "square")
+                        Image(systemName: subtask.isDone ? GlobalValues.NoFilledIcons.checkmarkSquare : GlobalValues.NoFilledIcons.square)
                         
                         if let taskText = subtask.task{
                             Text(taskText)

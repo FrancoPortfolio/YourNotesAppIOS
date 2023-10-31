@@ -26,6 +26,7 @@ struct TextSectionShortNote: View {
                 .font(.system(size: 16))
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(3)
+                .foregroundColor(ColorManager.textColor)
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity)
         }
