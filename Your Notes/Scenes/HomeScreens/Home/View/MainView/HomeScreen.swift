@@ -41,10 +41,10 @@ struct HomeScreen: View {
                     }
                     .onChange(of: self.searchText) { newValue in
                         if newValue == "" {
-                            Log.info("Should reset")
+                            viewModel.getAllNoteData()
                             return
                         }
-                        Log.info("Searching by \(newValue)")
+                        viewModel.searchByTextTag(text: newValue)
                     }
                 
             }

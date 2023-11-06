@@ -22,7 +22,7 @@ struct SearchBar: View {
             GeometryReader(content: { geometry in
                  
                 HStack {
-                    TextField("Search ...", text: $searchText)
+                    TextField("Search tag ...", text: $searchText)
                         .padding(7)
                         .padding(.horizontal, 25)
                         .background(Color.gray.opacity(0.2))

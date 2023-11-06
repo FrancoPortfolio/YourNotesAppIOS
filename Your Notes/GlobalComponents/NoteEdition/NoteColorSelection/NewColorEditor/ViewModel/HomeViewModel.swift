@@ -30,6 +30,12 @@ class HomeViewModel: ObservableObject{
         self.getAllNoteData(descriptors: [sortCriteria],predicate: predicate)
     }
     
+    func searchByTextTag(text:String, sortCriteria: NotesSorting = .dateAddedNewer){
+        let predicate = NSPredicate(format: "tag.tag CONTAINS[c] %@", text)
+        let sortCriteria = sortCriteria.descriptor
+        self.getAllNoteData(descriptors: [sortCriteria], predicate: predicate)
+    }
+    
     private func setupColumns(){
         firstColumnArray = []
         secondColumnArray = []
