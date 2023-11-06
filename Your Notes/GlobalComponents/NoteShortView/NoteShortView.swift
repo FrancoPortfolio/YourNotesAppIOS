@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct NoteShortView: View {
+struct NoteShortView<Content: View>: View {
     
     @State private var showItself = true
+    @State private var showPopover = false
     @StateObject var audioManager: AudioRecordingPlayingManager
     
     var note : Note
+    var popoverView: () -> Content
     
     private var isPinned : Bool {
         return note.isPinned
@@ -176,13 +178,22 @@ struct NoteShortView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .cornerRadius(20, corners: isPinned ? [.bottomLeft,.bottomRight,.topLeft] : .allCorners)
+        .cornerRadius(10, corners: isPinned ? [.bottomLeft,.bottomRight,.topLeft] : .allCorners)
+        .popover(isPresented: self.$showPopover, content: {
+            popoverView()
+        })
+//        .modifier(TapAndLongPressModifier(tapAction: {
+//            Log.info("Do on tap")
+//        }, longPressAction: {
+//            self.showPopover.toggle()
+//        }))
         .onAppear{
             showItself = true
         }
         .onDisappear{
             showItself = false
         }
+        .shadow(radius: 3)
         
     }
 }

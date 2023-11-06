@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct HomeScreenBody: View {
+struct NoteListBodyGrid: View {
     
     @StateObject private var audioManager = AudioRecordingPlayingManager()
     
-    var notes: [Note] = []
+    var firstColumnsNotes: [Note] = []
+    var secondColumnsNotes: [Note] = []
     
     private var addNoteButton: some View{
         NavigationLink(value: HomeRoutingDestinations.newNote) {
@@ -33,29 +34,35 @@ struct HomeScreenBody: View {
         ZStack{
             //Notes Grid
             GeometryReader{ geo in
-                
-                ScrollView{
-                    
-                    HStack{
-                        //First Column
+                HStack{
+                    //First Column
+                    ScrollView(.vertical){
                         VStack{
-                            ForEach(notes){note in
-                                NoteShortView(audioManager: audioManager, note: note)
+                            ForEach(firstColumnsNotes){note in
+                                NoteShortView(audioManager: audioManager, note: note){
+                                    Text("xd")
+                                }
                                     .frame(minWidth: 0,maxWidth: geo.size.width * 0.5)
                                     .padding(.vertical, 5)
                             }
-                        }
-                        //Second column
-                        VStack{
-                            ForEach(notes){note in
-                                NoteShortView(audioManager: audioManager, note: note)
-                                    .frame(minWidth: 0,maxWidth: geo.size.width * 0.5)
-                                    .padding(.vertical, 5)
-                            }
-                        }
+                        }.padding(.horizontal,3)
                     }
+                    .scrollIndicators(.hidden)
+                    //Second column
+                    ScrollView(.vertical){
+                        VStack{
+                            ForEach(secondColumnsNotes){note in
+                                NoteShortView(audioManager: audioManager, note: note){
+                                    Text("Xd")
+                                        .presentationDetents([PresentationDetent.fraction(0.4)])
+                                }
+                                    .frame(minWidth: 0,maxWidth: geo.size.width * 0.5)
+                                    .padding(.vertical, 5)
+                            }
+                        }.padding(.horizontal,3)
+                            .frame(maxWidth: geo.size.width * 0.5)
+                    }.scrollIndicators(.hidden)
                 }
-                .scrollIndicators(.hidden)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             

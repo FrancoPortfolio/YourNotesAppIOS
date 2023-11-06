@@ -34,7 +34,7 @@ class DataManager{
 
 extension DataManager{
     
-    static func getData<T: NSFetchRequestResult>(typeOfEntity: T.Type, entityName: String, predicate: NSPredicate? = nil) -> Array<T>{
+    static func getData<T: NSFetchRequestResult>(typeOfEntity: T.Type, entityName: String, predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) -> Array<T>{
         
         let request = NSFetchRequest<T>(entityName: entityName)
         
@@ -42,6 +42,10 @@ extension DataManager{
         
         if let predicate = predicate {
             request.predicate = predicate
+        }
+        
+        if let descriptors = sortDescriptors{
+            request.sortDescriptors = descriptors
         }
         
         do {

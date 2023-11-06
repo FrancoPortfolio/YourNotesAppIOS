@@ -7,23 +7,20 @@
 
 import SwiftUI
 
-
-
 struct SearchBar: View {
     
     @Binding var searchText: String
     
     @State private var isEditing = false
     @State private var runInitialAnimation = false
-    @State private var disappearSelf = false
+    @Binding var show : Bool
     
     var body: some View {
         
-        if !disappearSelf {
+        if show {
             
             GeometryReader(content: { geometry in
-                
-                
+                 
                 HStack {
                     TextField("Search ...", text: $searchText)
                         .padding(7)
@@ -42,7 +39,7 @@ struct SearchBar: View {
                         Button(action: {
                             withAnimation (.linear){
                                 self.isEditing = false
-                                self.disappearSelf = true
+                                self.show = false
                             }
                             
                             self.searchText = ""
@@ -50,6 +47,7 @@ struct SearchBar: View {
                             Text("Cancel")
                                 .padding(10)
                                 .multilineTextAlignment(.center)
+                                .minimumScaleFactor(0.6)
                         }
                         .frame(maxWidth: geometry.size.width * 0.2, alignment: .center)
                         .transition(.move(edge: .trailing))

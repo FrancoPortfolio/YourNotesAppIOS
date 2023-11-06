@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct VoiceRecordingView: View {
+    @Environment (\.presentationMode) var presentationMode
     
     var noteId: String
     @Binding var recordingsNames : [String]
@@ -99,6 +100,7 @@ struct VoiceRecordingView: View {
                             
                             Button(action: {
                                 doWhenSavePressed(viewModel.resetRecording())
+                                presentationMode.wrappedValue.dismiss()
                             }, label: {
                                 Text("Save")
                                     .font(.system(size: 25))

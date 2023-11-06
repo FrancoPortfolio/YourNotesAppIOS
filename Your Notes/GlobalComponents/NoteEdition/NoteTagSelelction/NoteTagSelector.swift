@@ -28,10 +28,12 @@ struct NoteTagSelector: View {
                     
                     if showAddTagButton{
                         Button(action: {
-                            doWhenSaveNewTag(newTagText)
-                            newTagText = ""
-                            withAnimation (.linear){
-                                showAddTagForm = false
+                            if showAddTagForm{
+                                doWhenSaveNewTag(newTagText)
+                                newTagText = ""
+                                withAnimation (.linear){
+                                    showAddTagForm = false
+                                }
                             }
                         }, label: {
                             Image(systemName: GlobalValues.NoFilledIcons.plusSquare)
@@ -39,6 +41,7 @@ struct NoteTagSelector: View {
                                 .scaledToFit()
                                 .frame(width: 25, height: 25, alignment: .center)
                                 .padding(.horizontal)
+                                
                         })
                     }
                 }

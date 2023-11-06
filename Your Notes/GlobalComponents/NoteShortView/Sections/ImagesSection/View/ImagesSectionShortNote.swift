@@ -33,7 +33,7 @@ struct ImagesSectionShortNote: View {
             }
             .scrollIndicators(.hidden)
             .scrollDisabled(onlyOneImage)
-            .cornerRadius(20, corners: [.bottomLeft,.bottomRight])
+            .cornerRadius(10, corners: [.bottomLeft,.bottomRight])
         }
     }
 }

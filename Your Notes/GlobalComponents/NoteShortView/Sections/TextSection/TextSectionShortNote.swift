@@ -30,7 +30,6 @@ struct TextSectionShortNote: View {
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity)
         }
-        
     }
 }
 

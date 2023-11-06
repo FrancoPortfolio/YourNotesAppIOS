@@ -51,7 +51,12 @@ class SubtasksSectionShortNoteViewModel: ObservableObject{
         let predicate = NSPredicate(format: "note == %@"
                     , noteFromSubtask)
         
-        self.noteSubtasks = DataManager.getData(typeOfEntity: NoteSubtask.self, entityName: "NoteSubtask", predicate: predicate)    }
+        var subtaskArray = DataManager.getData(typeOfEntity: NoteSubtask.self, entityName: "NoteSubtask", predicate: predicate)
+        
+        subtaskArray = subtaskArray.sorted(by: { subtask1, subtask2 in  subtask1.dateCreated!.compare(subtask2.dateCreated!) == .orderedAscending })
+        
+        self.noteSubtasks = subtaskArray
+}
     
     private func turnSetToArray(set: NSSet?) -> [NoteSubtask]?{
         

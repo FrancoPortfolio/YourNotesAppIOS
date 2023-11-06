@@ -21,6 +21,7 @@ class AddNewNoteViewModel: ObservableObject{
     @Published var drawingData: Data?
     @Published var imagesToShow: [UIImage] = []
     @Published var tempSubtaskText: String = ""
+    @Published var tempImageCamera : UIImage? = nil
     
     @Published var presentNoDataAlert = false
     

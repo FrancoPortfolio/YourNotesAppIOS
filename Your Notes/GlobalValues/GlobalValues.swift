@@ -44,6 +44,8 @@ struct GlobalValues{
         static let baseFolderVoicenotes = "VoiceNotes"
         static let dayFormat = "dd-MM-YY 'at' HH-mm-ss"
         static let homeScreenTitle = "My Notes"
+        static let cameraDeniedMessage = "Go to settings and allow camera"
+        static let micDeniedMessage = "Go to settings and allow microphone"
     }
     
 }

@@ -32,4 +32,21 @@ enum NotesSorting: String, CaseIterable, Identifiable{
             return "Alphabetical(Descending)"
         }
     }
+    
+    var descriptor: NSSortDescriptor{
+        switch self{
+        case .alphabetAscending:
+            return NSSortDescriptor()
+        case .alphabetDescending:
+            return NSSortDescriptor()
+        case .dateAddedNewer:
+            return NSSortDescriptor(key: "dateCreated", ascending: false)
+        case .dateAddedOldest:
+            return NSSortDescriptor(key: "dateCreated", ascending: true)
+        case .dateChangedNewer:
+            return NSSortDescriptor(key: "dateModified", ascending: false)
+        case .dateChangedOldest:
+            return NSSortDescriptor(key: "dateModified", ascending: true)
+        }
+    }
 }

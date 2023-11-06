@@ -16,96 +16,50 @@ struct HomeScreen: View {
     @State private var navigationPath: NavigationPath = NavigationPath()
     @StateObject private var viewModel: HomeViewModel = HomeViewModel()
     
-    private var starIconName: String {
-        if showOnlyFavorites {
-            return GlobalValues.FilledIcons.favoriteStar
-        }
-        return GlobalValues.NoFilledIcons.favoriteStar
-    }
-    
     var body: some View {
         
         NavigationStack(path: $navigationPath) {
             VStack{
                 
                 //Header
-                Group{
-                    Group {
-                        HStack {
-                            Text(GlobalValues.Strings.homeScreenTitle)
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                            
-                            Spacer()
-                            
-                            HStack (spacing: 15){
-                                Button {
-                                    withAnimation (.spring(response: 0.3, dampingFraction: 0.9, blendDuration: 2)) {
-                                        showSearchBar.toggle()
-                                    }
-                                } label: {
-                                    Image(systemName: GlobalValues.NoFilledIcons.glass)
-                                        .font(.title2)
-                                }
-                                
-                                Button {
-                                    showOnlyFavorites.toggle()
-                                } label: {
-                                    Image(systemName: starIconName)
-                                        .font(.title2)
-                                }
-                                
-                                Menu {
-                                    Picker("Sort", selection: $selectedSorting) {
-                                        ForEach(NotesSorting.allCases){
-                                            Text($0.title).tag($0)
-                                        }
-                                    }
-                                } label: {
-                                    Image(systemName: GlobalValues.NoFilledIcons.listBullet)
-                                        .font(.title2)
-                                }
-                            }
-                            
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: 60)
+                Header(title: GlobalValues.Strings.homeScreenTitle,
+                       searchText: $searchText,
+                       showOnlyFavorites: $showOnlyFavorites, noteSorting: $selectedSorting)
+                .onChange(of: showOnlyFavorites) { newValue in
+                    if newValue{
+                        viewModel.getFavoritesNoteData()
+                    }else{
+                        viewModel.sortNotes(sortCriteria: selectedSorting)
                     }
-                    
-                    SearchBar(searchText: $searchText)
-                        .padding(.top, -10)
-                        .offset(y: showSearchBar ? 0 : -600)
-                        .frame(height: showSearchBar ? 50 : 0)
-                        
                 }
                 
                 //Body
-                HomeScreenBody(notes: viewModel.notes)
+                NoteListBodyGrid(firstColumnsNotes: viewModel.firstColumnArray,
+                               secondColumnsNotes: viewModel.secondColumnArray)
                     .onAppear{
-                        viewModel.getNoteData()
+                        viewModel.sortNotes(sortCriteria: selectedSorting)
+                    }
+                    .onChange(of: self.searchText) { newValue in
+                        if newValue == "" {
+                            Log.info("Should reset")
+                            return
+                        }
+                        Log.info("Searching by \(newValue)")
                     }
                 
             }
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity,maxHeight: .infinity)
-            .background {
-                ColorManager.backgroundColor.opacity(0.8)
-                    .ignoresSafeArea()
-            }
-            .navigationTitle("My Notes")
-            .toolbar(.hidden, for: .navigationBar)
+            .onChange(of: self.selectedSorting, perform: { newValue in
+                viewModel.sortNotes(sortCriteria: newValue)
+            })
+            .modifier(MainStyle(navigationTitle: GlobalValues.Strings.homeScreenTitle))
             //            Navigation Views Destinations
             .navigationDestination(for: HomeRoutingDestinations.self) { destination in
-                
                 switch destination {
                 case .newNote: NewNoteScreen()
                 case .editNote: Text("Edit")
                 }
-                
             }
-            
         }
-        
-        
     }
 }
 //struct HomeScreen_Previews: PreviewProvider {

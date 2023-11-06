@@ -70,6 +70,8 @@ extension View {
     
 }
 
+
+
 fileprivate struct RoundedCorner: Shape {
 
     var radius: CGFloat = .infinity
@@ -78,5 +80,45 @@ fileprivate struct RoundedCorner: Shape {
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
+    }
+}
+
+struct TapAndLongPressModifier: ViewModifier {
+  @State private var isLongPressing = false
+  let tapAction: (()->())
+  let longPressAction: (()->())
+  func body(content: Content) -> some View {
+    content
+      .scaleEffect(isLongPressing ? 0.95 : 1.0)
+      .onLongPressGesture(minimumDuration: 1.0, pressing: { (isPressing) in
+        withAnimation {
+          isLongPressing = isPressing
+        }
+      }, perform: {
+        longPressAction()
+      })
+      .simultaneousGesture(
+        TapGesture()
+          .onEnded { _ in
+            tapAction()
+          }
+      )
+  }
+}
+
+struct MainStyle: ViewModifier {
+    
+    var navigationTitle: String
+    
+    func body(content: Content) -> some View {
+        content
+            .padding(.horizontal)
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+            .background {
+                ColorManager.backgroundColor.opacity(0.8)
+                    .ignoresSafeArea()
+            }
+            .navigationTitle(navigationTitle)
+            .toolbar(.hidden, for: .navigationBar)
     }
 }
