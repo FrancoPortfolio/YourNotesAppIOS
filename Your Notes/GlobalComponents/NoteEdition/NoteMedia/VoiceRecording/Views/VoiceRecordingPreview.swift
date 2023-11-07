@@ -12,7 +12,7 @@ struct VoiceRecordingPreview: View {
     
     @StateObject var audioManager: AudioRecordingPlayingManager
     
-    var recording: TemporalRecording
+    var recording: RecordingPreview
     
     var isThisAudioPlaying : Bool {
         if audioManager.assets.isEmpty { return false }
@@ -21,7 +21,6 @@ struct VoiceRecordingPreview: View {
     }
     
     var iconName: String{
-        
         if isThisAudioPlaying{
             if audioManager.isPaused{
                 return GlobalValues.FilledIcons.Media.play
@@ -29,11 +28,8 @@ struct VoiceRecordingPreview: View {
             return GlobalValues.FilledIcons.Media.pause
         }
         return GlobalValues.FilledIcons.Media.play
-        
     }
     
-    @State private var timeAudioMinutes = 0
-    @State private var timeAudioSeconds = 0
     @State private var audioPlayedProgress : CGFloat = 0.0
     @State private var totalAudioTimeInSeconds : CGFloat = 0
     @State private var timeElapsed : CGFloat = 0.0
@@ -73,29 +69,14 @@ struct VoiceRecordingPreview: View {
                 audioManager.startPlaying(tempRecording: recording)
                 
             } label: {
-                Image(systemName: iconName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30)
+                IconPlayerVoicenote(isPaused: audioManager.isPaused,
+                                    isThisPlaying: self.isThisAudioPlaying)
             }
             
-            ZStack (alignment: .center){
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundStyle(Color.gray)
-                
-                if isThisAudioPlaying{
-                    GeometryReader{ geo in
-                        RoundedRectangle(cornerRadius: 20)
-                            .foregroundStyle(ColorManager.primaryColor)
-                            .padding(.trailing, geo.size.width * (1 - audioPlayedProgress))
-                            .animation(.linear, value: audioPlayedProgress)
-                    }
-                }
-            }
-            .frame(height: 10)
+            ProgressBarVoicenote(isPlaying: isThisAudioPlaying,
+                                 progress: audioPlayedProgress)
             
-            Text("\(String(format: "%02d", timeAudioMinutes)):\(String(format: "%02d", timeAudioSeconds))")
-                .font(.system(size: 18))
+            DisplayTimeVoiceNote(audioInSeconds: self.totalAudioTimeInSeconds)
             
         }
         .onAppear{
@@ -103,8 +84,6 @@ struct VoiceRecordingPreview: View {
                 do{
                     let duration = try await recording.asset.load(.duration)
                     self.totalAudioTimeInSeconds = round(CMTimeGetSeconds(duration))
-                    self.timeAudioMinutes = Int(self.totalAudioTimeInSeconds / 60)
-                    self.timeAudioSeconds = Int(round(self.totalAudioTimeInSeconds.truncatingRemainder(dividingBy: 60.0)))
                     self.allowToPlay = true
                 }catch{
                     Log.error("There was an error: \(error.localizedDescription)")
@@ -125,8 +104,6 @@ struct VoiceRecordingPreview: View {
                     Log.info("Playing stop")
                     return
                 }
-                
-                
             }
         })
         .onChange(of: isThisAudioPlaying) { newValue in
@@ -134,7 +111,6 @@ struct VoiceRecordingPreview: View {
                 audioPlayedProgress = 0.0
             }
         }
-        
     }
 }
 

@@ -57,6 +57,7 @@ struct HomeScreen: View {
                 switch destination {
                 case .newNote: NewNoteScreen()
                 case .editNote: Text("Edit")
+                case .expandNote(let noteId): ExtendedNoteScreen(noteId: noteId)
                 }
             }
         }

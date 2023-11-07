@@ -16,8 +16,8 @@ class AudioRecordingPlayingManager: NSObject, ObservableObject, AVAudioPlayerDel
     @Published var isPlaying : Bool = false
     @Published var isPaused : Bool = false
     @Published var isRecording : Bool = false
-    @Published var assets = [TemporalRecording]()
-    var actualRecordingPlaying : TemporalRecording? = nil
+    @Published var assets = [RecordingPreview]()
+    var actualRecordingPlaying : RecordingPreview? = nil
     var actualFilePlayingURLString : String = ""
    
     override init(){
@@ -112,7 +112,7 @@ extension AudioRecordingPlayingManager{
         }      
     }
     
-    func startPlaying(tempRecording: TemporalRecording){
+    func startPlaying(tempRecording: RecordingPreview){
         let playSession = AVAudioSession.sharedInstance()
         
         guard let url = URL(string: tempRecording.completeTemporalUrl) else {

@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-struct NoteShortView<Content: View>: View {
+struct NoteShortView: View {
     
     @State private var showItself = true
-    @State private var showPopover = false
+    @State private var showPopMenu = false
+    @State private var reduceItself = false
+    @GestureState private var isBeingPressed = false
     @StateObject var audioManager: AudioRecordingPlayingManager
     
     var note : Note
-    var popoverView: () -> Content
     
     private var isPinned : Bool {
         return note.isPinned
@@ -31,7 +32,7 @@ struct NoteShortView<Content: View>: View {
         return false
     }
     
-    private var contentSections: ([contentSections], Int){
+    private var contentSectionsValues: ([contentSections], Int){
         
         var sections : [contentSections] = []
         
@@ -66,127 +67,65 @@ struct NoteShortView<Content: View>: View {
     
     
     var body: some View {
-        VStack{
+        ZStack{
             if showItself{
+                
+//                NavigationLink(value: HomeRoutingDestinations.expandNote) {
+//                    Rectangle()
+//                        .fill(Color.clear)
+//                }
+                
+                if let colorHex = note.color?.colorHex{
+                    Color.init(hex: colorHex).frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                
                 VStack(spacing: 0){
                     //Pin Icon
-                    HStack{
-                        
-                        if isTagged{
-                            HStack{
-                                Text("#\(note.tag!.tag!)")
-                                    .font(.footnote)
-                                    .foregroundColor(ColorManager.textColor)
-                                    .opacity(0.8)
-                                    .padding(.leading, 10)
-                                if !isPinned{
-                                    Spacer()
-                                }
-                            }
-                        }
-                        
-                        if isPinned && isTagged{
-                            Spacer()
-                        }
-                        
-                        if isPinned{
-                            HStack{
-                                if !isTagged{
-                                    Spacer()
-                                }
-                                Image(systemName: GlobalValues.FilledIcons.pinIcon)
-                                    .font(.footnote)
-                                    .rotationEffect(Angle(degrees: 45))
-                                    .foregroundColor(Color.gray.opacity(0.9))
-                                    .frame(width: 20, alignment: .trailing)
-                                    .padding([.trailing],5)
-                            }
-                            
-                        }
-                    }
-                    .padding(.top, isPinned || isTagged ? 7 : 0)
+                    NoteShortHeader(note: note,
+                                    isPinned: isPinned,
+                                    isFavorite: isFavorite,
+                                    isTagged: isTagged)
                     //Top Left Indicators
-                    HStack{
-                        //Favorite indicator
-                        if isFavorite {
-                            Image(systemName: GlobalValues.FilledIcons.favoriteStar)
-                                .font(.callout)
-                        }
-                        //Other indicators
-                        if contentSections.0.count > 2{
-                            HStack{
-                                ForEach(2..<Int(contentSections.0.count)){ index in
-                                    
-                                    switch contentSections.0[index]{
-                                    case .images: Image(systemName: GlobalValues.FilledIcons.imageIcon)
-                                    case .subtasks: Image(systemName: GlobalValues.FilledIcons.subtaskIcon)
-                                    case .text: Image(systemName: GlobalValues.FilledIcons.textIcon)
-                                    case .voicenotes: Image(systemName: GlobalValues.FilledIcons.micIcon)
-                                    case .drawing: Image(systemName: GlobalValues.FilledIcons.brushIcon)
-                                    }
-                                }
-                            }
-                            .font(.callout)
-                            .foregroundColor(ColorManager.textColor)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal,10)
-                    .padding(.vertical, isPinned || isTagged ? 0 : 7)
+                    NoteShortIndicators(isFavorite: isFavorite,
+                                        isTagged: isTagged,
+                                        isPinned: isPinned,
+                                        contentSections: contentSectionsValues)
                     //Sections to show on note, max of 2 following array order
-                    VStack(spacing: 0) {
-                        
-                        ForEach(0..<contentSections.1, id: \.self) { contentOrder in
-                            
-                            let section = contentSections.0[contentOrder]
-                            
-                            switch section{
-                                
-                            case .text:
-                                TextSectionShortNote(textData: note.text)
-                                    .padding(.horizontal,10)
-                                    .padding(.vertical,5)
-                                
-                            case .subtasks:
-                                SubtasksSectionShortNote(noteSet: note.subtasks)
-                                    .padding(.horizontal,10)
-                                    .padding(.leading,5)
-                                    .padding(.vertical,10)
-                                
-                            case .images:
-                                ImagesSectionShortNote(imagesSet: note.images)
-                                    .padding(.top,(isPinned || isFavorite) ? 0 : 7.5)
-                                
-                            case .voicenotes:
-                                VoiceNoteSectionShortNote(voicenoteSet: note.voicenotes, noteId: note.id!.uuidString,
-                                                          audioManager: audioManager)
-                                .padding(.vertical)
-                                
-                            case .drawing:
-                                DrawingSectionShortNoteView(noteDrawing: note.drawing)
-                            }
-                        }
-                    }
+                    NoteShortBody(note: note,
+                                  audioManager: audioManager,
+                                  isPinned: isPinned,
+                                  isFavorite: isFavorite,
+                                  contentSections: contentSectionsValues)
                 }
+                
             }
-        }
-        .background{
             
-            if let colorHex = note.color?.colorHex{
-                Color.init(hex: colorHex).frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
+//                        .modifier(TapAndLongPressModifier(tapAction: {
+            //                showPopMenu = false
+            //            }, longPressAction: {
+            //                showPopMenu = true
+            //            }))
+//            .mask(RoundedRectangle(cornerRadius: 10))
+//            .gesture(
+//                LongPressGesture(minimumDuration: 0.5)
+//                    .updating($isBeingPressed, body: { currentState, gestureState, transaction in
+//                        gestureState = currentState
+//                    })
+//                    .onEnded({ value in
+//                        self.showPopMenu.toggle()
+//                    })
+//            )
+            
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .cornerRadius(10, corners: isPinned ? [.bottomLeft,.bottomRight,.topLeft] : .allCorners)
-        .popover(isPresented: self.$showPopover, content: {
-            popoverView()
+        .overlay(content: {
+            NavigationLink(value: HomeRoutingDestinations.expandNote(noteId: note.id!.uuidString)) {
+                Rectangle()
+                    .fill(Color.clear)
+            }
         })
-//        .modifier(TapAndLongPressModifier(tapAction: {
-//            Log.info("Do on tap")
-//        }, longPressAction: {
-//            self.showPopover.toggle()
-//        }))
+        .cornerRadius(10, corners: isPinned ? [.bottomLeft,.bottomRight,.topLeft] : .allCorners)
         .onAppear{
             showItself = true
         }
@@ -194,13 +133,62 @@ struct NoteShortView<Content: View>: View {
             showItself = false
         }
         .shadow(radius: 3)
-        
+        .scaleEffect(reduceItself ? 0.95 : 1.0)
+        .onTapGesture {
+            withAnimation {
+                reduceItself  = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
+                    withAnimation {
+                        reduceItself = false
+                    }
+                }
+            }
+        }
+//        .onLongPressGesture(minimumDuration: 1.0, pressing: { (isPressing) in
+//          withAnimation {
+//            reduceItself = isPressing
+//          }
+//        }, perform: {})
+//        .simultaneousGesture(
+//            TapGesture().onEnded{
+//
+//            }
+//        )
+//        .gesture(
+//            TapGesture()
+//                .updating($isBeingPressed, body: { currentState, gestureState, transaction in
+//                    withAnimation(.spring()) {
+//                        self.reduceItself = true
+//                    }
+//                })
+//                .onEnded({ value in
+//                    self.reduceItself = false
+//                })
+//        )
     }
 }
+//
+//enum contentSections{
+//    case text,images,subtasks,voicenotes,drawing
+//}
 
-fileprivate enum contentSections: CaseIterable, Hashable{
-    case text,images,voicenotes,drawing,subtasks
-}
+//fileprivate struct NoteShortViewPreviewWrapper: View{
+//
+//    @FetchRequest(sortDescriptors: []) var note: FetchedResults<Note>
+//
+//    var body: some View{
+//        NoteShortView(note: note.first!)
+//            .frame(maxWidth: 200, maxHeight: 250)
+//    }
+//
+//}
+
+//struct NoteShortView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NoteShortViewPreviewWrapper()
+//    }
+//}
+
 
 //fileprivate struct NoteShortViewPreviewWrapper: View{
 //    

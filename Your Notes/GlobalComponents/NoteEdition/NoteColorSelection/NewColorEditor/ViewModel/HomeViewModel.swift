@@ -8,20 +8,30 @@
 import Foundation
 import CoreData
 
+
 class HomeViewModel: ObservableObject{
     
     @Published var firstColumnArray = [Note]()
     @Published var secondColumnArray = [Note]()
     private var notes = [Note]()
     
-    func getAllNoteData(descriptors: [NSSortDescriptor]? = nil, predicate: NSPredicate? = nil){
+    func getAllNoteData(descriptors: [NSSortDescriptor]? = nil, predicate: NSPredicate? = nil, offset: Int = 0){
         let pinnedDescriptor = NSSortDescriptor(key: "isPinned", ascending: false)
         var sortDescriptors : [NSSortDescriptor] = [pinnedDescriptor]
         if let descriptors{
             sortDescriptors = sortDescriptors + descriptors
         }
-        notes = DataManager.getData(typeOfEntity: Note.self, entityName: "Note",predicate: predicate,sortDescriptors: sortDescriptors)
-        setupColumns()
+        
+        
+//        DataManager.getData(typeOfEntity: Note.self,
+//                            entityName: "Note") { data in
+//            DispatchQueue.main.async{
+//                self.notes = data
+//                self.setupColumns()
+//            }
+//        }
+            self.notes = DataManager.getData(typeOfEntity: Note.self, entityName: "Note",predicate: predicate,sortDescriptors: sortDescriptors)
+            self.setupColumns()
     }
     
     func getFavoritesNoteData(sortCriteria: NotesSorting = .dateAddedNewer){

@@ -7,7 +7,7 @@
 
 import Foundation
 import AVFoundation
-struct TemporalRecording: Hashable, Identifiable{
+struct RecordingPreview: Hashable, Identifiable{
     let id = UUID().uuidString
     let fileName : String
     let completeTemporalUrl: String

@@ -39,9 +39,7 @@ struct NoteListBodyGrid: View {
                     ScrollView(.vertical){
                         VStack{
                             ForEach(firstColumnsNotes){note in
-                                NoteShortView(audioManager: audioManager, note: note){
-                                    Text("xd")
-                                }
+                                NoteShortView(audioManager: audioManager, note: note)
                                     .frame(minWidth: 0,maxWidth: geo.size.width * 0.5)
                                     .padding(.vertical, 5)
                             }
@@ -52,10 +50,7 @@ struct NoteListBodyGrid: View {
                     ScrollView(.vertical){
                         VStack{
                             ForEach(secondColumnsNotes){note in
-                                NoteShortView(audioManager: audioManager, note: note){
-                                    Text("Xd")
-                                        .presentationDetents([PresentationDetent.fraction(0.4)])
-                                }
+                                NoteShortView(audioManager: audioManager, note: note)
                                     .frame(minWidth: 0,maxWidth: geo.size.width * 0.5)
                                     .padding(.vertical, 5)
                             }

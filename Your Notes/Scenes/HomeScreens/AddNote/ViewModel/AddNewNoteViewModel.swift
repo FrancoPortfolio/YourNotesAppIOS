@@ -15,6 +15,7 @@ class AddNewNoteViewModel: ObservableObject{
     @Published var noteId: String = UUID().uuidString
     @Published var noteTagId: UUID? = nil
     @Published var noteText: String = ""
+    @Published var noteTitle: String = ""
     @Published var selectedColorId: String = "d6eeb4b3-d8ac-4fc2-a58d-85a5475d6cd6"
     @Published var audioFilesUrlStrings: [String] = []
     @Published var subtasks: [Subtask] = []
@@ -35,6 +36,7 @@ class AddNewNoteViewModel: ObservableObject{
         
         let noteEntity = Note(context: DataManager.standard.container.viewContext)
         noteEntity.text = noteText
+        noteEntity.title = noteTitle
         noteEntity.id = UUID(uuidString: noteId)
         noteEntity.dateCreated = Date()
         noteEntity.dateModified = Date()

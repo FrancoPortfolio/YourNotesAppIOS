@@ -21,7 +21,9 @@ struct TopSectionNewNoteScreen: View {
     var body: some View {
         VStack(spacing: 20){
             
-            NoteFormTextField(noteText: $viewModel.noteText)
+            NoteFormTextField(noteText: $viewModel.noteTitle, placeholderText: "Note Title")
+            
+            NoteFormTextField(noteText: $viewModel.noteText, placeholderText: "Note Text")
             
             if !viewModel.imagesToShow.isEmpty{
                 ScrollView(.horizontal) {
@@ -131,7 +133,7 @@ extension TopSectionNewNoteScreen{
                 .appendingPathComponent(self.viewModel.noteId)
                 .appendingPathComponent(fileName)
             
-            let recording = TemporalRecording(fileName: fileName,
+            let recording = RecordingPreview(fileName: fileName,
                               completeTemporalUrl: urlToSaveOnAssets.absoluteString,
                               asset: AVAsset(url: urlToSaveOnAssets))
             

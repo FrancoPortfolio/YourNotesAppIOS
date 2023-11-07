@@ -13,6 +13,7 @@ class DataManager{
     static let standard = DataManager()
     
     let container = NSPersistentContainer(name: "NoteData")
+    var taskContext : NSManagedObjectContext
     
     init() {
         container.loadPersistentStores { description, error in
@@ -20,6 +21,9 @@ class DataManager{
                 Log.error("Core Data failed to load: \(error.localizedDescription)")
             }
         }
+        
+        self.taskContext = container.newBackgroundContext()
+        self.taskContext.automaticallyMergesChangesFromParent = true
     }
     
     func saveData(doWhenDataSaved: () -> () = {}) {
@@ -43,7 +47,7 @@ extension DataManager{
         if let predicate = predicate {
             request.predicate = predicate
         }
-        
+
         if let descriptors = sortDescriptors{
             request.sortDescriptors = descriptors
         }
@@ -77,5 +81,37 @@ extension DataManager{
         }
         
         return array
+    }
+}
+
+extension DataManager{
+    static func getData<T: NSFetchRequestResult>(typeOfEntity: T.Type,
+                                                 entityName: String,
+                                                 predicate: NSPredicate? = nil,
+                                                 sortDescriptors: [NSSortDescriptor]? = nil,
+                                                 doWhenFetchEnded: @escaping (Array<T>) -> ()){
+        
+        DataManager.standard.taskContext.perform {
+            let request = NSFetchRequest<T>(entityName: entityName)
+            
+            if let predicate = predicate {
+                request.predicate = predicate
+            }
+            
+            if let descriptors = sortDescriptors{
+                request.sortDescriptors = descriptors
+            }
+            
+            request.fetchLimit = 5
+            
+            do {
+                Log.info("Fetching items of type: \(typeOfEntity)")
+                let resolve = try self.standard.container.viewContext.fetch(request)
+                Log.info("Items of type \(typeOfEntity) fetched")
+                doWhenFetchEnded(resolve)
+            } catch {
+                Log.error("Error trying to fetch items of type: \(typeOfEntity)")
+            }
+        }
     }
 }

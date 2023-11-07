@@ -7,6 +7,7 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isPinned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteHighlightColor" inverseName="note" inverseEntity="NoteHighlightColor"/>
         <relationship name="drawing" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteDrawing" inverseName="note" inverseEntity="NoteDrawing"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NoteImage" inverseName="note" inverseEntity="NoteImage"/>

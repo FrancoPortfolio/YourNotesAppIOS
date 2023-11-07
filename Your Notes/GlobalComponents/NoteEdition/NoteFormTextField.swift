@@ -11,7 +11,7 @@ struct NoteFormTextField: View {
     
     @Binding var noteText: String
     var showBackground: Bool = true
-    var placeholderText: String = "Note text"
+    var placeholderText: String
     
     var body: some View {
         

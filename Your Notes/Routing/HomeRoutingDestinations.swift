@@ -11,6 +11,7 @@ enum HomeRoutingDestinations: Hashable{
     
     case newNote
     case editNote
+    case expandNote(noteId: String)
     
 }
 
