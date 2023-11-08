@@ -94,7 +94,7 @@ struct VoiceRecordingPreview: View {
             if isThisAudioPlaying{
                 if !audioManager.isPaused{
                     timeElapsed += 0.001
-                    audioPlayedProgress = CGFloat(timeElapsed / totalAudioTimeInSeconds)
+                    audioPlayedProgress = timeElapsed / totalAudioTimeInSeconds
                 }
                 
                 if audioPlayedProgress > 1.0 {

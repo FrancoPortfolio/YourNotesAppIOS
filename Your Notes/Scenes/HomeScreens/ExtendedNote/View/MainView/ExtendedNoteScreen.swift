@@ -41,9 +41,20 @@ struct ExtendedNoteScreen: View {
                     }
                     
                     //Voicenotes
-                    
+                    if !viewModel.recordings.isEmpty{
+                        RecordingPlayerView(voicenotes: viewModel.recordings)
+                    }
                     //Drawing
-                    
+                    if let image = viewModel.drawingImage{
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .background {
+                                Color.white
+                            }
+                            .frame(width: 200)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
                     
                     //Subtasks
                     VStack{
@@ -78,6 +89,7 @@ struct ExtendedNoteScreen: View {
             .scrollIndicators(.hidden)
         }
         .navigationBarTitle(viewModel.title)
+        .toolbarBackground(ColorManager.backgroundColor, for: .navigationBar)
 //        .navigationBarTitleDisplayMode(.inline)
         
     }

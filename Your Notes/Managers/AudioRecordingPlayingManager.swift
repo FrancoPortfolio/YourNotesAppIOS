@@ -78,13 +78,15 @@ extension AudioRecordingPlayingManager{
     
     func startPlaying(filePath : String) {
         
-        if self.isPlaying {
-            self.isPlaying = false
-        }
-        
         guard let url = URL(string: filePath) else {
+            Log.error("Bad url")
             return
         }
+        
+//        if audioPlayer != nil{
+//            stopPlaying()
+//        }
+        
         do {
             Log.info("Trying to fetch url: \(url.absoluteString)")
             let _ = try url.checkResourceIsReachable()
@@ -112,12 +114,30 @@ extension AudioRecordingPlayingManager{
         }      
     }
     
+    func startPlaying(asset: AVAsset){
+        
+        guard let url = asset.value(forKey: "URL") else{
+            Log.error("No url found")
+            return
+        }
+        
+        let urlString = String(describing: url)
+        
+        startPlaying(filePath: urlString)
+    }
+    
     func startPlaying(tempRecording: RecordingPreview){
-        let playSession = AVAudioSession.sharedInstance()
+        
         
         guard let url = URL(string: tempRecording.completeTemporalUrl) else {
             return
         }
+        
+        if audioPlayer != nil{
+            stopPlaying()
+        }
+        
+        let playSession = AVAudioSession.sharedInstance()
         
         do {
             try playSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
