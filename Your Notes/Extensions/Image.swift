@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import PencilKit
+import SwiftUI
 
 extension UIImage {
     enum JPEGQuality: CGFloat {
@@ -37,4 +38,32 @@ extension UIImage {
         }
         return image
     }
+}
+
+extension Image{
+    
+    func generalIconButton() -> some View{
+        self.resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 30)
+    }
+    
+    func iconButton(size: CGFloat) -> some View{
+        self.resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: size)
+    }
+    
+    func drawingOnExtendedNote() -> some View{
+        self.resizable()
+            .scaledToFill()
+            .clipped()
+            .frame(width: 200)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(ColorManager.secondaryColor, lineWidth: 3)
+            }
+    }
+    
 }

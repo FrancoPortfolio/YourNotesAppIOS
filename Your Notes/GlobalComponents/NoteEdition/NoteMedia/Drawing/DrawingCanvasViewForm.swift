@@ -23,7 +23,7 @@ struct DrawingCanvasViewForm: UIViewControllerRepresentable {
         viewController.drawingData = data
         viewController.drawingChanged = { data in
             
-            self.data = data
+            self.data = data 
             
         }
         return viewController

@@ -34,7 +34,6 @@ struct DrawingViewForm: View {
                 }
                 .overlay {
                     DrawingCanvasViewForm(data: $data)
-                        
                 }
                 .overlay {
                     Rectangle()

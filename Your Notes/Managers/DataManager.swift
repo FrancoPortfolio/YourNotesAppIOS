@@ -34,6 +34,22 @@ class DataManager{
             Log.error("Error saving tag: \(error)")
         }
     }
+    
+    func eraseUncommitedChanges(){
+        DataManager.standard.container.viewContext.rollback()
+    }
+    
+//    func eraseNoLinkedToNoteData(){
+//        let predicate = NSPredicate(format: "%K == nil", "note")
+//
+//        DataManager.getData(typeOfEntity: NoteImage.self, entityName: "NoteImage",predicate: predicate) { result in
+//            Log.info("\(result)")
+//            for object in result{
+//                DataManager.standard.container.viewContext.delete(object)
+//            }
+//            doWhenEnded()
+//        }
+//    }
 }
 
 extension DataManager{
@@ -112,6 +128,13 @@ extension DataManager{
             } catch {
                 Log.error("Error trying to fetch items of type: \(typeOfEntity)")
             }
+        }
+    }
+    
+    static func deleteObject<T: NSManagedObject>(object: T, save: Bool = false){
+        DataManager.standard.container.viewContext.delete(object)
+        if save{
+            DataManager.standard.saveData()
         }
     }
 }

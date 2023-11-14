@@ -11,11 +11,12 @@ import PhotosUI
 struct GalleryPicker: UIViewControllerRepresentable {
     @Binding var images: [UIImage]
     var itemProviders: [NSItemProvider] = []
+    var maxlimitOfImages: Int
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = 3
+        config.selectionLimit = maxlimitOfImages
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
         return picker
@@ -59,6 +60,7 @@ struct GalleryPicker: UIViewControllerRepresentable {
                             }
                         } else {
                             Log.error("Could not load image \(String(describing: error?.localizedDescription))")
+                            self.parent.images = []
                         }
                     }
                 }

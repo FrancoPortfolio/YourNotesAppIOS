@@ -14,6 +14,11 @@
 		E42B327C2AE980690016F69D /* NewColorEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B327B2AE980690016F69D /* NewColorEditor.swift */; };
 		E42B32802AE990960016F69D /* NewColorEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B327F2AE990960016F69D /* NewColorEditorViewModel.swift */; };
 		E42B32832AE9DE1C0016F69D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B32822AE9DE1C0016F69D /* HomeViewModel.swift */; };
+		E468D86D2B02740800AEBD17 /* ImagesSectionExtendedNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D86C2B02740800AEBD17 /* ImagesSectionExtendedNote.swift */; };
+		E468D86F2B028E7400AEBD17 /* DrawingSectionExtendedNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D86E2B028E7400AEBD17 /* DrawingSectionExtendedNote.swift */; };
+		E468D8712B02E7B000AEBD17 /* SubtaskEditorAddForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D8702B02E7B000AEBD17 /* SubtaskEditorAddForm.swift */; };
+		E468D8732B03C2BE00AEBD17 /* SubtasksSectionExtendedNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D8722B03C2BE00AEBD17 /* SubtasksSectionExtendedNote.swift */; };
+		E468D8752B03C55500AEBD17 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D8742B03C55500AEBD17 /* LoadingView.swift */; };
 		E472A0AD2ADD889700B837CB /* Your_NotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0AC2ADD889700B837CB /* Your_NotesApp.swift */; };
 		E472A0AF2ADD889700B837CB /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472A0AE2ADD889700B837CB /* MainScreen.swift */; };
 		E472A0B12ADD889900B837CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E472A0B02ADD889900B837CB /* Assets.xcassets */; };
@@ -79,6 +84,7 @@
 		E4F0B43C2AFA9E1F00365975 /* ProgressBarVoicenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F0B43B2AFA9E1F00365975 /* ProgressBarVoicenote.swift */; };
 		E4F0B4402AFA9F2700365975 /* DisplayTimeVoiceNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F0B43F2AFA9F2700365975 /* DisplayTimeVoiceNote.swift */; };
 		E4F0B4422AFAA12900365975 /* IconPlayerVoicenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F0B4412AFAA12900365975 /* IconPlayerVoicenote.swift */; };
+		E4F0B4442AFBEF3E00365975 /* ImageEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F0B4432AFBEF3E00365975 /* ImageEditable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +96,11 @@
 		E42B327F2AE990960016F69D /* NewColorEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewColorEditorViewModel.swift; sourceTree = "<group>"; };
 		E42B32812AE9AAD60016F69D /* Your-Notes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Your-Notes-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E42B32822AE9DE1C0016F69D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = "Your Notes/GlobalComponents/NoteEdition/NoteColorSelection/NewColorEditor/ViewModel/HomeViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		E468D86C2B02740800AEBD17 /* ImagesSectionExtendedNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesSectionExtendedNote.swift; sourceTree = "<group>"; };
+		E468D86E2B028E7400AEBD17 /* DrawingSectionExtendedNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingSectionExtendedNote.swift; sourceTree = "<group>"; };
+		E468D8702B02E7B000AEBD17 /* SubtaskEditorAddForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtaskEditorAddForm.swift; sourceTree = "<group>"; };
+		E468D8722B03C2BE00AEBD17 /* SubtasksSectionExtendedNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtasksSectionExtendedNote.swift; sourceTree = "<group>"; };
+		E468D8742B03C55500AEBD17 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E472A0A92ADD889700B837CB /* Your Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Your Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E472A0AC2ADD889700B837CB /* Your_NotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Your_NotesApp.swift; sourceTree = "<group>"; };
 		E472A0AE2ADD889700B837CB /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -156,6 +167,7 @@
 		E4F0B43B2AFA9E1F00365975 /* ProgressBarVoicenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarVoicenote.swift; sourceTree = "<group>"; };
 		E4F0B43F2AFA9F2700365975 /* DisplayTimeVoiceNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTimeVoiceNote.swift; sourceTree = "<group>"; };
 		E4F0B4412AFAA12900365975 /* IconPlayerVoicenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPlayerVoicenote.swift; sourceTree = "<group>"; };
+		E4F0B4432AFBEF3E00365975 /* ImageEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +425,7 @@
 				E472A0D12ADDAD0800B837CB /* SearchBar.swift */,
 				E472A0DD2ADDD97500B837CB /* NoteListBodyGrid.swift */,
 				E4F0B4022AF193CD00365975 /* Header.swift */,
+				E468D8742B03C55500AEBD17 /* LoadingView.swift */,
 			);
 			path = GlobalComponents;
 			sourceTree = "<group>";
@@ -494,6 +507,7 @@
 				E472A1022ADEF27D00B837CB /* NoteFormTextField.swift */,
 				E472A1042ADEF54400B837CB /* NoteAddSectionButton.swift */,
 				E4C3B7712AE0316000923492 /* SubtaskNoteEditor.swift */,
+				E468D8702B02E7B000AEBD17 /* SubtaskEditorAddForm.swift */,
 			);
 			path = NoteEdition;
 			sourceTree = "<group>";
@@ -700,6 +714,7 @@
 			children = (
 				E4F0B4052AF1A47A00365975 /* TopSectionNewNoteScreen.swift */,
 				E4F0B4082AF1AD1800365975 /* TopSectionNewNoteScreenEditButtons.swift */,
+				E4F0B4432AFBEF3E00365975 /* ImageEditable.swift */,
 			);
 			path = TopSection;
 			sourceTree = "<group>";
@@ -752,6 +767,9 @@
 			isa = PBXGroup;
 			children = (
 				E4F0B4382AFA9BE600365975 /* RecordingPlayerView.swift */,
+				E468D86C2B02740800AEBD17 /* ImagesSectionExtendedNote.swift */,
+				E468D86E2B028E7400AEBD17 /* DrawingSectionExtendedNote.swift */,
+				E468D8722B03C2BE00AEBD17 /* SubtasksSectionExtendedNote.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -881,18 +899,22 @@
 				E41D6AD82AEAD6F900C33BA0 /* NotesSorting.swift in Sources */,
 				E4F0B4402AFA9F2700365975 /* DisplayTimeVoiceNote.swift in Sources */,
 				E4F0B4092AF1AD1800365975 /* TopSectionNewNoteScreenEditButtons.swift in Sources */,
+				E468D86D2B02740800AEBD17 /* ImagesSectionExtendedNote.swift in Sources */,
 				E472A0F02ADECAF600B837CB /* VoiceNoteSectionShortNote.swift in Sources */,
 				E4C3B7722AE0316000923492 /* SubtaskNoteEditor.swift in Sources */,
+				E468D8712B02E7B000AEBD17 /* SubtaskEditorAddForm.swift in Sources */,
 				E472A0AF2ADD889700B837CB /* MainScreen.swift in Sources */,
 				E4D98CC42AEFFEB40087838E /* FileManagerHandler.swift in Sources */,
 				E4BBEFC12AE85F4500C46A94 /* NewNoteColorSectionView.swift in Sources */,
 				E4BBEFA22AE80AEF00C46A94 /* DataManager.swift in Sources */,
+				E468D86F2B028E7400AEBD17 /* DrawingSectionExtendedNote.swift in Sources */,
 				E4BBEF9E2AE721C800C46A94 /* DrawingViewForm.swift in Sources */,
 				E4BBEFB02AE82C6200C46A94 /* NewNoteTagSectionViewViewModel.swift in Sources */,
 				E4B402362AE2E26B00746769 /* VoiceRecordingPreview.swift in Sources */,
 				E472A0E72ADDE7B600B837CB /* Color.swift in Sources */,
 				E4BBEFB42AE82F7F00C46A94 /* Text.swift in Sources */,
 				E472A0F32ADECE2700B837CB /* AudioRecordingPlayingManager.swift in Sources */,
+				E4F0B4442AFBEF3E00365975 /* ImageEditable.swift in Sources */,
 				E4F0B4422AFAA12900365975 /* IconPlayerVoicenote.swift in Sources */,
 				E4F0B40B2AF5B6A500365975 /* PermissionsManager.swift in Sources */,
 				E472A0E22ADDDEB700B837CB /* NoteShortView.swift in Sources */,
@@ -906,6 +928,7 @@
 				E4F0B42F2AFA900300365975 /* ExtendedNoteScreen.swift in Sources */,
 				E4F0B3FF2AF06F7C00365975 /* GlobalValues.swift in Sources */,
 				E4D98CC12AEC6B3C0087838E /* Image.swift in Sources */,
+				E468D8732B03C2BE00AEBD17 /* SubtasksSectionExtendedNote.swift in Sources */,
 				E472A0AD2ADD889700B837CB /* Your_NotesApp.swift in Sources */,
 				E472A0DE2ADDD97500B837CB /* NoteListBodyGrid.swift in Sources */,
 				E4F0B3F32AF011BA00365975 /* VoiceRecordingViewModel.swift in Sources */,
@@ -929,6 +952,7 @@
 				E4BBEFB92AE8378000C46A94 /* NewNoteColorSectionViewModel.swift in Sources */,
 				E472A0D22ADDAD0800B837CB /* SearchBar.swift in Sources */,
 				E472A0EC2ADECA0900B837CB /* TextSectionShortNote.swift in Sources */,
+				E468D8752B03C55500AEBD17 /* LoadingView.swift in Sources */,
 				E49AA19F2AE04C2B0093AF99 /* NoteColorSelector.swift in Sources */,
 				E4F0B4362AFA909F00365975 /* NoteShortHeader.swift in Sources */,
 				E4BBEFBF2AE85B9200C46A94 /* NoteData.xcdatamodeld in Sources */,

@@ -10,29 +10,34 @@ import SwiftUI
 struct NoteAddSectionButton: View {
     
     var iconName: String = "camera.fill"
+    var size : CGFloat = 30
     var doOnButtonPressed : () -> ()
     
     var body: some View {
         
-        Button(action: {
-            doOnButtonPressed()
-        }, label: {
-            Image(systemName: iconName)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
-                .padding(23)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundStyle(Color.gray.opacity(0.2))
+        ZStack{
+            
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundStyle(Color.gray.opacity(0.2))
+            
+            Button(action: {
+                doOnButtonPressed()
+            }, label: {
+                Image(systemName: iconName)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(25)
+            })
+            
+            VStack{
+                HStack{
+                    Image(systemName: GlobalValues.NoFilledIcons.plus).padding(5)
+                        .foregroundStyle(ColorManager.primaryColor)
+                    Spacer()
                 }
-                .overlay {
-                    GeometryReader(content: { geometry in
-                        Image(systemName: GlobalValues.NoFilledIcons.plus)
-                            .padding(5)
-                    })
-                }
-        })
+                Spacer()
+            }
+        }.frame(width: size,height: size)
     }
 }
 

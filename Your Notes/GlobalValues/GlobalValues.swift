@@ -41,11 +41,32 @@ struct GlobalValues{
     }
     
     struct Strings{
+        struct Subtitles{
+            static let voicenotes = "Voicenotes"
+            static let subtasks = "Subtasks"
+            static let images = "Images"
+        }
+        struct ButtonTitles{
+            static let editNote = "Edit Note"
+            static let saveChanges = "Save"
+            static let cancel = "Cancel"
+            static let edit = "Edit"
+            static let confirm = "Confirm"
+        }
+        struct ScreenTitles{
+            static let homeScreenTitle = "My Notes"
+        }
         static let baseFolderVoicenotes = "VoiceNotes"
         static let dayFormat = "dd-MM-YY 'at' HH-mm-ss"
-        static let homeScreenTitle = "My Notes"
+        
         static let cameraDeniedMessage = "Go to settings and allow camera"
         static let micDeniedMessage = "Go to settings and allow microphone"
+        struct Alerts{
+            static let EditMessage = "Do you want to edit this note?"
+            static let EditTitle = "Edit note?"
+            static let SaveMessage = "Are you sure you want to save the changes?"
+            static let SaveTitle = "Save changes?"
+        }
     }
     
 }

@@ -12,11 +12,12 @@ struct NoteFormTextField: View {
     @Binding var noteText: String
     var showBackground: Bool = true
     var placeholderText: String
+    var shouldExpand: Bool = false
     
     var body: some View {
         
         VStack {
-            TextField(placeholderText, text: $noteText)
+            TextField(placeholderText, text: $noteText, axis: shouldExpand ? .vertical : .horizontal)
             Line()
                 .stroke(ColorManager.primaryColor, lineWidth: 2)
                 .frame(height: 1)

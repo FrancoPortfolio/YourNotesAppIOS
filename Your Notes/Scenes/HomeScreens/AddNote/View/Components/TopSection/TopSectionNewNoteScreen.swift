@@ -23,39 +23,15 @@ struct TopSectionNewNoteScreen: View {
             
             NoteFormTextField(noteText: $viewModel.noteTitle, placeholderText: "Note Title")
             
-            NoteFormTextField(noteText: $viewModel.noteText, placeholderText: "Note Text")
+            NoteFormTextField(noteText: $viewModel.noteText, placeholderText: "Note Text", shouldExpand: true)
             
             if !viewModel.imagesToShow.isEmpty{
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(0..<viewModel.imagesToShow.count, id: \.self){ imageIndex in
-                            Image(uiImage: viewModel.imagesToShow[imageIndex])
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 100, height: 100)
-                                .clipped()
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .overlay {
-                                    Button {
-                                        viewModel.imagesToShow.remove(at: imageIndex)
-                                    } label: {
-                                        VStack{
-                                            HStack{
-                                                Spacer()
-                                                Image(systemName: GlobalValues.NoFilledIcons.xButton)
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .foregroundStyle(Color.white)
-                                                    .fontWeight(.thin)
-                                                    .frame(width: 25, height:25)
-                                                    .padding(5)
-                                            }.frame(maxWidth: .infinity)
-                                            Spacer()
-                                        }
-                                        .frame(maxHeight: .infinity)
-                                    }
-                                    
-                                }
+                            ImageEditable(uiImage: viewModel.imagesToShow[imageIndex]) {
+                                viewModel.imagesToShow.remove(at: imageIndex)
+                            }
                         }
                     }
                 }
@@ -107,24 +83,25 @@ struct TopSectionNewNoteScreen: View {
 extension TopSectionNewNoteScreen{
     
     private var galleryScreen: some View{
-        GalleryPicker(images: $viewModel.imagesToShow)
-            .ignoresSafeArea()
+//        GalleryPicker(images: $viewModel.imagesToShow)
+//            .ignoresSafeArea()
+        Text("WIP")
     }
     
     private var cameraScreen: some View{
-        CameraScreen(selectedImage: $viewModel.tempImageCamera)
-            .ignoresSafeArea()
-            .onDisappear {
-                if let image = viewModel.tempImageCamera{
-                    viewModel.imagesToShow.append(image)
-                    viewModel.tempImageCamera = nil
-                }
-            }
+//        CameraScreen(selectedImage: $viewModel.tempImageCamera)
+//            .ignoresSafeArea()
+//            .onDisappear {
+//                if let image = viewModel.tempImageCamera{
+//                    viewModel.imagesToShow.append(image)
+//                    viewModel.tempImageCamera = nil
+//                }
+//            }
+        Text("WIP")
     }
     
     private var voiceRecordingScreen: some View{
-        VoiceRecordingView(noteId: viewModel.noteId,
-                           recordingsNames: $viewModel.audioFilesUrlStrings) { fileName in
+        VoiceRecordingView(noteId: viewModel.noteId) { fileName in
             
             self.viewModel.audioFilesUrlStrings.append(fileName)
             let fileHandler = FileManagerHandler()

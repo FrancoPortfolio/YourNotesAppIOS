@@ -22,7 +22,7 @@ struct HomeScreen: View {
             VStack{
                 
                 //Header
-                Header(title: GlobalValues.Strings.homeScreenTitle,
+                Header(title: GlobalValues.Strings.ScreenTitles.homeScreenTitle,
                        searchText: $searchText,
                        showOnlyFavorites: $showOnlyFavorites, noteSorting: $selectedSorting)
                 .onChange(of: showOnlyFavorites) { newValue in
@@ -51,7 +51,7 @@ struct HomeScreen: View {
             .onChange(of: self.selectedSorting, perform: { newValue in
                 viewModel.sortNotes(sortCriteria: newValue)
             })
-            .modifier(MainStyle(navigationTitle: GlobalValues.Strings.homeScreenTitle))
+            .modifier(MainStyle(navigationTitle: GlobalValues.Strings.ScreenTitles.homeScreenTitle))
             //            Navigation Views Destinations
             .navigationDestination(for: HomeRoutingDestinations.self) { destination in
                 switch destination {

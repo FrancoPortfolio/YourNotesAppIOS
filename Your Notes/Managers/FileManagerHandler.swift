@@ -11,6 +11,8 @@ class FileManagerHandler{
     
     private var fileManager = FileManager.default
     
+    
+    
     func checkFolderExists(path: URL) -> Bool{
         do{
             let resourceValues = try path.resourceValues(forKeys: [.isDirectoryKey])

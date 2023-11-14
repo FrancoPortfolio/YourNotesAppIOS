@@ -11,7 +11,6 @@ struct VoiceRecordingView: View {
     @Environment (\.presentationMode) var presentationMode
     
     var noteId: String
-    @Binding var recordingsNames : [String]
     
     @StateObject private var viewModel = VoiceRecordingViewModel()
     @StateObject private var audioPlayerManager = AudioRecordingPlayingManager()

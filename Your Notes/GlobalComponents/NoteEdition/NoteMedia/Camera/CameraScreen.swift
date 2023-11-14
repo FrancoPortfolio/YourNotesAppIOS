@@ -10,12 +10,12 @@ import SwiftUI
 struct CameraScreen: UIViewControllerRepresentable {
     @Environment(\.presentationMode) private var presentationMode
     var sourceType: UIImagePickerController.SourceType = .camera
-    @Binding var selectedImage: UIImage?
+    var doWithSelectedImage: (UIImage) -> () = {image in }
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<CameraScreen>) -> UIImagePickerController {
 
         let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = sourceType
         imagePicker.delegate = context.coordinator
 
@@ -41,10 +41,13 @@ struct CameraScreen: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                parent.selectedImage = image
+                parent.doWithSelectedImage(image)
+                parent.presentationMode.wrappedValue.dismiss()
+                return
             }
-
-            parent.presentationMode.wrappedValue.dismiss()
+            
+            Log.error("Something went wrong")
+            
         }
 
     }

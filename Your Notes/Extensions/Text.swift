@@ -17,5 +17,24 @@ extension Text{
             .padding(.top)
         
     }
+    
+    func extendedNoteSubtitle() -> some View{
+        self
+            .font(.headline)
+            .fontWeight(.bold)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+extension Label{
+    func expandedDashedLabel() -> some View{
+        self.font(Font.subheadline)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical)
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .strokeBorder(style: StrokeStyle(lineWidth: 1.5, dash: [4]))
+            }
+    }
 }
 
