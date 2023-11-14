@@ -75,7 +75,7 @@ struct SubtaskRow: View{
                     Spacer()
                 }
                 .font(.system(size: 20))
-                .foregroundColor(ColorManager.textColor)
+                .foregroundColor(ColorManager.subtaskExtendedColor)
                 .padding(.vertical,5)
             }
             
@@ -94,7 +94,6 @@ struct SubtaskRow: View{
             }
         }
         .font(.system(size: 20))
-        .foregroundColor(ColorManager.textColor)
         .padding(.vertical,5)
     }
 }

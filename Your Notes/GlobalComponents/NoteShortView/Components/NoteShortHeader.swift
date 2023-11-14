@@ -44,7 +44,7 @@ struct NoteShortHeader: View{
                     Image(systemName: GlobalValues.FilledIcons.pinIcon)
                         .font(.footnote)
                         .rotationEffect(Angle(degrees: 45))
-                        .foregroundColor(Color.gray.opacity(0.9))
+                        .foregroundColor(Color.gray.opacity(0.95))
                         .frame(width: 20, alignment: .trailing)
                         .padding([.trailing],5)
                 }

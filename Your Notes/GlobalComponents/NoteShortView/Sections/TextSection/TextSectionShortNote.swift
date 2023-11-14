@@ -28,7 +28,7 @@ struct TextSectionShortNote: View {
                 .lineLimit(3)
                 .foregroundColor(ColorManager.textColor)
                 .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }

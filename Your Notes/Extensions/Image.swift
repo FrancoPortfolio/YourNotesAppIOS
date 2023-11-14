@@ -54,16 +54,20 @@ extension Image{
             .frame(width: size)
     }
     
-    func drawingOnExtendedNote() -> some View{
+    func drawingOnExtendedNote(color: Color) -> some View{
+        
         self.resizable()
             .scaledToFill()
             .clipped()
             .frame(width: 200)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(ColorManager.secondaryColor, lineWidth: 3)
             }
+            .background {
+                color
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
 }

@@ -36,6 +36,8 @@ class ExtendedNoteViewModel: ObservableObject{
     @Published var isPinned = false
     @Published var isFavorite = false
     
+    var color: Color = Color(.clear)
+    
     private var initialData = InitialValues()
     
     init(noteId: String){
@@ -79,10 +81,10 @@ extension ExtendedNoteViewModel{
     
     private func setupImages(){
         if let finalNote = self.note{
-                if let images = DataManager.turnSetToArray(set: finalNote.images, typeToConvert: NoteImage.self){
-                    self.images = images
-                    self.initialData.initialImages = finalNote.images
-                }
+            if let images = DataManager.turnSetToArray(set: finalNote.images, typeToConvert: NoteImage.self){
+                self.images = images
+                self.initialData.initialImages = finalNote.images
+            }
         }
     }
     
@@ -101,6 +103,12 @@ extension ExtendedNoteViewModel{
             self.drawing = finalNote.drawing
             self.drawingData = drawingData
             self.initialData.initialDrawing = finalNote.drawing
+        }
+    }
+    
+    private func setupColor(){
+        if let finalNote = self.note, let noteColor = finalNote.color, let hex = noteColor.colorHex{
+            self.color = Color(hex: hex) ?? Color(.clear)
         }
     }
 }
@@ -146,7 +154,7 @@ extension ExtendedNoteViewModel{
         if let indexToRemove = self.images.firstIndex(of: noteImage){
             DataManager.standard.container.viewContext.delete(self.images[indexToRemove])
             withAnimation(.linear){
-               let _ = self.images.remove(at: indexToRemove)
+                let _ = self.images.remove(at: indexToRemove)
             }
         }
     }
@@ -183,6 +191,7 @@ extension ExtendedNoteViewModel{
         setupImages()
         setupRecordings()
         setupDrawingImage()
+        setupColor()
     }
     
     func saveAllData(){

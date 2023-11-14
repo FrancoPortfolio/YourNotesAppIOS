@@ -21,9 +21,6 @@ struct DrawingSectionShortNoteView: View {
             .clipped()
             .scaledToFill()
             .frame(maxWidth: .infinity)
-            .background{
-                Color.white
-            }
     }
 }
 

@@ -18,14 +18,14 @@ struct SubtasksSectionShortNote: View {
         
         VStack{
             
-            ForEach(viewModel.noteSubtasks){ subtask in
+            ForEach(0..<min(viewModel.noteSubtasks.count, 4), id: \.self){ index in
                 Button {
-                    viewModel.changeStateOfSubtask(subtask: subtask)
+                    viewModel.changeStateOfSubtask(subtask: viewModel.noteSubtasks[index])
                 } label: {
                     HStack{
-                        Image(systemName: subtask.isDone ? GlobalValues.NoFilledIcons.checkmarkSquare : GlobalValues.NoFilledIcons.square)
+                        Image(systemName: viewModel.noteSubtasks[index].isDone ? GlobalValues.NoFilledIcons.checkmarkSquare : GlobalValues.NoFilledIcons.square)
                         
-                        if let taskText = subtask.task{
+                        if let taskText = viewModel.noteSubtasks[index].task{
                             Text(taskText)
                         }
                         
@@ -34,7 +34,14 @@ struct SubtasksSectionShortNote: View {
                     .foregroundStyle(Color(uiColor: .black))
                 }
             }
+            
+            if viewModel.noteSubtasks.count > 4 {
+                Text("\(viewModel.noteSubtasks.count - 4) more ...")
+                    .opacity(0.4)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
+        .foregroundColor(ColorManager.subtaskColor)
     }
 }
 

@@ -22,6 +22,19 @@ struct ExtendedNoteScreen: View {
         return self.viewModel.screenMode == .edit
     }
     
+    var noteTitle : String{
+        
+        if isEditing{
+            return "Edit Mode"
+        }
+        
+        if viewModel.title.isEmpty || viewModel.title == ""{
+            return "No title"
+        }
+        
+        return viewModel.title
+    }
+    
     var body: some View {
         
         ZStack{
@@ -69,7 +82,8 @@ struct ExtendedNoteScreen: View {
                     //Drawing
                     DrawingSectionExtendedNote(noteDrawing: $viewModel.drawing,
                                                actualData: $viewModel.drawingData,
-                                               screenMode: self.viewModel.screenMode)
+                                               screenMode: self.viewModel.screenMode,
+                                               color: self.viewModel.color)
                 }
             }
             .padding(.horizontal)
@@ -81,7 +95,7 @@ struct ExtendedNoteScreen: View {
             }
             
         }
-        .navigationBarTitle(isEditing ? "Edit Mode" : viewModel.title)
+        .navigationBarTitle(noteTitle)
         .navigationBarTitleDisplayMode(isEditing ? .inline : .large)
         .toolbarBackground(ColorManager.backgroundColor, for: .navigationBar)
         .toolbar {
@@ -108,6 +122,9 @@ struct ExtendedNoteScreen: View {
             }
         } message: {
             Text(GlobalValues.Strings.Alerts.SaveMessage)
+        }
+        .onDisappear{
+            DataManager.standard.eraseUncommitedChanges()
         }
     }
 }

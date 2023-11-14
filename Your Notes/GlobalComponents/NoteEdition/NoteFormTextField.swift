@@ -18,6 +18,7 @@ struct NoteFormTextField: View {
         
         VStack {
             TextField(placeholderText, text: $noteText, axis: shouldExpand ? .vertical : .horizontal)
+                .autocorrectionDisabled(shouldExpand ? false : true)
             Line()
                 .stroke(ColorManager.primaryColor, lineWidth: 2)
                 .frame(height: 1)

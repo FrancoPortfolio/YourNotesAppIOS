@@ -14,11 +14,13 @@ struct DrawingSectionExtendedNote: View{
     @State private var presentEraseAlert = false
     @Binding var noteDrawing: NoteDrawing?
     var screenMode: ScreenMode
+    var color: Color
     
-    init(noteDrawing: Binding<NoteDrawing?>, actualData: Binding<Data>,screenMode: ScreenMode){
+    init(noteDrawing: Binding<NoteDrawing?>, actualData: Binding<Data>,screenMode: ScreenMode,color: Color){
         self._noteDrawing = noteDrawing
         self._actualData = actualData
         self.screenMode = screenMode
+        self.color = color
     }
     
     var body: some View{
@@ -31,7 +33,7 @@ struct DrawingSectionExtendedNote: View{
             if noteDrawing != nil{
                 HStack(spacing: 30){
                     Image(uiImage: UIImage.getUIImageFromCanvasData(data: actualData))
-                        .drawingOnExtendedNote()
+                        .drawingOnExtendedNote(color: self.color)
                     
                     if screenMode == .edit{
                         VStack(spacing: 50){

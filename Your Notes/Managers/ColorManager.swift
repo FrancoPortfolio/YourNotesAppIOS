@@ -15,5 +15,8 @@ struct ColorManager{
     static let terciaryColor = Color("TerciaryColorBusiness")
     static let backgroundColor = Color("BackgroundColorBusiness")
     static let textColor = Color("TextColor")
+    static let textTitleColor = Color("TextTitleColor")
+    static let subtaskColor = Color("SubtaskColor")
+    static let subtaskExtendedColor = Color("SubtaskExtendedColor")
     
 }

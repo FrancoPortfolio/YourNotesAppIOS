@@ -16,8 +16,28 @@ struct NoteShortBody: View {
     var isFavorite : Bool
     var contentSections : ([contentSections],Int)
     
+    var title : String{
+        
+        if let title = note.title{
+            if title.isEmpty || title == ""{
+                return ""
+            }
+            return title
+        }
+        
+        return ""
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
+            
+            if title != ""{
+                Text(title)
+                    .bold()
+                    .foregroundColor(ColorManager.textTitleColor)
+                    .lineLimit(1)
+                    .multilineTextAlignment(.center)
+            }
             
             ForEach(0..<contentSections.1, id: \.self) { contentOrder in
                 

@@ -24,7 +24,7 @@ struct NoteShortIndicators: View {
             //Other indicators
             if contentSections.0.count > 2{
                 HStack{
-                    ForEach(2..<Int(contentSections.0.count)){ index in
+                    ForEach(2..<Int(contentSections.0.count), id: \.self){ index in
                         
                         switch contentSections.0[index]{
                         case .images: Image(systemName: GlobalValues.FilledIcons.imageIcon)
@@ -42,6 +42,7 @@ struct NoteShortIndicators: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal,10)
         .padding(.vertical, isPinned || isTagged ? 0 : 7)
+        .foregroundColor(ColorManager.textTitleColor)
     }
 }
 //
