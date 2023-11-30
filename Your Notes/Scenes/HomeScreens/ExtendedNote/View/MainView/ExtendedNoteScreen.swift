@@ -77,8 +77,8 @@ struct ExtendedNoteScreen: View {
                     
                     RecordingPlayerView(voicenotes: $viewModel.recordings,
                                         noteId: self.viewModel.noteId,
-                                        isEditing: self.isEditing,
-                                        temporalFilenames: $viewModel.temporalRecording)
+                                        isEditing: self.isEditing)
+                                        //temporalFilenames: $viewModel.temporalRecording)
                     //Drawing
                     DrawingSectionExtendedNote(noteDrawing: $viewModel.drawing,
                                                actualData: $viewModel.drawingData,

@@ -17,21 +17,11 @@ struct NewNoteScreen: View {
     @State private var showCheckOfSubTaskEditor = false
     @State private var tempImageCamera : UIImage = UIImage()
     
-    //temp
-    
-    @State private var mediaTypeToAdd : AddNoteDestinations? = nil
-    @State private var presentMediaAdditionSheet : Bool = false
-    
-    
     var body: some View {
         
         ScrollView{
-            //Top part
-            TopSectionNewNoteScreen(viewModel: self.viewModel,
-                                    audioManager: self.audioManager)
-            
-            //Subtasks part
-            SubtasksPart
+            //Body
+            NewNoteScreenBody(viewModel: self.viewModel)
             
             //Class selection part
             NewNoteTagSectionView(actualTag: $viewModel.noteTagId)
@@ -39,15 +29,18 @@ struct NewNoteScreen: View {
             //Color selection part
             NewNoteColorSectionView(selectedColorId: $viewModel.selectedColorId)
         }
-        .onAppear{
-            self.mediaTypeToAdd = .image
-        }
+        
         .scrollIndicators(.hidden)
         .padding()
         .frame(maxWidth: .infinity,maxHeight: .infinity)
         .background {
             ColorManager.backgroundColor
                 .ignoresSafeArea()
+        }
+        .overlay {
+            if viewModel.isSaving{
+                Color.black
+            }
         }
         //Navigation Config
         .navigationTitle("New Note")
@@ -64,62 +57,6 @@ struct NewNoteScreen: View {
         })
     }
 }
-//Subtasks Part
-extension NewNoteScreen{
-    private var SubtasksPart: some View{
-        Group{
-            
-            Text("Subtasks")
-                .newNoteSubtitle()
-                .padding(.bottom,5)
-            
-            VStack{
-                
-                VStack (spacing: 10) {
-                    ForEach(viewModel.subtasks){ subtask in
-                        SubtaskNoteEditor(subtask: subtask)
-                    }
-                }
-                
-                HStack {
-                    NoteFormTextField(noteText: $viewModel.tempSubtaskText,
-                                      showBackground: false,
-                                      placeholderText: "Subtask \(viewModel.subtasks.count + 1)")
-                    
-                    if showCheckOfSubTaskEditor{
-                        Button {
-                            viewModel.subtasks.append(
-                                Subtask(name: viewModel.tempSubtaskText,
-                                        isChecked: false)
-                            )
-                            viewModel.tempSubtaskText = ""
-                            
-                        } label: {
-                            Image(systemName: GlobalValues.NoFilledIcons.plusSquare)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 25, height: 25, alignment: .center)
-                                .padding(.horizontal)
-                        }
-                    }
-                    
-                }
-                .onChange(of: viewModel.tempSubtaskText) { newValue in
-                    if newValue.isEmpty{
-                        withAnimation(.linear(duration: 0.2)) {
-                            self.showCheckOfSubTaskEditor = false
-                        }
-                    }else{
-                        withAnimation(.linear(duration: 0.01)) {
-                            self.showCheckOfSubTaskEditor = true
-                        }
-                    }
-                }
-                .padding(.top,10)
-            }
-        }
-    }
-}
 
 //ToolbarItems
 extension NewNoteScreen{
@@ -129,17 +66,8 @@ extension NewNoteScreen{
             Log.info("Adding note to db")
             viewModel.saveNote(){
                 self.presentationMode.wrappedValue.dismiss()
+                
             }
         }
     }
 }
-
-//Functions
-extension NewNoteScreen{
-}
-
-//struct NewNoteScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NewNoteScreen()
-//    }
-//}

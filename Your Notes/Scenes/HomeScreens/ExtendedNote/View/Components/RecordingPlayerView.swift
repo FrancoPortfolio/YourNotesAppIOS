@@ -16,7 +16,6 @@ struct RecordingPlayerView: View {
     @State private var showVoiceRecordingSheet : Bool = false
     var noteId : String
     var isEditing : Bool = false
-    @Binding var temporalFilenames : [String]
     
     
     var body: some View {
@@ -49,11 +48,9 @@ struct RecordingPlayerView: View {
                     }
                 }
                 if isEditing{
-                    Button {
+                    DashedLabelButton(labelTitle: "Add voicenote",
+                                      systemImageName: GlobalValues.FilledIcons.micIcon) {
                         self.showVoiceRecordingSheet.toggle()
-                    } label: {
-                        Label("Add voicenote", systemImage: GlobalValues.FilledIcons.micIcon)
-                            .expandedDashedLabel()
                     }
                 }
 
@@ -77,7 +74,7 @@ struct RecordingPlayerView: View {
         noteVoiceNoteEntity.voiceNoteDirectory = url
         
         self.voicenotes.append(noteVoiceNoteEntity)
-        self.temporalFilenames.append(filename)
+        //self.temporalFilenames.append(filename)
     }
 }
 

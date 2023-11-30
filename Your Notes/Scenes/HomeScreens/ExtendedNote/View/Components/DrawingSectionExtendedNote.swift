@@ -31,55 +31,21 @@ struct DrawingSectionExtendedNote: View{
             }
             
             if noteDrawing != nil{
-                HStack(spacing: 30){
-                    Image(uiImage: UIImage.getUIImageFromCanvasData(data: actualData))
-                        .drawingOnExtendedNote(color: self.color)
-                    
-                    if screenMode == .edit{
-                        VStack(spacing: 50){
-                            Button {
-                                //edit
-                                showEditionSheet.toggle()
-                            } label: {
-                                Image(systemName: "pencil")
-                                    .iconButton(size: 40)
-                            }
-                            
-                            Button {
-                                //erase
-                                presentEraseAlert.toggle()
-                            } label: {
-                                Image(systemName: "trash")
-                                    .iconButton(size: 40)
-                            }
-                            
-                        }
+                if let noteDrawing{
+                    DrawingEditionBody(noteDrawingEntity: noteDrawing,
+                                       screenMode: self.screenMode,
+                                       colorBackground: self.color) {
+                        showEditionSheet.toggle()
+                    } doWhenErasing: {
+                        eraseDrawing()
                     }
-                }.frame(maxWidth: .infinity)
-                    .padding(.vertical)
-                    
-                    .alert("Erase this drawing", isPresented: self.$presentEraseAlert) {
-                        Button("Erase", role: .destructive) {
-                            withAnimation(.linear){
-                                if let drawing = self.noteDrawing{
-                                    DataManager.deleteObject(object: drawing)
-                                }
-                                self.noteDrawing = nil
-                                self.actualData = Data()
-                            }
-                        }
-                        Button(GlobalValues.Strings.ButtonTitles.cancel, role: .cancel) {}
-                    } message: {
-                        Text("Are you sure you want to erase this drawing?")
-                    }
+                }
             }
             else{
                 if screenMode == .edit{
-                    Button {
+                    DashedLabelButton(labelTitle: "Add drawing",
+                                      systemImageName: GlobalValues.FilledIcons.brushIcon) {
                         self.showEditionSheet.toggle()
-                    } label: {
-                        Label("Add drawing", systemImage: GlobalValues.FilledIcons.brushIcon)
-                            .expandedDashedLabel()
                     }
                 }
 
@@ -105,6 +71,67 @@ struct DrawingSectionExtendedNote: View{
         
         self.actualData = data
     }
+    
+    private func eraseDrawing(){
+        withAnimation(.interactiveSpring()){
+            if let drawing = self.noteDrawing{
+                DataManager.deleteObject(object: drawing)
+            }
+            self.noteDrawing = nil
+            self.actualData = Data()
+        }
+    }
+}
+
+struct DrawingEditionBody: View {
+    
+    @State private var presentEraseAlert = false
+    
+    var noteDrawingEntity: NoteDrawing
+    var screenMode: ScreenMode = .edit
+    var colorBackground : Color
+    var noteDrawingData: Data?
+    var doWhenEditing: () -> ()
+    var doWhenErasing: () -> ()
+    
+    
+    var body: some View{
+        HStack(spacing: 30){
+            Image(uiImage: UIImage.getUIImageFromCanvasData(data: noteDrawingData ?? noteDrawingEntity.drawingData!))
+                .drawingOnExtendedNote(color: colorBackground)
+            
+            if screenMode == .edit{
+                VStack(spacing: 50){
+                    Button {
+                        doWhenEditing()
+                    } label: {
+                        Image(systemName: "pencil")
+                            .iconButton(size: 40)
+                    }
+                    
+                    Button {
+                        //erase
+                        presentEraseAlert.toggle()
+                    } label: {
+                        Image(systemName: "trash")
+                            .iconButton(size: 40)
+                    }
+                    
+                }
+            }
+        }.frame(maxWidth: .infinity)
+            .padding(.vertical)
+            
+            .alert("Erase this drawing", isPresented: self.$presentEraseAlert) {
+                Button("Erase", role: .destructive) {
+                    doWhenErasing()
+                }
+                Button(GlobalValues.Strings.ButtonTitles.cancel, role: .cancel) {}
+            } message: {
+                Text("Are you sure you want to erase this drawing?")
+            }
+    }
+    
 }
 
 //struct DrawingSectionExtendedNote_Previews: PreviewProvider {

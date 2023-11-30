@@ -16,30 +16,26 @@ struct SubtasksSectionExtendedNote: View{
     
     var body: some View{
         
-        VStack{
+        VStack (spacing: 10){
             if screenMode == .edit || !self.subtasks!.isEmpty{
                 Text(GlobalValues.Strings.Subtitles.subtasks)
                     .extendedNoteSubtitle()
                     .padding(.top)
             }
             
-            VStack (spacing: 6){
+            VStack (spacing: 10){
                 if let subtasks = self.subtasks, !subtasks.isEmpty{
-                    VStack{
+                    VStack(spacing: 10){
                         ForEach(subtasks){ subtask in
                             SubtaskRow(subtask: subtask,
                                        screenMode: self.screenMode,
                                        subtasks: self.$subtasks) { subtask in
-                                if let index = self.subtasks!.firstIndex(of: subtask){
-                                    withAnimation(.linear){
-                                        let subtask = self.subtasks!.remove(at: index)
-                                        DataManager.deleteObject(object: subtask)
-                                    }
+                                withAnimation(.linear){
+                                    doWhenSubtaskTapped(subtask)
                                 }
                             }
                         }
                     }
-                    .padding(.top)
                 }
                 if screenMode == .edit{
                     SubtaskEditorAddForm(subtasks: self.$subtasks)
@@ -66,7 +62,6 @@ struct SubtaskRow: View{
             } label: {
                 HStack{
                     Image(systemName: subtask.isDone ? GlobalValues.NoFilledIcons.checkmarkSquare : GlobalValues.NoFilledIcons.square)
-                        .padding(.trailing)
                     
                     if let taskText = subtask.task{
                         Text(taskText)
@@ -74,9 +69,9 @@ struct SubtaskRow: View{
                     
                     Spacer()
                 }
-                .font(.system(size: 20))
+                .font(.title2)
                 .foregroundColor(ColorManager.subtaskExtendedColor)
-                .padding(.vertical,5)
+//                .padding(.vertical,5)
             }
             
             if screenMode == .edit{
@@ -89,12 +84,12 @@ struct SubtaskRow: View{
                     }
                 }label:{
                     Image(systemName: GlobalValues.NoFilledIcons.xButton)
-                        .iconButton(size: 24)
+                        .iconButton(size: 22)
                 }
             }
         }
-        .font(.system(size: 20))
-        .padding(.vertical,5)
+//        .font(.system(size: 20))
+//        .padding(.vertical,5)
     }
 }
 //

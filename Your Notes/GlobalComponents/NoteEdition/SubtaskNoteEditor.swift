@@ -16,8 +16,6 @@ struct SubtaskNoteEditor: View {
         HStack{
             
             HStack {
-                Image(systemName: GlobalValues.NoFilledIcons.lineList)
-                
                 Image(systemName: subtask.isChecked ? GlobalValues.NoFilledIcons.checkmarkSquare : GlobalValues.NoFilledIcons.square)
             }
             
@@ -26,7 +24,7 @@ struct SubtaskNoteEditor: View {
             
            
         }
-        
+        .font(.title2)
     }
     
 }
