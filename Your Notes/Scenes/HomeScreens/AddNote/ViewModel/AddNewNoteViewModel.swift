@@ -37,13 +37,18 @@ class AddNewNoteViewModel: ObservableObject{
     
     @Published var isSaving = false
     
-    func saveNote(doWhenDataSaved: () -> () = {}){
+    func save(doWhenDataSaved: () -> () = {}){
         
         if !checkIfShouldSave() {
             presentNoDataAlert.toggle()
             return
         }
         
+        saveNote(doWhenDataSaved: doWhenDataSaved)
+        
+    }
+    
+    private func saveNote(doWhenDataSaved: () -> () = {}){
         isSaving = true
         
         let noteEntity = Note(context: DataManager.standard.container.viewContext)
@@ -66,7 +71,6 @@ class AddNewNoteViewModel: ObservableObject{
             self.isSaving = true
             doWhenDataSaved()
         }
-        
     }
     
     private func basicDataLinkingNote(note noteEntity: Note){

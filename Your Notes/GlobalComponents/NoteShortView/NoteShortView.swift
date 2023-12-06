@@ -32,7 +32,7 @@ struct NoteShortView: View {
         return false
     }
     
-    private var contentSectionsValues: ([contentSections], Int){
+    private var contentSectionsValues: [contentSections]{
         
         var sections : [contentSections] = []
         
@@ -62,18 +62,13 @@ struct NoteShortView: View {
             sections.append(.drawing)
         }
         
-        return (sections, min(2, sections.count))
+        return sections
     }
     
     
     var body: some View {
         ZStack{
             if showItself{
-                
-//                NavigationLink(value: HomeRoutingDestinations.expandNote) {
-//                    Rectangle()
-//                        .fill(Color.clear)
-//                }
                 
                 if let colorHex = note.color?.colorHex{
                     Color.init(hex: colorHex).frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -94,29 +89,10 @@ struct NoteShortView: View {
                     NoteShortBody(note: note,
                                   audioManager: audioManager,
                                   isPinned: isPinned,
-                                  isFavorite: isFavorite,
-                                  contentSections: contentSectionsValues)
+                                  isFavorite: isFavorite)
                 }
                 
             }
-            
-//                        .modifier(TapAndLongPressModifier(tapAction: {
-            //                showPopMenu = false
-            //            }, longPressAction: {
-            //                showPopMenu = true
-            //            }))
-//            .mask(RoundedRectangle(cornerRadius: 10))
-//            .gesture(
-//                LongPressGesture(minimumDuration: 0.5)
-//                    .updating($isBeingPressed, body: { currentState, gestureState, transaction in
-//                        gestureState = currentState
-//                    })
-//                    .onEnded({ value in
-//                        self.showPopMenu.toggle()
-//                    })
-//            )
-            
-            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(content: {
@@ -144,65 +120,5 @@ struct NoteShortView: View {
                 }
             }
         }
-//        .onLongPressGesture(minimumDuration: 1.0, pressing: { (isPressing) in
-//          withAnimation {
-//            reduceItself = isPressing
-//          }
-//        }, perform: {})
-//        .simultaneousGesture(
-//            TapGesture().onEnded{
-//
-//            }
-//        )
-//        .gesture(
-//            TapGesture()
-//                .updating($isBeingPressed, body: { currentState, gestureState, transaction in
-//                    withAnimation(.spring()) {
-//                        self.reduceItself = true
-//                    }
-//                })
-//                .onEnded({ value in
-//                    self.reduceItself = false
-//                })
-//        )
     }
 }
-//
-//enum contentSections{
-//    case text,images,subtasks,voicenotes,drawing
-//}
-
-//fileprivate struct NoteShortViewPreviewWrapper: View{
-//
-//    @FetchRequest(sortDescriptors: []) var note: FetchedResults<Note>
-//
-//    var body: some View{
-//        NoteShortView(note: note.first!)
-//            .frame(maxWidth: 200, maxHeight: 250)
-//    }
-//
-//}
-
-//struct NoteShortView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NoteShortViewPreviewWrapper()
-//    }
-//}
-
-
-//fileprivate struct NoteShortViewPreviewWrapper: View{
-//    
-//    @FetchRequest(sortDescriptors: []) var note: FetchedResults<Note>
-//    
-//    var body: some View{
-//        NoteShortView(note: note.first!)
-//            .frame(maxWidth: 200, maxHeight: 250)
-//    }
-//    
-//}
-
-//struct NoteShortView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NoteShortViewPreviewWrapper()
-//    }
-//}

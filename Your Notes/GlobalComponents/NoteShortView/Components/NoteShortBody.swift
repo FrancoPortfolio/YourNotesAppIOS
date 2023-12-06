@@ -14,60 +14,36 @@ struct NoteShortBody: View {
     @StateObject var audioManager: AudioRecordingPlayingManager
     var isPinned : Bool
     var isFavorite : Bool
-    var contentSections : ([contentSections],Int)
     
     var title : String{
         
         if let title = note.title{
-            if title.isEmpty || title == ""{
-                return ""
+            if !(title.isEmpty || title == ""){
+                return title
             }
-            return title
         }
         
-        return ""
+        return "(No title note)"
     }
     
     var body: some View {
         VStack(spacing: 0) {
             
-            if title != ""{
-                Text(title)
-                    .bold()
-                    .foregroundColor(ColorManager.textTitleColor)
-                    .lineLimit(1)
-                    .multilineTextAlignment(.center)
-            }
+            Text(title)
+                .bold()
+                .foregroundColor(ColorManager.textTitleColor)
+                .lineLimit(1)
+                .multilineTextAlignment(.center)
+                .padding(.vertical,10)
             
-            ForEach(0..<contentSections.1, id: \.self) { contentOrder in
-                
-                let section = contentSections.0[contentOrder]
-                
-                switch section{
+            if let noteTextBody = note.text, !noteTextBody.isEmpty{
+                Text(noteTextBody)
+                    .foregroundColor(ColorManager.textColor)
+                    .lineLimit(3)
+                    .font(.body)
+                    .padding(.horizontal, 10)
+                    .padding(.bottom,10)
                     
-                case .text:
-                    TextSectionShortNote(textData: note.text)
-                        .padding(.horizontal,10)
-                        .padding(.vertical,5)
-                    
-                case .subtasks:
-                    SubtasksSectionShortNote(noteSet: note.subtasks)
-                        .padding(.horizontal,10)
-                        .padding(.leading,5)
-                        .padding(.vertical,10)
-                    
-                case .images:
-                    ImagesSectionShortNote(imagesSet: note.images)
-                        .padding(.top,(isPinned || isFavorite) ? 0 : 7.5)
-                    
-                case .voicenotes:
-                    VoiceNoteSectionShortNote(voicenoteSet: note.voicenotes, noteId: note.id!.uuidString,
-                                              audioManager: audioManager)
-                    .padding(.vertical)
-                    
-                case .drawing:
-                    DrawingSectionShortNoteView(noteDrawing: note.drawing)
-                }
             }
         }
     }

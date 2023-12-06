@@ -12,7 +12,7 @@ struct NoteShortIndicators: View {
     var isFavorite: Bool
     var isTagged: Bool
     var isPinned: Bool
-    var contentSections: ([contentSections], Int)
+    var contentSections: [contentSections]
     
     var body: some View {
         HStack{
@@ -22,11 +22,11 @@ struct NoteShortIndicators: View {
                     .font(.callout)
             }
             //Other indicators
-            if contentSections.0.count > 2{
+            if !contentSections.isEmpty{
                 HStack{
-                    ForEach(2..<Int(contentSections.0.count), id: \.self){ index in
+                    ForEach(contentSections, id: \.self){ contentSection in
                         
-                        switch contentSections.0[index]{
+                        switch contentSection{
                         case .images: Image(systemName: GlobalValues.FilledIcons.imageIcon)
                         case .subtasks: Image(systemName: GlobalValues.FilledIcons.subtaskIcon)
                         case .text: Image(systemName: GlobalValues.FilledIcons.textIcon)
@@ -41,7 +41,7 @@ struct NoteShortIndicators: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal,10)
-        .padding(.vertical, isPinned || isTagged ? 0 : 7)
+        .padding(.top,10)
         .foregroundColor(ColorManager.textTitleColor)
     }
 }

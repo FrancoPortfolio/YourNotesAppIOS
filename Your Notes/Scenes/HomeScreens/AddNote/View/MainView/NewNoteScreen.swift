@@ -64,9 +64,8 @@ extension NewNoteScreen{
         Button("Add Note") {
             //Add note
             Log.info("Adding note to db")
-            viewModel.saveNote(){
+            viewModel.save(){
                 self.presentationMode.wrappedValue.dismiss()
-                
             }
         }
     }
