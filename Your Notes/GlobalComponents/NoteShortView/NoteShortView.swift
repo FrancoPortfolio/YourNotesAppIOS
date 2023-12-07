@@ -11,11 +11,12 @@ struct NoteShortView: View {
     
     @State private var showItself = true
     @State private var showPopMenu = false
-    @State private var reduceItself = false
     @GestureState private var isBeingPressed = false
     @StateObject var audioManager: AudioRecordingPlayingManager
+    @Binding var navPath : NavigationPath
     
     var note : Note
+    @StateObject var viewModel: HomeViewModel
     
     private var isPinned : Bool {
         return note.isPinned
@@ -35,10 +36,6 @@ struct NoteShortView: View {
     private var contentSectionsValues: [contentSections]{
         
         var sections : [contentSections] = []
-        
-        if note.text != nil && !(note.text?.isEmpty ?? true){
-            sections.append(.text)
-        }
         
         if let images = note.images{
             if images.count != 0{
@@ -95,12 +92,6 @@ struct NoteShortView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .overlay(content: {
-            NavigationLink(value: HomeRoutingDestinations.expandNote(noteId: note.id!.uuidString)) {
-                Rectangle()
-                    .fill(Color.clear)
-            }
-        })
         .cornerRadius(10, corners: isPinned ? [.bottomLeft,.bottomRight,.topLeft] : .allCorners)
         .onAppear{
             showItself = true
@@ -109,16 +100,28 @@ struct NoteShortView: View {
             showItself = false
         }
         .shadow(radius: 3)
-        .scaleEffect(reduceItself ? 0.95 : 1.0)
-        .onTapGesture {
-            withAnimation {
-                reduceItself  = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
-                    withAnimation {
-                        reduceItself = false
-                    }
+        .modifier(TapAndLongPressModifier(tapAction: {
+            navPath.append(HomeRoutingDestinations.expandNote(noteId: note.id!.uuidString))
+        }, longPressAction: {
+            self.showPopMenu = true
+        }))
+        .confirmationDialog("xd", isPresented: self.$showPopMenu) {
+            Button("\(note.isFavorite ? "Unmark" : "Mark" ) as Favorite", role: .none) {
+                if note.isFavorite{
+                    viewModel.unmarkAsFavorite(note: note)
+                    return
                 }
+                viewModel.markAsFavorite(note: note)
+            }
+            Button("\(note.isPinned ? "Unpin" : "Pin" ) note", role: .none) {
+                if note.isPinned{
+                    viewModel.unmarkAsPinned(note: note)
+                    return
+                }
+                viewModel.markAsPinned(note: note)
             }
         }
+
+        
     }
 }

@@ -29,7 +29,6 @@ struct NoteShortIndicators: View {
                         switch contentSection{
                         case .images: Image(systemName: GlobalValues.FilledIcons.imageIcon)
                         case .subtasks: Image(systemName: GlobalValues.FilledIcons.subtaskIcon)
-                        case .text: Image(systemName: GlobalValues.FilledIcons.textIcon)
                         case .voicenotes: Image(systemName: GlobalValues.FilledIcons.micIcon)
                         case .drawing: Image(systemName: GlobalValues.FilledIcons.brushIcon)
                         }

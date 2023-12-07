@@ -50,7 +50,7 @@ struct NoteShortBody: View {
 }
 
 enum contentSections: CaseIterable, Hashable{
-    case text,images,voicenotes,drawing,subtasks
+    case images,voicenotes,drawing,subtasks
 }
 
 

@@ -35,7 +35,9 @@ struct HomeScreen: View {
                 
                 //Body
                 NoteListBodyGrid(firstColumnsNotes: viewModel.firstColumnArray,
-                               secondColumnsNotes: viewModel.secondColumnArray)
+                                 secondColumnsNotes: viewModel.secondColumnArray,
+                                 navPath: self.$navigationPath,
+                                 viewModel: self.viewModel)
                     .onAppear{
                         viewModel.sortNotes(sortCriteria: selectedSorting)
                     }

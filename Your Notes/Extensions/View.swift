@@ -68,6 +68,22 @@ extension View {
         }
     }
     
+    func tapAndLongTapController(minimumDuration: Double = 0.5,
+                                 doOnTap: @escaping () -> (),
+                                 doOnLongPress: @escaping () -> ()) -> some View{
+        
+        self
+            .simultaneousGesture(
+                LongPressGesture(minimumDuration: minimumDuration)
+                .onEnded { _ in
+                    doOnLongPress()
+                })
+            .highPriorityGesture(TapGesture()
+                .onEnded({ _ in
+                    doOnTap()
+                }))
+    }
+    
 }
 
 
@@ -84,26 +100,28 @@ fileprivate struct RoundedCorner: Shape {
 }
 
 struct TapAndLongPressModifier: ViewModifier {
-  @State private var isLongPressing = false
-  let tapAction: (()->())
-  let longPressAction: (()->())
-  func body(content: Content) -> some View {
-    content
-      .scaleEffect(isLongPressing ? 0.95 : 1.0)
-      .onLongPressGesture(minimumDuration: 1.0, pressing: { (isPressing) in
-        withAnimation {
-          isLongPressing = isPressing
-        }
-      }, perform: {
-        longPressAction()
-      })
-      .simultaneousGesture(
-        TapGesture()
-          .onEnded { _ in
-            tapAction()
-          }
-      )
-  }
+    @GestureState private var isPressing = false
+    var minimumDuration: Double = 0.5
+    var shouldReduce = true
+    let tapAction: (()->())
+    let longPressAction: (()->())
+    func body(content: Content) -> some View {
+        content
+            
+            .simultaneousGesture(
+                LongPressGesture(minimumDuration: minimumDuration)
+                    .updating(self.$isPressing) { currentState, gestureState, transaction in
+                                    gestureState = currentState
+                                }
+                    .onEnded { _ in
+                        longPressAction()
+                    })
+            .highPriorityGesture(TapGesture()
+                .onEnded({ _ in
+                    tapAction()
+                }))
+            .scaleEffect(isPressing ? 0.95 : 1.0)
+    }
 }
 
 struct MainStyle: ViewModifier {

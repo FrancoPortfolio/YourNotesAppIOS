@@ -22,14 +22,6 @@ class HomeViewModel: ObservableObject{
             sortDescriptors = sortDescriptors + descriptors
         }
         
-        
-//        DataManager.getData(typeOfEntity: Note.self,
-//                            entityName: "Note") { data in
-//            DispatchQueue.main.async{
-//                self.notes = data
-//                self.setupColumns()
-//            }
-//        }
             self.notes = DataManager.getData(typeOfEntity: Note.self, entityName: "Note",predicate: predicate,sortDescriptors: sortDescriptors)
             self.setupColumns()
     }
@@ -63,4 +55,31 @@ class HomeViewModel: ObservableObject{
         getAllNoteData(descriptors: [sortCriteria])
     }
     
+    func markAsFavorite(note: Note){
+        note.isFavorite = true
+        DataManager.standard.saveData(){
+            getAllNoteData()
+        }
+    }
+    
+    func markAsPinned(note: Note){
+        note.isPinned = true
+        DataManager.standard.saveData(){
+            getAllNoteData()
+        }
+    }
+    
+    func unmarkAsFavorite(note: Note){
+        note.isFavorite = false
+        DataManager.standard.saveData(){
+            getAllNoteData()
+        }
+    }
+    
+    func unmarkAsPinned(note: Note){
+        note.isPinned = false
+        DataManager.standard.saveData(){
+            getAllNoteData()
+        }
+    }
 }
