@@ -11,31 +11,36 @@ import CoreData
 
 class HomeViewModel: ObservableObject{
     
+    @Published var showFavorites = false
+    @Published var sortBy : NotesSorting = .dateAddedNewer
     @Published var firstColumnArray = [Note]()
     @Published var secondColumnArray = [Note]()
     private var notes = [Note]()
     
-    func getAllNoteData(descriptors: [NSSortDescriptor]? = nil, predicate: NSPredicate? = nil, offset: Int = 0){
-        let pinnedDescriptor = NSSortDescriptor(key: "isPinned", ascending: false)
-        var sortDescriptors : [NSSortDescriptor] = [pinnedDescriptor]
-        if let descriptors{
-            sortDescriptors = sortDescriptors + descriptors
+    func getAllNoteData(){
+        let sortDescriptors = getDescriptors()
+        var predicate: NSPredicate? = nil
+        if showFavorites{
+            predicate = NSPredicate(format: "isFavorite == true")
         }
-        
-            self.notes = DataManager.getData(typeOfEntity: Note.self, entityName: "Note",predicate: predicate,sortDescriptors: sortDescriptors)
-            self.setupColumns()
+        self.notes = DataManager.getData(typeOfEntity: Note.self,
+                                         entityName: "Note",
+                                         predicate: predicate,
+                                         sortDescriptors: sortDescriptors)
+        self.setupColumns()
     }
     
-    func getFavoritesNoteData(sortCriteria: NotesSorting = .dateAddedNewer){
-        let predicate = NSPredicate(format: "isFavorite == true")
-        let sortCriteria = sortCriteria.descriptor
-        self.getAllNoteData(descriptors: [sortCriteria],predicate: predicate)
+    private func getDescriptors() -> [NSSortDescriptor]{
+        let pinnedDescriptor = NSSortDescriptor(key: "isPinned", ascending: false)
+        var sortDescriptors : [NSSortDescriptor] = [pinnedDescriptor]
+        sortDescriptors.append(sortBy.descriptor)
+        return sortDescriptors
     }
     
     func searchByTextTag(text:String, sortCriteria: NotesSorting = .dateAddedNewer){
         let predicate = NSPredicate(format: "tag.tag CONTAINS[c] %@", text)
         let sortCriteria = sortCriteria.descriptor
-        self.getAllNoteData(descriptors: [sortCriteria], predicate: predicate)
+        self.getAllNoteData()
     }
     
     private func setupColumns(){
@@ -49,11 +54,10 @@ class HomeViewModel: ObservableObject{
             secondColumnArray.append(notes[index])
         }
     }
-    
-    func sortNotes(sortCriteria: NotesSorting = .dateAddedNewer){
-        let sortCriteria = sortCriteria.descriptor
-        getAllNoteData(descriptors: [sortCriteria])
-    }
+}
+
+//Favorites and Pin management
+extension HomeViewModel{
     
     func markAsFavorite(note: Note){
         note.isFavorite = true

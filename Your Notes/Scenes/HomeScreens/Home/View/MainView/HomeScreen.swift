@@ -11,8 +11,6 @@ struct HomeScreen: View {
     
     @State private var searchText: String = ""
     @State private var showSearchBar: Bool = false
-    @State private var showOnlyFavorites: Bool = false
-    @State private var selectedSorting: NotesSorting = .dateAddedNewer
     @State private var navigationPath: NavigationPath = NavigationPath()
     @StateObject private var viewModel: HomeViewModel = HomeViewModel()
     
@@ -24,14 +22,8 @@ struct HomeScreen: View {
                 //Header
                 Header(title: GlobalValues.Strings.ScreenTitles.homeScreenTitle,
                        searchText: $searchText,
-                       showOnlyFavorites: $showOnlyFavorites, noteSorting: $selectedSorting)
-                .onChange(of: showOnlyFavorites) { newValue in
-                    if newValue{
-                        viewModel.getFavoritesNoteData()
-                    }else{
-                        viewModel.sortNotes(sortCriteria: selectedSorting)
-                    }
-                }
+                       showOnlyFavorites: $viewModel.showFavorites,
+                       noteSorting: $viewModel.sortBy)
                 
                 //Body
                 NoteListBodyGrid(firstColumnsNotes: viewModel.firstColumnArray,
@@ -39,7 +31,7 @@ struct HomeScreen: View {
                                  navPath: self.$navigationPath,
                                  viewModel: self.viewModel)
                     .onAppear{
-                        viewModel.sortNotes(sortCriteria: selectedSorting)
+                        viewModel.getAllNoteData()
                     }
                     .onChange(of: self.searchText) { newValue in
                         if newValue == "" {
@@ -50,8 +42,11 @@ struct HomeScreen: View {
                     }
                 
             }
-            .onChange(of: self.selectedSorting, perform: { newValue in
-                viewModel.sortNotes(sortCriteria: newValue)
+            .onChange(of: self.viewModel.sortBy, perform: { newValue in
+                viewModel.getAllNoteData()
+            })
+            .onChange(of: viewModel.showFavorites, perform: { newValue in
+                viewModel.getAllNoteData()
             })
             .modifier(MainStyle(navigationTitle: GlobalValues.Strings.ScreenTitles.homeScreenTitle))
             //            Navigation Views Destinations
