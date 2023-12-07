@@ -21,9 +21,7 @@ class HomeViewModel: ObservableObject{
     func getAllNoteData(){
         let sortDescriptors = getDescriptors()
         
-        var predicate = getPredicate()
-        
-        print(predicate)
+        let predicate = getPredicate()
         
         self.notes = DataManager.getData(typeOfEntity: Note.self,
                                          entityName: "Note",

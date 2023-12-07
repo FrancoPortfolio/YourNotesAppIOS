@@ -51,11 +51,11 @@ struct Header: View {
                         }
                         
                         Menu {
-                            Picker("Sort", selection: $noteSorting) {
-                                ForEach(NotesSorting.allCases){
-                                    Text($0.title).tag($0)
-                                }
-                            }
+                                Picker("Sort by", selection: $noteSorting) {
+                                    ForEach(NotesSorting.allCases){ sort in
+                                        Text(sort.title).tag(sort)
+                                    }
+                                }.pickerStyle(MenuPickerStyle())
                         } label: {
                             Image(systemName: GlobalValues.NoFilledIcons.listBullet)
                                 .font(.title2)
