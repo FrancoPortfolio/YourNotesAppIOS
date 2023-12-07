@@ -11,6 +11,7 @@ import CoreData
 
 class HomeViewModel: ObservableObject{
     
+    @Published var searchText = ""
     @Published var showFavorites = false
     @Published var sortBy : NotesSorting = .dateAddedNewer
     @Published var firstColumnArray = [Note]()
@@ -19,10 +20,11 @@ class HomeViewModel: ObservableObject{
     
     func getAllNoteData(){
         let sortDescriptors = getDescriptors()
-        var predicate: NSPredicate? = nil
-        if showFavorites{
-            predicate = NSPredicate(format: "isFavorite == true")
-        }
+        
+        var predicate = getPredicate()
+        
+        print(predicate)
+        
         self.notes = DataManager.getData(typeOfEntity: Note.self,
                                          entityName: "Note",
                                          predicate: predicate,
@@ -37,10 +39,27 @@ class HomeViewModel: ObservableObject{
         return sortDescriptors
     }
     
-    func searchByTextTag(text:String, sortCriteria: NotesSorting = .dateAddedNewer){
-        let predicate = NSPredicate(format: "tag.tag CONTAINS[c] %@", text)
-        let sortCriteria = sortCriteria.descriptor
-        self.getAllNoteData()
+    private func getPredicate(stringSearch: String? = nil) -> NSPredicate?{
+        
+        var predicates: [NSPredicate] = []
+        
+        if showFavorites{
+            predicates.append(NSPredicate(format: "isFavorite == true"))
+        }
+        
+        if self.searchText != ""{
+            predicates.append(NSPredicate(format: "tag.tag CONTAINS[c] %@", searchText))
+        }
+        
+        print(predicates)
+        
+        var predicate: NSPredicate? = nil
+        
+        if !predicates.isEmpty{
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        }
+        
+        return predicate
     }
     
     private func setupColumns(){

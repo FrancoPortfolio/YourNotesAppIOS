@@ -38,18 +38,6 @@ class DataManager{
     func eraseUncommitedChanges(){
         DataManager.standard.container.viewContext.rollback()
     }
-    
-//    func eraseNoLinkedToNoteData(){
-//        let predicate = NSPredicate(format: "%K == nil", "note")
-//
-//        DataManager.getData(typeOfEntity: NoteImage.self, entityName: "NoteImage",predicate: predicate) { result in
-//            Log.info("\(result)")
-//            for object in result{
-//                DataManager.standard.container.viewContext.delete(object)
-//            }
-//            doWhenEnded()
-//        }
-//    }
 }
 
 extension DataManager{

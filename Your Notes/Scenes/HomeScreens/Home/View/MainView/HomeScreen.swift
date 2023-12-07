@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeScreen: View {
     
-    @State private var searchText: String = ""
     @State private var showSearchBar: Bool = false
     @State private var navigationPath: NavigationPath = NavigationPath()
     @StateObject private var viewModel: HomeViewModel = HomeViewModel()
@@ -21,7 +20,7 @@ struct HomeScreen: View {
                 
                 //Header
                 Header(title: GlobalValues.Strings.ScreenTitles.homeScreenTitle,
-                       searchText: $searchText,
+                       searchText: $viewModel.searchText,
                        showOnlyFavorites: $viewModel.showFavorites,
                        noteSorting: $viewModel.sortBy)
                 
@@ -33,12 +32,8 @@ struct HomeScreen: View {
                     .onAppear{
                         viewModel.getAllNoteData()
                     }
-                    .onChange(of: self.searchText) { newValue in
-                        if newValue == "" {
-                            viewModel.getAllNoteData()
-                            return
-                        }
-                        viewModel.searchByTextTag(text: newValue)
+                    .onChange(of: self.viewModel.searchText) { newValue in
+                        viewModel.getAllNoteData()
                     }
                 
             }
